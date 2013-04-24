@@ -1,0 +1,52 @@
+@(signupForm: Form[User])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("Iowa Children's Museum") {
+
+<div class="jumbotron masthead">
+    <div class="container">
+        <h1>Iowa City Children's Museum</h1>
+        <p>This app is in development mode</p>
+
+
+        @helper.form(action = routes.Application.submit) {
+
+        <fieldset>
+            @inputText(
+            signupForm("username"),
+            '_label -> "Username",
+            '_help -> "",
+            '_error -> signupForm.globalError
+            )
+
+
+            @inputPassword(
+            signupForm("password"),
+            '_label -> "Password",
+            '_help -> " "
+            )
+        </fieldset>
+
+        <fieldset>
+
+            @checkbox(
+            signupForm("accept"),
+            '_label -> None, '_text -> "Remember me",
+            '_showConstraints -> false
+            )
+
+        </fieldset>
+
+        <div class="actions">
+            <input type="submit" class="btn btn-large btn-primary" value="Sign In">
+        </div>
+
+        }
+
+        </p>
+    </div>
+</div>
+
+}
