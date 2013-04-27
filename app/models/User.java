@@ -15,10 +15,6 @@ public class User {
     public String username;
     
     @Required(groups = {All.class, Step1.class})
-    @Email(groups = {All.class, Step1.class})
-    public String email;
-    
-    @Required(groups = {All.class, Step1.class})
     @MinLength(value = 6, groups = {All.class, Step1.class})
     public String password;
 
@@ -27,9 +23,8 @@ public class User {
     
     public User() {}
     
-    public User(String username, String email, String password, Profile profile) {
+    public User(String username, String password, Profile profile) {
         this.username = username;
-        this.email = email;
         this.password = password;
         this.profile = profile;
     }
