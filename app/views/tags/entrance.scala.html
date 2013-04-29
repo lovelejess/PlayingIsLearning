@@ -1,4 +1,50 @@
+@(loginForm: Form[User])
 
-<p class="warning">
-    TEST
-</p>
+@import helper._
+@import helper.twitterBootstrap._
+@import tags._
+
+<div class="alert alert-info">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Note:</strong> This application is in development mode
+</div>
+
+<br>
+
+<h2 style="font-size: 72px;">Iowa City</h2>
+<h2 style="font-size: 72px;">Children's Museum</h2>
+<br>
+
+@form(routes.Application.login) {
+
+    <fieldset>
+        @inputText(
+            loginForm("username"),
+            '_label -> "Username",
+            '_help -> "",
+            '_error -> loginForm.globalError
+        )
+
+        @inputPassword(
+            loginForm("password"),
+            '_label -> "Password",
+            '_help -> " "
+        )
+    </fieldset>
+
+    <fieldset>
+        @checkbox(
+            loginForm("accept"),
+            '_label -> None, '_text -> "Remember me",
+            '_showConstraints -> false
+        )
+    </fieldset>
+
+    <div class="actions">
+        <input type="submit" class="btn btn-large btn-primary" value="Sign In">
+    </div>
+}
+
+<br/>
+
+<a class="btn btn-success" href="./#">Register</a>

@@ -1,71 +1,29 @@
-@(signupForm: Form[User], message : String)
+@(loginForm: Form[User], registerForm: Form[User], message : String)
 
-@import helper._
-@import helper.twitterBootstrap._
 @import tags._
 
 @main("Iowa Children's Museum") {
 
-<div class="jumbotron masthead">
-    <div class="container">
+    <div class="jumbotron masthead">
+        <div class="container">
 
-        <div class="alert alert-info">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Note:</strong> This application is in development mode
+            @if(message != null) {
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Ooops!</strong> Please enter a username
+                </div>
+            }
+
+            <div id="entrance">
+                @entrance(loginForm)
+            </div>
+            <div id="terms" style="display: none;">
+                @terms()
+            </div>
+            <div id="register" style="display: none;">
+                @register(registerForm)
+            </div>
+
         </div>
-
-        <br>
-
-        <h2 style="font-size: 72px;">Iowa City</h2>
-        <h2 style="font-size: 72px;">Children's Museum</h2>
-        <br>
-
-        @if(message != null) {
-            <div class="alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Ooops!</strong> Please enter a username
-            </div>
-        }
-
-        @helper.form(action = routes.Application.submit) {
-
-            <fieldset>
-                @inputText(
-                signupForm("username"),
-                '_label -> "Username",
-                '_help -> "",
-                '_error -> signupForm.globalError
-                )
-
-
-                @inputPassword(
-                signupForm("password"),
-                '_label -> "Password",
-                '_help -> " "
-                )
-            </fieldset>
-
-            <fieldset>
-
-                @checkbox(
-                signupForm("accept"),
-                '_label -> None, '_text -> "Remember me",
-                '_showConstraints -> false
-                )
-
-            </fieldset>
-
-            <div class="actions">
-                <input type="submit" class="btn btn-large btn-primary" value="Sign In">
-            </div>
-
-            <br/>
-
-            <div class="actions">
-                <input type="submit" class="btn btn-success" value="Register">
-            </div>
-        }
-
     </div>
-</div>
 }

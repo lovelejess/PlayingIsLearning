@@ -6,7 +6,10 @@
 GET     /                     controllers.Application.index()
 
 #Login
-POST    /                     controllers.Application.submit()
+POST    /                     controllers.Application.login()
+
+#Register
+GET    /register                      controllers.Application.register()
 
 # Import Secure routes
 #*      /                module:secure

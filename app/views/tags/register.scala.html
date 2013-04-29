@@ -1,0 +1,44 @@
+@(registerForm: Form[User])
+
+@import helper._
+@import helper.twitterBootstrap._
+@import tags._
+
+@form(routes.Application.register) {
+
+    @inputText(
+        registerForm("realname"),
+        '_label -> "Username",
+        '_help -> "Please choose a valid username.",
+        '_error -> registerForm.globalError
+    )
+
+    @inputText(
+        registerForm("username"),
+        '_label -> "Username",
+        '_help -> "Please choose a valid username.",
+        '_error -> registerForm.globalError
+    )
+
+    @inputText(
+        registerForm("email"), '_label -> "Email",
+        '_help -> "Enter a valid email address."
+    )
+
+    @inputPassword(
+        registerForm("password"),
+        '_label -> "Password",
+        '_help -> "A password must be at least 6 characters. "
+    )
+
+    @inputPassword(
+        registerForm("repeatPassword"),
+        '_label -> "Repeat password",
+        '_help -> "Please repeat your password again.",
+        '_error -> registerForm.error("password")
+    )
+
+    <div class="actions">
+        <input type="submit" class="btn btn-success" value="Register">
+    </div>
+}

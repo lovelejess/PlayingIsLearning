@@ -1,5 +1,9 @@
 @(title: String)(content: Html)
 
+@import helper._
+@import helper.twitterBootstrap._
+@import tags._
+
 <!DOCTYPE html>
 
 <html>
@@ -15,6 +19,7 @@
     <script src="@routes.Assets.at("javascripts/backbone-min.js")" type="text/javascript"></script>
     <script src="@routes.Assets.at("javascripts/router.js")" type="text/javascript"></script>
     </head>
+
     <body>
 
         <div class="navbar navbar-fixed-top">
