@@ -1,20 +1,14 @@
 $(function () {
     var AppRouter = Backbone.Router.extend({
         routes:{
-            "tab/:id":"showTab",
             ":tab":"decodeTab"
         },
 
-        showTab:function (id) {
-
-            document.getElementById('adminTab' + id).click();
-
-        },
-
         decodeTab:function (id) {
-
-            document.getElementById('adminTab' + id.charAt(id.length-1)).click();
-
+            document.getElementById('entrance').style.display = 'none';
+            document.getElementById('terms').style.display = 'none';
+            document.getElementById('register').style.display = 'none';
+            document.getElementById(id).style.display = 'block';
         }
 
     });

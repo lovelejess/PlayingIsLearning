@@ -4,12 +4,15 @@
 @import helper.twitterBootstrap._
 @import tags._
 
+
+<h2>Registration</h2>
+
 @form(routes.Application.register) {
 
     @inputText(
         registerForm("realname"),
         '_label -> "Username",
-        '_help -> "Please choose a valid username.",
+        '_help -> "Please enter your real name.",
         '_error -> registerForm.globalError
     )
 
