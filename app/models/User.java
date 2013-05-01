@@ -44,9 +44,11 @@ public class User {
     
     public User() {}
     
-    public User(String username, String password) {
+    public User(String username, String password, String email, String realname) {
         this.username = username;
         this.password = password;
+        this.email = email;
+        this.realname = realname;
     }
 
     public static Boolean isUsernameTaken(String username) {
@@ -55,6 +57,19 @@ public class User {
         DBCursor cursorDoc = collection.find(DBQuery.is("username", username));
 
         return  (cursorDoc.hasNext());
+    }
+
+    public static String getEncryptedPasswordForUser(String username) {
+        JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
+
+        DBCursor cursorDoc = collection.find(DBQuery.is("username", username));
+
+        User user = (User)cursorDoc.next();
+
+        if(user != null)
+            return user.password;
+        else
+            return null;
     }
     
     public static class Profile {
