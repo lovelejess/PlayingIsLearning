@@ -12,7 +12,7 @@ POST    /                     controllers.Application.login()
 GET    /register              controllers.Application.register()
 
 #Admin
-GET    /admin                 controllers.Application.register()
+GET    /admin                 controllers.Admin.index()
 
 # Import Secure routes
 #*      /                     module:secure

@@ -9,7 +9,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import org.mongojack.ObjectId;
 import play.data.validation.Constraints.*;
 import utils.DataUtil;
-
+import utils.EncryptionUtil;
 
 public class User {
 
@@ -30,12 +30,6 @@ public class User {
     @MinLength(value = 4)
     public String username;
 
-    @MinLength(value = 2)
-    public String realname;
-
-    @MinLength(value = 3)
-    public String email;
-
     @MinLength(value = 6)
     public String password;
 
@@ -44,11 +38,9 @@ public class User {
     
     public User() {}
     
-    public User(String username, String password, String email, String realname) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.email = email;
-        this.realname = realname;
     }
 
     public static Boolean isUsernameTaken(String username) {
@@ -56,22 +48,29 @@ public class User {
 
         DBCursor cursorDoc = collection.find(DBQuery.is("username", username));
 
-        return  (cursorDoc.hasNext());
+        return (cursorDoc.hasNext());
     }
 
-    public static String getEncryptedPasswordForUser(String username) {
+    public static String getDecryptedPasswordForUser(String username) {
         JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
 
         DBCursor cursorDoc = collection.find(DBQuery.is("username", username));
 
-        User user = (User)cursorDoc.next();
+        User user = (User) cursorDoc.next();
+        EncryptionUtil decryptor;
 
-        if(user != null)
-            return user.password;
+        try {
+            decryptor = new EncryptionUtil();
+        } catch (Exception e) {
+            return null;
+        }
+
+        if (user != null)
+            return decryptor.decrypt(user.password);
         else
             return null;
     }
-    
+
     public static class Profile {
 
         public String country;

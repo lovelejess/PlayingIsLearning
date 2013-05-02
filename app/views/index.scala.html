@@ -1,4 +1,4 @@
-@(loginForm: Form[User], registerForm: Form[User], message : String)
+@(loginForm: Form[User], registerForm: Form[User], messageToShow : Message)
 
 @import tags._
 
@@ -7,12 +7,7 @@
     <div class="jumbotron masthead">
         <div class="container">
 
-            @if(message != null) {
-                <div class="alert alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Ooops!</strong> Please enter a username
-                </div>
-            }
+            @message(messageToShow)
 
             <div id="entrance">
                 @entrance(loginForm)

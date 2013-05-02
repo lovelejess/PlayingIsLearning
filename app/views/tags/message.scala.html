@@ -1,0 +1,25 @@
+@(message: Message)
+
+@import enums.MessageLevel
+
+@if(message != null) {
+
+    @if(message.getLevel == MessageLevel.ERROR) {
+        <div class="alert alert-danger">
+    }
+    @if(message.getLevel == MessageLevel.INFO) {
+        <div class="alert alert-info">
+    }
+    @if(message.getLevel == MessageLevel.OK) {
+        <div class="alert alert-success">
+    }
+    @if(message.getLevel == MessageLevel.WARNING) {
+        <div class="alert alert-block">
+    }
+
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>@message.getLevel.label :</strong> @message.getMessage
+    </div>
+}
+
+
