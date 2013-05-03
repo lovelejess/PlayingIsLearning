@@ -18,7 +18,7 @@ public class DataUtil {
 
         try {
 
-            mongoClient = new MongoClient();
+            mongoClient = new MongoClient( "ds061787.mongolab.com" , 61787 );
 
             return mongoClient.getDB("heroku_app15452455");
 
