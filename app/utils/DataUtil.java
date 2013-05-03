@@ -23,7 +23,7 @@ public class DataUtil {
 
             mongoClient = new MongoClient();
 
-            return mongoClient.getDB("app15452455");
+            return mongoClient.getDB("iowacm");
 
         } catch (UnknownHostException e) {
             return null;
