@@ -23,7 +23,7 @@ public class DataUtil {
 
             mongoClient = new MongoClient();
 
-            return mongoClient.getDB("app15452455");
+            return mongoClient.getDB("heroku_app15452455");
 
         } catch (UnknownHostException e) {
             return null;
