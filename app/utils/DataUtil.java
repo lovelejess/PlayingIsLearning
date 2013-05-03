@@ -20,7 +20,13 @@ public class DataUtil {
 
             mongoClient = new MongoClient( "ds061787.mongolab.com" , 61787 );
 
-            return mongoClient.getDB("heroku_app15452455");
+            DB dataBase = mongoClient.getDB("heroku_app15452455");
+
+            boolean auth = dataBase.authenticate("heroku_app15452455", "73mi73eoolvr4s7v47ugutfru9".toCharArray());
+
+            System.out.println("Database is authenticated: " + auth);
+
+            return dataBase;
 
         } catch (UnknownHostException e) {
             return null;
