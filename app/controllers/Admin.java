@@ -18,13 +18,8 @@ import static play.data.Form.form;
 
 public class Admin extends MasterController {
 
-    public String getTab() {
-        return "admin";
-    }
-
     public static Result index() {
-        return ok(admin.render());
+        return ok(admin.render(DataUtil.dump("users",User.class)));
     }
-
 
 }

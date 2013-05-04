@@ -5,6 +5,7 @@ import javax.validation.*;
 import net.vz.mongodb.jackson.DBCursor;
 import net.vz.mongodb.jackson.DBQuery;
 import net.vz.mongodb.jackson.JacksonDBCollection;
+import org.codehaus.jackson.annotate.JsonProperty;
 import play.data.validation.Constraints.*;
 import utils.DataUtil;
 import utils.EncryptionUtil;
@@ -12,6 +13,16 @@ import utils.EncryptionUtil;
 public class User {
 
     private String id;
+
+    @JsonProperty("_id")
+    public String getId() {
+        return id;
+    }
+
+    @JsonProperty("_id")
+    public void setId(String id) {
+        this.id = id;
+    }
 
     @MinLength(value = 4)
     public String username;
@@ -21,6 +32,9 @@ public class User {
 
     @Valid
     public Profile profile;
+
+    @Valid
+    public Survey survey;
     
     public User() {}
     
@@ -64,12 +78,13 @@ public class User {
         public Integer age;
         
         public Profile() {}
-        
-        public Profile(String country, String address, Integer age) {
-            this.country = country;
-            this.address = address;
-            this.age = age;
-        }
+
+    }
+
+    public static class Survey {
+
+        public Survey() {}
+
     }
     
 }

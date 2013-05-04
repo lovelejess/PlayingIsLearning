@@ -9,6 +9,5 @@ import play.mvc.Controller;
 
 public abstract class MasterController extends Controller {
 
-    public abstract String getTab();
 
 }

@@ -1,3 +1,5 @@
+@(dump: List[String])
+
 @import tags._
 
 @main("Iowa Children's Museum") {
@@ -5,7 +7,9 @@
     <div class="jumbotron masthead">
         <div class="container">
 
-            Admin page
+            Admin page --- This is currently an unsecured test data dump page
+
+            @dump
 
         </div>
     </div>

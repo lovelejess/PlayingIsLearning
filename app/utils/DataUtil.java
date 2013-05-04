@@ -2,9 +2,13 @@ package utils;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
+import models.User;
+import net.vz.mongodb.jackson.DBCursor;
 import net.vz.mongodb.jackson.JacksonDBCollection;
 
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: Charles
@@ -22,9 +26,7 @@ public class DataUtil {
 
             DB dataBase = mongoClient.getDB("heroku_app15452455");
 
-            boolean auth = dataBase.authenticate("heroku_app15452455", "73mi73eoolvr4s7v47ugutfru9".toCharArray());
-
-            System.out.println("Database is authenticated: " + auth);
+            dataBase.authenticate("heroku_app15452455", "73mi73eoolvr4s7v47ugutfru9".toCharArray());
 
             return dataBase;
 
@@ -45,7 +47,29 @@ public class DataUtil {
 
     }
 
-    //            JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
+    public static List<String> dump(String collection, Class clazz) {
+
+        try {
+
+            List<String> dumpList = new ArrayList<String>();
+
+            JacksonDBCollection jacksonCollection = getCollection(collection, clazz);
+            DBCursor cursorDoc = jacksonCollection.find();
+
+            while (cursorDoc.hasNext()) {
+                User user = (User)cursorDoc.next();
+                dumpList.add(user.username);
+            }
+
+            return dumpList;
+
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+//            JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
 //
 //            User newUser = new User("testuSer", "testPaSs");
 //

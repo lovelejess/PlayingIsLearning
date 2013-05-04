@@ -26,10 +26,10 @@
                 <div class="container">
                     <a class="brand" href="#">ICM</a>
                     <ul class="nav">
-                        <li class="active"><a href="./#">Home</a></li>
-                        <li><a href="./about">About</a></li>
-                        <li><a href="./contact">Contact</a></li>
-                        <li><a href="./admin">Admin</a></li>
+                        <li id='home'><a href="./#">Home</a></li>
+                        <li id='about'><a href="./about">About</a></li>
+                        <li id='contact'><a href="./contact">Contact</a></li>
+                        <li id='admin'><a href="./admin">Admin</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,3 +48,14 @@
         </div>
     </body>
 </html>
+
+        <script type="text/javascript">
+
+            var path = window.location.pathname.replace("/","").replace("#","");
+
+            if(path.trim() == "")
+                $("#home").addClass("active");
+            else
+                $("#"+path).addClass("active");
+
+        </script>
