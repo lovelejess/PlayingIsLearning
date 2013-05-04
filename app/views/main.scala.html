@@ -24,9 +24,9 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="#">ICM</a>
+                    <a class="brand" href="./index">ICM</a>
                     <ul class="nav">
-                        <li id='home'><a href="./#">Home</a></li>
+                        <li id='home'><a href="./index">Home</a></li>
                         <li id='about'><a href="./about">About</a></li>
                         <li id='contact'><a href="./contact">Contact</a></li>
                         <li id='admin'><a href="./admin">Admin</a></li>
@@ -49,13 +49,13 @@
     </body>
 </html>
 
-        <script type="text/javascript">
+<script type="text/javascript">
 
-            var path = window.location.pathname.replace("/","").replace("#","");
+    var path = window.location.pathname.replace("/","").replace("#","");
 
-            if(path.trim() == "")
-                $("#home").addClass("active");
-            else
-                $("#"+path).addClass("active");
+    if(path.trim() == "")
+        $("#home").addClass("active");
+    else
+        $("#"+path).addClass("active");
 
-        </script>
+</script>
