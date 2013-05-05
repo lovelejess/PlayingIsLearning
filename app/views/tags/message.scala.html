@@ -1,19 +1,19 @@
 @(message: Message)
 
-@import enums.MessageLevel
+@import enums.MessageLevelEnum
 
 @if(message != null) {
 
-    @if(message.getLevel == MessageLevel.ERROR) {
+    @if(message.getLevel == MessageLevelEnum.ERROR) {
         <div class="alert alert-danger">
     }
-    @if(message.getLevel == MessageLevel.INFO) {
+    @if(message.getLevel == MessageLevelEnum.INFO) {
         <div class="alert alert-info">
     }
-    @if(message.getLevel == MessageLevel.OK) {
+    @if(message.getLevel == MessageLevelEnum.OK) {
         <div class="alert alert-success">
     }
-    @if(message.getLevel == MessageLevel.WARNING) {
+    @if(message.getLevel == MessageLevelEnum.WARNING) {
         <div class="alert alert-block">
     }
 

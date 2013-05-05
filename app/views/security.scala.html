@@ -1,0 +1,68 @@
+@(securityForm: Form[User], id: String, messageToShow : Message)
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("Iowa Children's Museum") {
+
+    <div class="jumbotron masthead">
+        <div class="container">
+
+            <h2 style="margin-top: -2em;">Security Questions</h2>
+            <i style="margin-top: -2.5em;">(For password recovery)</i>
+            <br> <br> <br>
+            @form(routes.Entrance.security) {
+
+                @inputText(
+                    securityForm("securityQuestionOne"),
+                    '_label -> "Security Question One",
+                    '_help -> "Please choose a security question.",
+                    '_error -> securityForm.globalError
+                )
+
+                @inputText(
+                    securityForm("securityAnswerOne"),
+                    '_label -> "Security Answer One",
+                    '_help -> "Please choose an answer.",
+                    '_error -> securityForm.globalError
+                )
+
+                @inputText(
+                    securityForm("securityQuestionTwo"),
+                    '_label -> "Security Question Two",
+                    '_help -> "Please choose a security question.",
+                    '_error -> securityForm.globalError
+                )
+
+                @inputText(
+                    securityForm("securityAnswerTwo"),
+                    '_label -> "Security Answer Two",
+                    '_help -> "Please choose an answer.",
+                    '_error -> securityForm.globalError
+                )
+
+                @inputText(
+                    securityForm("securityQuestionThree"),
+                    '_label -> "Security Question Three",
+                    '_help -> "Please choose a security question.",
+                    '_error -> securityForm.globalError
+                )
+
+                @inputText(
+                    securityForm("securityAnswerThree"),
+                    '_label -> "Security Answer Three",
+                    '_help -> "Please choose an answer.",
+                    '_error -> securityForm.globalError
+                )
+
+                <br>
+
+                <div class="actions">
+                    <input type="submit" class="btn btn-success" value="Finish">
+                </div>
+
+            }
+
+        </div>
+    </div>
+}

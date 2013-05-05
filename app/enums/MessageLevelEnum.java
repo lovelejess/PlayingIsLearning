@@ -5,7 +5,8 @@ package enums;
  * Date: 5/1/13
  */
 
-public enum MessageLevel {
+public enum MessageLevelEnum {
+
     ERROR ("Error"),
     WARNING ("Warning"),
     INFO ("Info"),
@@ -13,7 +14,8 @@ public enum MessageLevel {
 
     public String label;
 
-    MessageLevel(String label) {
+    MessageLevelEnum(String label) {
         this.label = label;
     }
+
 }

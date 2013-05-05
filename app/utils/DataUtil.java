@@ -16,9 +16,9 @@ import java.util.List;
  */
 public class DataUtil {
 
-    public static DB getDB() {
+    private static MongoClient mongoClient;
 
-        MongoClient mongoClient;
+    public static DB getDB() {
 
         try {
 
@@ -47,6 +47,19 @@ public class DataUtil {
 
     }
 
+    public static Object getEntityById(String collection, Class clazz, String id) {
+
+        try {
+
+            JacksonDBCollection jacksonDBCollection =  JacksonDBCollection.wrap(getDB().getCollection(collection), clazz, String.class);
+            return jacksonDBCollection.findOneById(id);
+
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
     public static List<String> dump(String collection, Class clazz) {
 
         try {
@@ -58,7 +71,7 @@ public class DataUtil {
 
             while (cursorDoc.hasNext()) {
                 User user = (User)cursorDoc.next();
-                dumpList.add(user.username);
+                dumpList.add(user.username + " " + user.getId());
             }
 
             return dumpList;
@@ -66,21 +79,11 @@ public class DataUtil {
         } catch (Exception e) {
             return null;
         }
-
     }
 
-//            JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
-//
-//            User newUser = new User("testuSer", "testPaSs");
-//
-//            WriteResult<User, String> result = collection.insert(newUser);
-//
-//            DBCursor cursorDoc = collection.find();
-//
-//            while (cursorDoc.hasNext()) {
-//                User us = (User)cursorDoc.next();
-//                System.out.println(us.username);
-//            }
+    public static boolean flush() {
 
+        return mongoClient.fsync(true).ok();
 
+    }
 }

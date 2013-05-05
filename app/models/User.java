@@ -2,42 +2,50 @@ package models;
 
 import javax.validation.*;
 
-import net.vz.mongodb.jackson.DBCursor;
-import net.vz.mongodb.jackson.DBQuery;
-import net.vz.mongodb.jackson.JacksonDBCollection;
+import net.vz.mongodb.jackson.*;
 import org.codehaus.jackson.annotate.JsonProperty;
 import play.data.validation.Constraints.*;
 import utils.DataUtil;
 import utils.EncryptionUtil;
 
+@MongoCollection(name = "users")
 public class User {
 
     private String id;
 
+    @ObjectId
     @JsonProperty("_id")
     public String getId() {
         return id;
     }
 
+    @ObjectId
     @JsonProperty("_id")
     public void setId(String id) {
         this.id = id;
     }
 
-    @MinLength(value = 4)
     public String username;
 
-    @MinLength(value = 6)
     public String password;
 
     @Valid
     public Profile profile;
 
-    @Valid
-    public Survey survey;
-    
-    public User() {}
-    
+    public String securityQuestionOne;
+
+    public String securityAnswerOne;
+
+    public String securityQuestionTwo;
+
+    public String securityAnswerTwo;
+
+    public String securityQuestionThree;
+
+    public String securityAnswerThree;
+
+    public User() {   }
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -50,6 +58,15 @@ public class User {
 
         return (cursorDoc.hasNext());
     }
+
+    public static User findUserByName(String username) {
+        JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
+
+        DBCursor cursorDoc = collection.find(DBQuery.is("username", username));
+
+        return ((User)cursorDoc.next());
+    }
+
 
     public static String getDecryptedPasswordForUser(String username) {
         JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
@@ -74,17 +91,9 @@ public class User {
     public static class Profile {
 
         public String country;
-        public String address;
         public Integer age;
         
         public Profile() {}
 
     }
-
-    public static class Survey {
-
-        public Survey() {}
-
-    }
-    
 }

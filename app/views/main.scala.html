@@ -9,10 +9,10 @@
 <html>
 <head>
     <title>@title</title>
-    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap-responsive.css")">
-    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")">
-    <link rel="shortcut icon" type="image/gif" href="@routes.Assets.at("images/favicon.png")">
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-responsive.css")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.css")'>
+    <link rel="shortcut icon" type="image/gif" href='@routes.Assets.at("images/favicon.png")'>
     <script src='@routes.Assets.at("javascripts/jquery-1.9.0.min.js")' type="text/javascript"></script>
     <script src='@routes.Assets.at("javascripts/bootstrap.min.js")' type="text/javascript"></script>
     <script src='@routes.Assets.at("javascripts/underscore-min.js")' type="text/javascript"></script>
@@ -24,13 +24,15 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="./index">ICM</a>
+
                     <ul class="nav">
                         <li id='home'><a href="./index">Home</a></li>
                         <li id='about'><a href="./about">About</a></li>
                         <li id='contact'><a href="./contact">Contact</a></li>
                         <li id='admin'><a href="./admin">Admin</a></li>
                     </ul>
+
+                    <img class="pull-right" height='40' width='40' style="display:block;max-height: 40px;max-width: 40px;" src='@routes.Assets.at("images/goIconBlue.png")'/>
                 </div>
             </div>
         </div>

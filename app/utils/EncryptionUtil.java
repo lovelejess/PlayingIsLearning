@@ -3,6 +3,9 @@ package utils;
 /**
  * User: Charles
  * Date: 4/30/13
+ *
+ * This needs to be updated to use the apache codec
+ *
  */
 import java.security.spec.KeySpec;
 

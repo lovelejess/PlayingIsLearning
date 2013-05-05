@@ -10,7 +10,6 @@ $(function () {
             document.getElementById('register').style.display = 'none';
             document.getElementById(id).style.display = 'block';
         }
-
     });
 
     var appRouter = new AppRouter();

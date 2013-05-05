@@ -4,40 +4,39 @@
 @import helper.twitterBootstrap._
 @import tags._
 
-<br>
 
-<h2 style="font-size: 72px;margin-bottom: 20px;">Iowa City</h2>
-<h2 style="font-size: 72px;">Children's Museum</h2>
-<br>
+<img height='500' width='400' style="display:block;max-height: 500px;max-width: 400px;margin-left: auto;margin-right: auto;margin-top: -100px;" src='@routes.Assets.at("images/PlayLogo2.jpg")'/>
 
-@form(routes.Application.login) {
+<div>
+    @form(routes.Entrance.login) {
 
-    <fieldset>
-        @inputText(
-            loginForm("username"),
-            '_label -> "Username",
-            '_error -> loginForm.globalError
-        )
+        <fieldset style="margin-top: -50px;">
+            @inputText(
+                loginForm("username"),
+                '_label -> "Username",
+                '_error -> loginForm.globalError
+            )
 
-        @inputPassword(
-            loginForm("password"),
-            '_label -> "Password"
-        )
-    </fieldset>
+            @inputPassword(
+                loginForm("password"),
+                '_label -> "Password"
+            )
+        </fieldset>
 
-    <fieldset>
-        @checkbox(
-            loginForm("accept"),
-            '_label -> None, '_text -> "Remember me",
-            '_showConstraints -> false
-        )
-    </fieldset>
+        <fieldset>
+            @checkbox(
+                loginForm("accept"),
+                '_label -> None, '_text -> "Remember me",
+                '_showConstraints -> false
+            )
+        </fieldset>
 
-    <div class="actions">
-        <input type="submit" class="btn btn-large btn-primary" value="Sign In">
-    </div>
-}
+        <div class="actions">
+            <input type="submit" class="btn btn-large btn-primary" value="Sign In">
+        </div>
+    }
 
-<br/>
+    <br/>
 
-<a class="btn btn-success" href="#terms" onclick="window.location = '#tab/terms'">Register</a>
+    <a class="btn btn-success" href="#terms" onclick="window.location = '#tab/terms'">Register</a>
+</div>

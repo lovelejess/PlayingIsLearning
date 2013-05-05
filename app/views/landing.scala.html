@@ -1,10 +1,10 @@
-@(signupForm: Form[User])
+@(user: User)
 
 @main("Iowa Children's Museum") {
 
     <div class="container">
         <br>
-            <div class="alert alert-success">Hello <b>@signupForm.data().get("username")</b> </div>
+            <div class="alert alert-success">Hello <b>@user.username</b> </div>
         <br>
 
         <blockquote>
@@ -14,19 +14,19 @@
 
         <br>
 
-        <a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+        <a href="#myModal" id="surveyButton" style="display: none;" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
 
         <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Modal header</h3>
+                <h3 id="myModalLabel">Survey Questions</h3>
             </div>
             <div class="modal-body">
-                <p>One fine body…</p>
+                <p>Looks like you still have some survey questions left. Would you like to complete a few now?</p>
             </div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                <button class="btn btn-primary">Save changes</button>
+                <button class="btn" data-dismiss="modal" aria-hidden="true">No thanks</button>
+                <button class="btn btn-primary">Yes</button>
             </div>
         </div>
 
@@ -106,3 +106,7 @@
         </div>
     </div>
 }
+
+   <script type="text/javascript">
+       document.getElementById('surveyButton').click();
+   </script>

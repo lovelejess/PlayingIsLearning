@@ -1,6 +1,6 @@
 package models;
 
-import enums.MessageLevel;
+import enums.MessageLevelEnum;
 
 /**
  * User: Charles
@@ -9,9 +9,9 @@ import enums.MessageLevel;
 public class Message {
 
     private String message;
-    private MessageLevel level;
+    private MessageLevelEnum level;
 
-    public Message(String message, MessageLevel level) {
+    public Message(String message, MessageLevelEnum level) {
         this.message = message;
         this.level = level;
     }
@@ -20,7 +20,7 @@ public class Message {
         return message;
     }
 
-    public MessageLevel getLevel() {
+    public MessageLevelEnum getLevel() {
         return level;
     }
 
@@ -28,7 +28,7 @@ public class Message {
         this.message = message;
     }
 
-    public void setLevel(MessageLevel level) {
+    public void setLevel(MessageLevelEnum level) {
         this.level = level;
     }
 }

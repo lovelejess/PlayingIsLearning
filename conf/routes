@@ -3,13 +3,17 @@
 # ~~~~
 
 # Home page
-GET     /                     controllers.Application.index()
+GET    /                     controllers.Entrance.index()
+GET    /index                     controllers.Entrance.index()
 
 #Login
-POST    /                     controllers.Application.login()
+POST    /                     controllers.Entrance.login()
 
 #Register
-GET    /register              controllers.Application.register()
+POST    /register              controllers.Entrance.register()
+
+#Security questions
+POST    /security              controllers.Entrance.security()
 
 #Admin
 GET    /admin                 controllers.Admin.index()
