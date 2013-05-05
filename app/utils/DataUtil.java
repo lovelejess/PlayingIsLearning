@@ -71,7 +71,7 @@ public class DataUtil {
 
             while (cursorDoc.hasNext()) {
                 User user = (User)cursorDoc.next();
-                dumpList.add(user.username + " " + user.getId());
+                dumpList.add(user.username);
             }
 
             return dumpList;
