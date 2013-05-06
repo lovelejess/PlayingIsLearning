@@ -10,7 +10,7 @@
 <div>
     @form(routes.Entrance.login) {
 
-        <fieldset style="margin-top: -50px;">
+        <fieldset style="margin-top: -75px;">
             @inputText(
                 loginForm("username"),
                 '_label -> "Username",
@@ -23,13 +23,15 @@
             )
         </fieldset>
 
-        <fieldset>
+        <fieldset style="display: inline; margin-bottom: 10px;">
             @checkbox(
                 loginForm("accept"),
                 '_label -> None, '_text -> "Remember me",
                 '_showConstraints -> false
             )
         </fieldset>
+
+        <a href="/recoverPassword" style="color: blue;margin-left: 1em;">I forgot my password</a>
 
         <div class="actions">
             <input type="submit" class="btn btn-large btn-primary" value="Sign In">

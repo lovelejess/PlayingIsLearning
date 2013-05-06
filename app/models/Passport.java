@@ -20,6 +20,8 @@ public class Passport {
 
     public List<Card> cardsComplete;
 
+    public Passport() {   }
+
     public Passport(String passportName, String userID, PassportTypeEnum type) {
         this.passportName = passportName;
         this.userID = userID;

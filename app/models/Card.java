@@ -7,5 +7,17 @@ package models;
 
 public class Card {
 
+    public String cardName;
 
+    public String frontURLImage;
+
+    public String backURLImage;
+
+    public Card() {   }
+
+    public Card(String cardName, String frontURLImage, String backURLImage) {
+        this.cardName = cardName;
+        this.frontURLImage = frontURLImage;
+        this.backURLImage = backURLImage;
+    }
 }

@@ -4,7 +4,6 @@ import javax.validation.*;
 
 import net.vz.mongodb.jackson.*;
 import org.codehaus.jackson.annotate.JsonProperty;
-import play.data.validation.Constraints.*;
 import utils.DataUtil;
 import utils.EncryptionUtil;
 
@@ -20,17 +19,18 @@ public class User {
     }
 
     @ObjectId
+    @ObjectId
     @JsonProperty("_id")
     public void setId(String id) {
         this.id = id;
     }
 
+    @Valid
+    public Profile profile;
+
     public String username;
 
     public String password;
-
-    @Valid
-    public Profile profile;
 
     public String securityQuestionOne;
 
@@ -64,7 +64,11 @@ public class User {
 
         DBCursor cursorDoc = collection.find(DBQuery.is("username", username));
 
-        return ((User)cursorDoc.next());
+        if(cursorDoc.hasNext())
+            return ((User)cursorDoc.next());
+        else
+            return null;
+
     }
 
 
