@@ -19,7 +19,6 @@ public class User {
     }
 
     @ObjectId
-    @ObjectId
     @JsonProperty("_id")
     public void setId(String id) {
         this.id = id;
