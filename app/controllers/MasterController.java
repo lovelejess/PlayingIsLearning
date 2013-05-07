@@ -1,6 +1,9 @@
 package controllers;
 
+import models.User;
 import play.mvc.Controller;
+import play.mvc.Http;
+import utils.DataUtil;
 
 /**
  * User: Charles
@@ -9,5 +12,14 @@ import play.mvc.Controller;
 
 public abstract class MasterController extends Controller {
 
+    protected static User getLoggedInUser() {
+        String userID = Http.Context.current().session().get("user");
+        if(userID == null) {
+            return null;
+        }
+        else {
+           return  (User)DataUtil.getEntityById("users", User.class, userID);
+        }
+    }
 
 }

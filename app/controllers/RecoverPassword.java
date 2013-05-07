@@ -4,9 +4,12 @@ import enums.MessageLevelEnum;
 import models.Message;
 import models.User;
 import play.data.Form;
+import play.mvc.Http;
 import play.mvc.Result;
 import play.data.*;
 import utils.DataUtil;
+import utils.EncryptionUtil;
+import utils.StringUtil;
 import views.html.*;
 
 
@@ -31,6 +34,7 @@ public class RecoverPassword extends MasterController {
         User user = User.findUserByName(filledForm.data().get("username"));
 
         if (user != null) {
+            Http.Context.current().session().put("recover_user", user.username);
             return ok( recoverPassword.render(user.securityQuestionOne, user.securityQuestionTwo,user.securityQuestionThree, true, null, "", userForm, secureForm) );
         }
 
@@ -41,13 +45,21 @@ public class RecoverPassword extends MasterController {
 
     public static Result secureQuestions() {
         Form<User> filledForm = secureForm.bindFromRequest();
-
+        String userName = Http.Context.current().session().get("recover_user");
+        User user = User.findUserByName(userName);
         String answerOne = filledForm.data().get("securityAnswerOne");
         String answerTwo = filledForm.data().get("securityAnswerTwo");
         String answerThree = filledForm.data().get("securityAnswerThree");
 
-        if(answerOne.equals("gdsfg") && answerTwo.equals("sdg") && answerThree.equals("sdgdfsg") ) {
-            return ok( recoverPassword.render("", "","",false, true, "", userForm, secureForm) );
+        try {
+            if (answerOne.toLowerCase().equals(user.securityAnswerOne.toLowerCase()) && answerTwo.toLowerCase().equals(user.securityAnswerTwo.toLowerCase()) && answerThree.toLowerCase().equals(user.securityAnswerThree.toLowerCase())) {
+
+                String passwordToReturn = new EncryptionUtil().decrypt(user.password);
+
+                return ok(recoverPassword.render("", "", "", false, true, passwordToReturn, userForm, secureForm));
+            }
+        } catch (Exception e) {
+            return internalServerError(recoverPassword.render("", "", "", false, false, "", userForm, secureForm));
         }
 
         return ok(recoverPassword.render("", "", "", false, false, "", userForm, secureForm));

@@ -91,7 +91,7 @@ public class Entrance extends MasterController {
      */
     public static Result security() {
         Form<User> filledForm = securityForm.bindFromRequest();
-        User user = (User)DataUtil.getEntityById("users", User.class, Http.Context.current().session().get("user"));
+        User user = getLoggedInUser();
 
         try {
 

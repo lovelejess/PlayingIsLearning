@@ -4,7 +4,7 @@
 
 # Home page
 GET    /                     controllers.Entrance.index()
-GET    /index                controllers.Entrance.index()
+GET    /index                     controllers.Entrance.index()
 
 #Login
 POST    /                    controllers.Entrance.login()
@@ -17,8 +17,8 @@ POST    /security            controllers.Entrance.security()
 
 #Recover Password
 GET    /recoverPassword     controllers.RecoverPassword.index()
-POST    /isUser              controllers.RecoverPassword.isUser()
-POST    /secureQuestions     controllers.RecoverPassword.secureQuestions()
+POST   /isUser              controllers.RecoverPassword.isUser()
+POST   /secureQuestions     controllers.RecoverPassword.secureQuestions()
 
 #Survey page
 GET    /survey               controllers.Survey.index()
