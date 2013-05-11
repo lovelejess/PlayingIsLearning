@@ -24,9 +24,6 @@ public class User {
         this.id = id;
     }
 
-    @Valid
-    public Profile profile;
-
     public String username;
 
     public String password;
@@ -70,7 +67,6 @@ public class User {
 
     }
 
-
     public static String getDecryptedPasswordForUser(String username) {
         JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
 
@@ -91,12 +87,4 @@ public class User {
             return null;
     }
 
-    public static class Profile {
-
-        public String country;
-        public Integer age;
-        
-        public Profile() {}
-
-    }
 }
