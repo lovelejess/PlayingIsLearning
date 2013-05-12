@@ -27,7 +27,18 @@ public class Entrance extends MasterController {
 
 
     public static Result index() {
+        if(getLoggedInUser() != null) {
+            return ok( landing.render(getLoggedInUser()) );
+        }
         return ok( index.render(loginForm, registerForm, new Message("This application is in dev mode", MessageLevelEnum.INFO)) );
+    }
+
+    public static Result playing() {
+        return ok( playing.render());
+    }
+
+    public static Result gog() {
+        return ok( gog.render());
     }
 
     /**
@@ -44,6 +55,7 @@ public class Entrance extends MasterController {
         if (User.isUsernameTaken(userName)) {
             if (User.getDecryptedPasswordForUser(userName).equals(filledForm.data().get("password"))) {
                 User user = User.findUserByName(userName);
+                Http.Context.current().session().put("user", user.getId());
                 return ok( landing.render(user) );
             }
         }

@@ -39,8 +39,6 @@ public class RecoverPassword extends MasterController {
         }
 
         return ok( index.render(form(User.class), form(User.class), new Message("Sorry, that user doesn't exist", MessageLevelEnum.ERROR)) );
-
-
     }
 
     public static Result secureQuestions() {

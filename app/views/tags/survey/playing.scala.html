@@ -1,0 +1,32 @@
+@(surveyForm: Form[User], survey: Survey)
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@form(routes.SurveyController.stageTwo) {
+
+    @inputRadioGroup(
+        surveyForm("playImportance"),
+        options = Seq("1"->"1 (not important)","2"->"2","3"->"3","4"->"4","5"->"5","6"->"6","7"->"7","8"->"8","9"->"9","10"->"10 (very important)"),
+        '_label -> "On a scale from 1 to 10, how important is play in your child’s everyday life?"
+    )
+
+    @inputRadioGroup(
+        surveyForm("playingRelatedToLearningKnowledge"),
+        options = Seq("1"->"1 (very little)","2"->"2","3"->"3","4"->"4","5"->"5","6"->"6","7"->"7","8"->"8","9"->"9","10"->"10 (a lot)"),
+        '_label -> "On a scale from 1 to 10, how much do you know about how playing is related to learning?"
+    )
+
+    @inputRadioGroup(
+        surveyForm("motivatedToLearnAboutPlay"),
+        options = Seq("1"->"1 (not motivated)","2"->"2","3"->"3","4"->"4","5"->"5","6"->"6","7"->"7","8"->"8","9"->"9","10"->"10 (very motivated)"),
+        '_label -> "On a scale from 1 to 10, how motivated are you to learn about play?"
+    )
+
+    @select(field = surveyForm("hoursPerDayPlayingWithChildren"), options("<1"->"Less than 1", "1"->"1","2"->"2","3"->"3","4"->"4","5"->"5",">5"->"More than 5"), '_label -> "On average, how many hours per day do you spend playing with your children?")
+
+    <div class="actions">
+        <input type="submit" class="btn btn-success" value="Finish">
+    </div>
+
+}

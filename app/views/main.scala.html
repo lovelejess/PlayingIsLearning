@@ -13,11 +13,16 @@
     <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-responsive.css")'>
     <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.css")'>
     <link rel="shortcut icon" type="image/gif" href='@routes.Assets.at("images/favicon.png")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-image-gallery.min.css")'/>
+
     <script src='@routes.Assets.at("javascripts/jquery-1.9.0.min.js")' type="text/javascript"></script>
     <script src='@routes.Assets.at("javascripts/bootstrap.min.js")' type="text/javascript"></script>
     <script src='@routes.Assets.at("javascripts/underscore-min.js")' type="text/javascript"></script>
     <script src='@routes.Assets.at("javascripts/backbone-min.js")' type="text/javascript"></script>
     <script src='@routes.Assets.at("javascripts/router.js")' type="text/javascript"></script>
+    <script src='@routes.Assets.at("javascripts/bootstrap-image-gallery.min.js")' type="text/javascript"></script>
+    <script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+
 </head>
 
     <body>
@@ -27,8 +32,8 @@
 
                     <ul class="nav">
                         <li id='home'><a href="./index">Home</a></li>
-                        <!--<li id='about'><a href="#">About</a></li>-->
-                        <!--<li id='contact'><a href="#">Contact</a></li>-->
+                        <li id='playing'><a href="./playing">Playing is Learning</a></li>
+                        <li id='gog'><a href="./gog">Game of Games</a></li>
                         <!--<li id='admin'><a href="./admin">Admin</a></li>-->
                     </ul>
 
@@ -55,7 +60,7 @@
 
     var path = window.location.pathname.replace("/","").replace("#","");
 
-    if(path.trim() == "")
+    if(path.trim() == "" || path.trim() == "index")
         $("#home").addClass("active");
     else
         $("#"+path).addClass("active");

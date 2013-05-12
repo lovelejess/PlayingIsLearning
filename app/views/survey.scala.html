@@ -1,8 +1,6 @@
-@(surveyForm: Form[User])
+@(surveyForm: Form[User], survey : Survey, stage : String)
 
-@import helper._
-@import helper.twitterBootstrap._
-@import tags._
+@import tags.survey._
 
 @main("Iowa Children's Museum") {
 
@@ -12,110 +10,27 @@
             <div class="span9">
                 <h3>Survey Questions</h3>
                 <div class="row well">
-                    @form(routes.Entrance.security) {
 
+                        @if(stage == "one"){
+                            @demographic(surveyForm, survey)
+                        }
 
-                    @checkbox(field = surveyForm("isParent"), '_label -> "Are you Parent?")
+                        @if(stage == "two"){
+                            @playing(surveyForm, survey)
+                        }
 
-                    @inputText(
-                        surveyForm("relationshipToChild"),
-                        '_label -> "If not a parent, specify your relationship to the child"
-                    )
+                        @if(stage == "three"){
+                            @child(surveyForm, survey)
+                        }
 
-                    @inputText(
-                        surveyForm("age"),
-                        '_label -> "What is your age?"
-                    )
+                        @if(stage == "four"){
+                            @icm(surveyForm, survey)
+                        }
 
-                    @inputText(
-                        surveyForm("zip"),
-                        '_label -> "What is your zip code?"
-                    )
+                        @if(stage == "five"){
+                            @gog(surveyForm, survey)
+                        }
 
-                    @select(surveyForm("childrenInCare"), options("foo"->"Foo", "bar"->"Bar"), '_label -> "How many children do you care for?")
-
-                    @inputText(
-                        surveyForm("c1"),
-                        '_label -> "Age of child one"
-                    )
-                    @inputText(
-                        surveyForm("c2"),
-                        '_label -> "Age of child two"
-                    )
-                    @inputText(
-                        surveyForm("c3"),
-                        '_label -> "Age of child three"
-                    )
-                    @inputText(
-                        surveyForm("c4"),
-                        '_label -> "Age of child four"
-                    )
-                    @inputText(
-                        surveyForm("c5"),
-                        '_label -> "Age of child five"
-                    )
-
-                    @select(surveyForm("race"), options("foo"->"Foo", "bar"->"Bar"), '_label -> "What is your race?")
-                    @select(surveyForm("race"), options("foo"->"Foo", "bar"->"Bar"), '_label -> "What is your ethnicity?")
-                    @select(surveyForm("income"), options("foo"->"Foo", "bar"->"Bar"), '_label -> "What is your annual household income?")
-
-                    @checkbox(field = surveyForm("isTwoParentHousehold"), '_label -> "Does your child live in a two-caregiver household?")
-                    @checkbox(field = surveyForm("isEnglishPrimaryLanguage"), '_label -> "Is English the primary language spoken in your home?")
-
-                    @inputText(
-                        surveyForm("primaryLanguage"),
-                        '_label -> "If English is not your primary language, please specify:"
-                    )
-
-                    @inputRadioGroup(
-                        surveyForm("playImportance"),
-                        options = Seq("M"->"1 (not important)","F"->"10 (very important)"),
-                        '_label -> "On a scale from 1 to 10, how important is play in your child’s everyday life?"
-                    )
-
-                    @inputRadioGroup(
-                        surveyForm("playingRelatedToLearningKnowledge"),
-                        options = Seq("M"->"1 (very little)	","F"->"10 (a lot)"),
-                        '_label -> "On a scale from 1 to 10, how much do you know about how playing is related to learning?"
-                    )
-
-                    @inputRadioGroup(
-                        surveyForm("motivatedToLearnAboutPlay"),
-                        options = Seq("M"->"1 (not motivated)","F"->"10 (very motivated)"),
-                        '_label -> "On a scale from 1 to 10, how motivated are you to learn about play?"
-                    )
-
-                    @select(field = surveyForm("hoursPerDayPlayingWithChildren"), options("foo"->"Foo", "bar"->"Bar"), '_label -> "On average, how many hours per day do you spend playing with your children?")
-
-                    @select(field = surveyForm("frequencyTakeChildrenToICM"), options("foo"->"Foo", "bar"->"Bar"), '_label -> "Approximately, how often do you take your child/children to the Iowa Children’s Museum?")
-                    @select(field = surveyForm("childsFavoriteExhibit"), options("foo"->"Foo", "bar"->"Bar"), '_label -> "What is your child’s favorite exhibit?")
-                    @select(field = surveyForm("yourFavoriteExhibit"), options("foo"->"Foo", "bar"->"Bar"), '_label -> "What is your favorite exhibit?")
-
-
-
-                    @inputRadioGroup(
-                        surveyForm("howMuchHaveYouLearned"),
-                        options = Seq("M"->"1 (very little)	","F"->"10 (a lot)"),
-                        '_label -> "On a scale from 1 to 10, how much have you learned from the Playing is Learning campaign?"
-
-                    )
-                    @select(field = surveyForm("howOftenDoYouPlay"), options("foo"->"Foo", "bar"->"Bar"), '_label -> "On average, about how often do you play the ‘game of games’?")
-
-                    @inputRadioGroup(
-                        surveyForm("howMuchFunDoYouHave"),
-                        options = Seq("M"->"1 (very little)	","F"->"10 (a lot)"),
-                        '_label -> "On a scale from 1 to 10, how much fun do you have playing the ‘game of games’ with your child?"
-                    )
-                    @inputRadioGroup(
-                        surveyForm("isRecommend"),
-                        options = Seq("M"->"Yes","F"->"No"),
-                        '_label -> "Would you recommend the ‘game of games’ to a friend?"
-                    )
-                    <div class="actions">
-                        <input type="submit" class="btn btn-success" value="Finish">
-                    </div>
-
-                    }
                     <div class="span6">  </div>
                     <div class="span6">  </div>
                 </div>

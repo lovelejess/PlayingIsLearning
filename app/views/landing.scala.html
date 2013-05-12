@@ -1,30 +1,25 @@
 @(user: User)
 
-@main("Iowa Children's Museum") {
 
+@main("Iowa Children's Museum") {
     <div class="container">
         <br>
             <div class="alert alert-success">Hello <b>@user.username</b> </div>
         <br>
 
-        <blockquote class="pull-left">
-            <p>It is not enough to have a good mind. The main thing is to use it well.</p>
-            <small>Rene Descartes <cite title="Source Title">(1596-1650)</cite></small>
-        </blockquote>
-
-        <div class="btn-group pull-right">
-            <button class="btn btn-info">My Passports</button>
-            <button class="btn dropdown-toggle btn-info" data-toggle="dropdown">
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a tabindex="-1" href="#">My family Passport</a></li>
-                <li><a tabindex="-1" href="#">Jill's Passport</a></li>
-                <li><a tabindex="-1" href="#">Nick's Passport</a></li>
-                <li class="divider"></li>
-                <li><a tabindex="-1" href="#">View my progress</a></li>
-            </ul>
-        </div>
+        <!--<div class="btn-group">-->
+            <!--<button class="btn btn-info">My Passports</button>-->
+            <!--<button class="btn dropdown-toggle btn-info" data-toggle="dropdown">-->
+                <!--<span class="caret"></span>-->
+            <!--</button>-->
+            <!--<ul class="dropdown-menu">-->
+                <!--<li><a tabindex="-1" href="#">My family Passport</a></li>-->
+                <!--<li><a tabindex="-1" href="#">Jill's Passport</a></li>-->
+                <!--<li><a tabindex="-1" href="#">Nick's Passport</a></li>-->
+                <!--<li class="divider"></li>-->
+                <!--<li><a tabindex="-1" href="#">View my progress</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
 
         <br>
 
@@ -44,49 +39,92 @@
             </div>
         </div>
 
-        <div class="row-fluid">
+        <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
 
-            <table class="table table-bordered table-striped responsive-utilities">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/train.png")'/></td>
-                    <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/trail.png")'/></i></td>
-                    <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/windMill.png")'/></td>
-                    <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/postOffice.png")'/></td>
-                </tr>
-                <tr>
-                    <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/abcForest.png")'/></td>
-                    <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/art.png")'/></td>
-                    <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/dollarCity.png")'/></td>
-                    <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/reading.png")'/></td>
-                </tr>
-                <tr>
-                    <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/groceryStore.png")'/></td>
-                    <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/hospital.png")'/></td>
-                    <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/imagineAcres.png")'/></td>
-                    <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/takeFlight.png")'/></td>
-                </tr>
-                <tr>
-                    <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/lego.png")'/></td>
-                    <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/music.png")'/></td>
-                    <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/pizza.png")'/></td>
-                    <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/theatre.png")'/></td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="row-fluid">
+
+                <table class="table table-bordered table-striped responsive-utilities">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" data-gallery="gallery" rel='gallery' src='@routes.Assets.at("images/train.png")'/> <a href='@routes.Assets.at("images/cards/GOG_Cards-01.png")' title="Banana" data-gallery="gallery" rel='gallery'>TrainRoom</a></td>
+                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/trail.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-02.png")' title="Banana" data-gallery="gallery" rel='gallery'>Bodies in Motion</a></td>
+                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/windMill.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-03.png")' title="Banana" data-gallery="gallery" rel='gallery'>Wind Tunnel</a></td>
+                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/postOffice.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-04.png")' title="Banana" data-gallery="gallery" rel='gallery'>Post Office</a></td>
+                    </tr>
+                    <tr>
+                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/abcForest.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-05.png")' title="Banana" data-gallery="gallery" rel='gallery'>ABC Forest</a></td>
+                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/art.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-06.png")' title="Banana" data-gallery="gallery" rel='gallery'>Art Room</a></td>
+                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/dollarCity.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-07.png")' title="Banana" data-gallery="gallery" rel='gallery'>Bank</a></td>
+                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/reading.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-08.png")' title="Banana" data-gallery="gallery" rel='gallery'>Reading</a></td>
+                    </tr>
+                    <tr>
+                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/groceryStore.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-09.png")' title="Banana" data-gallery="gallery" rel='gallery'>Grocery Store</a></td>
+                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/hospital.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-10.png")' title="Banana" data-gallery="gallery" rel='gallery'>Hospital</a></td>
+                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/imagineAcres.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-11.png")' title="Banana" data-gallery="gallery" rel='gallery'>Imagine Acres</a></td>
+                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/takeFlight.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-12.png")' title="Banana" data-gallery="gallery" rel='gallery'>Take Flight</a></td>
+                    </tr>
+                    <tr>
+                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/lego.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-13.png")' title="Banana" data-gallery="gallery" rel='gallery'>Lego Room</a></td>
+                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/music.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-14.png")' title="Banana" data-gallery="gallery" rel='gallery'>Music Room</a></td>
+                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/pizza.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-15.png")' title="Banana" data-gallery="gallery" rel='gallery'>Pizzeria</a></td>
+                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/theatre.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-16.png")' title="Banana" data-gallery="gallery" rel='gallery'>Theatre</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
 
         </div>
     </div>
 }
 
-   <script type="text/javascript">
+@if(SurveyController.getStageForLoggedInUser() != "done"){
+    <script type="text/javascript">
        document.getElementById('surveyButton').click();
-   </script>
+    </script>
+}
+
+<link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap.min.css">
+<!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
+
+<script src='@routes.Assets.at("javascripts/jquery-1.9.0.min.js")' type="text/javascript"></script>
+<script src="http://blueimp.github.com/cdn/js/bootstrap.min.js"></script>
+<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+
+<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-image-gallery.min.css")'/>
+<script src='@routes.Assets.at("javascripts/bootstrap-image-gallery.min.js")' type="text/javascript"></script>
+<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+<script src="js/bootstrap-image-gallery.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
+
+
+<div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1" style=" position: fixed;
+  top: 50%;
+  left: 50%;">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h3 class="modal-title"></h3>
+    </div>
+    <div class="modal-body"><div class="modal-image"></div></div>
+    <div class="modal-footer">
+        <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
+        <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
+        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
+        <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">$('#modal-gallery').addClass('modal-fullscreen');</script>
+
+
+

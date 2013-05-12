@@ -1,0 +1,30 @@
+@(surveyForm: Form[User], survey: Survey)
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@form(routes.SurveyController.stageFive) {
+
+    @inputRadioGroup(
+        surveyForm("howMuchHaveYouLearned"),
+        options = Seq("1"->"1 (very little)	","10"->"10 (a lot)"),
+        '_label -> "On a scale from 1 to 10, how much have you learned from the Playing is Learning campaign?"
+    )
+    @select(field = surveyForm("howOftenDoYouPlay"), options("never"->"Never", "Oneortwotimesamonth"->"One or two times a month", "Oneortwotimesaweek"->"One or two times a week", "Everyotherday"->"Every other day", "Everyday"->"Every day"), '_label -> "On average, about how often do you play the ‘game of games’?")
+
+    @inputRadioGroup(
+        surveyForm("howMuchFunDoYouHave"),
+        options = Seq("1"->"1 (very little)	","10"->"10 (a lot)"),
+        '_label -> "On a scale from 1 to 10, how much fun do you have playing the ‘game of games’ with your child?"
+    )
+    @inputRadioGroup(
+        surveyForm("isRecommend"),
+        options = Seq("True"->"Yes","False"->"No"),
+        '_label -> "Would you recommend the ‘game of games’ to a friend?"
+    )
+
+    <div class="actions">
+        <input type="submit" class="btn btn-success" value="Finish">
+    </div>
+
+}
