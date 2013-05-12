@@ -13,12 +13,7 @@
             <br> <br> <br>
             @form(routes.Entrance.security) {
 
-                @inputText(
-                    securityForm("securityQuestionOne"),
-                    '_label -> "Security Question One",
-                    '_help -> "Please choose a security question.",
-                    '_error -> securityForm.globalError
-                )
+                @select(securityForm("securityQuestionOne"), options("Where were you born?"->"Where were you born?", "What is your favorite pet?"->"What is your favorite pet?", "What was your favorite toy as a child?"->"What was your favorite toy as a child?", "What is your favorite zoo animal?"->"What is your favorite zoo animal?", "What is your favorite food?"->"What is your favorite food?", "What is your favorite restaurant?"->"What is your favorite restaurant?"), '_label -> "Choose a security question")
 
                 @inputText(
                     securityForm("securityAnswerOne"),
@@ -27,12 +22,7 @@
                     '_error -> securityForm.globalError
                 )
 
-                @inputText(
-                    securityForm("securityQuestionTwo"),
-                    '_label -> "Security Question Two",
-                    '_help -> "Please choose a security question.",
-                    '_error -> securityForm.globalError
-                )
+                @select(securityForm("securityQuestionTwo"), options("Where were you born?"->"Where were you born?", "What is your favorite pet?"->"What is your favorite pet?", "What was your favorite toy as a child?"->"What was your favorite toy as a child?", "What is your favorite zoo animal?"->"What is your favorite zoo animal?", "What is your favorite food?"->"What is your favorite food?", "What is your favorite restaurant?"->"What is your favorite restaurant?"), '_label -> "Choose a security question")
 
                 @inputText(
                     securityForm("securityAnswerTwo"),
@@ -41,12 +31,7 @@
                     '_error -> securityForm.globalError
                 )
 
-                @inputText(
-                    securityForm("securityQuestionThree"),
-                    '_label -> "Security Question Three",
-                    '_help -> "Please choose a security question.",
-                    '_error -> securityForm.globalError
-                )
+                @select(securityForm("securityQuestionThree"), options("Where were you born?"->"Where were you born?", "What is your favorite pet?"->"What is your favorite pet?", "What was your favorite toy as a child?"->"What was your favorite toy as a child?", "What is your favorite zoo animal?"->"What is your favorite zoo animal?", "What is your favorite food?"->"What is your favorite food?", "What is your favorite restaurant?"->"What is your favorite restaurant?"), '_label -> "Choose a security question")
 
                 @inputText(
                     securityForm("securityAnswerThree"),

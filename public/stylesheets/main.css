@@ -110,12 +110,7 @@ hr.soften {
     letter-spacing: -1px;
     line-height: 1;
 }
-.jumbotron p {
-    font-size: 24px;
-    font-weight: 300;
-    line-height: 1.25;
-    margin-bottom: 30px;
-}
+
 
 /* Link styles (used on .masthead-links as well) */
 .jumbotron a {
@@ -199,11 +194,7 @@ only screen and (     -o-min-device-pixel-ratio: 2/1) {
     line-height: 1;
     letter-spacing: -2px;
 }
-.masthead p {
-    font-size: 40px;
-    font-weight: 200;
-    line-height: 1.25;
-}
+
 
 /* Textual links in masthead */
 .masthead-links {
