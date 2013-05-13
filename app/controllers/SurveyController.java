@@ -39,43 +39,47 @@ public class SurveyController extends MasterController {
         }
 
         Form<Survey> filledForm = surveyForm.bindFromRequest();
+        try{
+            Boolean isParent = Boolean.parseBoolean(filledForm.data().get("isParent"));
+            String relationshipToChild = filledForm.data().get("relationshipToChild");
+            String age = filledForm.data().get("age");
+            String zip = filledForm.data().get("zip");
+            String childrenInCare = filledForm.data().get("childrenInCare");
+            String c1 = filledForm.data().get("c1");
+            String c2 = filledForm.data().get("c2");
+            String c3 = filledForm.data().get("c3");
+            String c4 = filledForm.data().get("c4");
+            String c5 = filledForm.data().get("c5");
+            String c6 = filledForm.data().get("c6");
+            String race = filledForm.data().get("race");
+            String ethnicity = filledForm.data().get("ethnicity");
+            String income = filledForm.data().get("income");
+            Boolean isTwoParentHousehold = Boolean.parseBoolean(filledForm.data().get("isTwoParentHousehold"));
+            Boolean isEnglishPrimaryLanguage = Boolean.parseBoolean(filledForm.data().get("isEnglishPrimaryLanguage"));
+            String primaryLanguage = filledForm.data().get("primaryLanguage");
 
-        Boolean isParent = Boolean.parseBoolean(filledForm.data().get("isParent"));
-        String relationshipToChild = filledForm.data().get("relationshipToChild");
-        String age = filledForm.data().get("age");
-        String zip = filledForm.data().get("zip");
-        String childrenInCare = filledForm.data().get("childrenInCare");
-        String c1 = filledForm.data().get("c1");
-        String c2 = filledForm.data().get("c2");
-        String c3 = filledForm.data().get("c3");
-        String c4 = filledForm.data().get("c4");
-        String c5 = filledForm.data().get("c5");
-        String c6 = filledForm.data().get("c6");
-        String race = filledForm.data().get("race");
-        String ethnicity = filledForm.data().get("ethnicity");
-        String income = filledForm.data().get("income");
-        Boolean isTwoParentHousehold = Boolean.parseBoolean(filledForm.data().get("isTwoParentHousehold"));
-        Boolean isEnglishPrimaryLanguage = Boolean.parseBoolean(filledForm.data().get("isEnglishPrimaryLanguage"));
-        String primaryLanguage = filledForm.data().get("primaryLanguage");
 
-        userSurvey.isParent = isParent;
-        userSurvey.relationshipToChild = relationshipToChild;
-        userSurvey.age = Integer.parseInt(age);
-        userSurvey.zip = Integer.parseInt(zip);
-        userSurvey.childrenInCare = Integer.parseInt(childrenInCare);
-        userSurvey.childAges.put("1",c1);
-        userSurvey.childAges.put("2",c2);
-        userSurvey.childAges.put("3",c3);
-        userSurvey.childAges.put("4",c4);
-        userSurvey.childAges.put("5",c5);
-        userSurvey.childAges.put("6",c6);
-        userSurvey.race = race;
-        userSurvey.ethnicity = ethnicity;
-        userSurvey.income = income;
-        userSurvey.isTwoParentHousehold = isTwoParentHousehold;
-        userSurvey.isEnglishPrimaryLanguage = isEnglishPrimaryLanguage;
-        userSurvey.primaryLanguage = primaryLanguage;
-
+            userSurvey.isParent = isParent;
+            userSurvey.relationshipToChild = relationshipToChild;
+            userSurvey.age = Integer.parseInt(age);
+            userSurvey.zip = Integer.parseInt(zip);
+            userSurvey.childrenInCare = Integer.parseInt(childrenInCare);
+            userSurvey.childAges.put("1",c1);
+            if(c2 != null) userSurvey.childAges.put("2",c2);
+            if(c3 != null) userSurvey.childAges.put("3",c3);
+            if(c4 != null) userSurvey.childAges.put("4",c4);
+            if(c5 != null) userSurvey.childAges.put("5",c5);
+            if(c6 != null) userSurvey.childAges.put("6",c6);
+            userSurvey.race = race;
+            userSurvey.ethnicity = ethnicity;
+            userSurvey.income = income;
+            userSurvey.isTwoParentHousehold = isTwoParentHousehold;
+            userSurvey.isEnglishPrimaryLanguage = isEnglishPrimaryLanguage;
+            userSurvey.primaryLanguage = primaryLanguage;
+        }catch(Exception e) {
+            flash("warning", "You left a question unanswered.");
+            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
+        }
         userSurvey.setIsStageOneComplete(true);
         saveUserSurvey(userSurvey);
 
@@ -89,17 +93,20 @@ public class SurveyController extends MasterController {
             return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
         }
         Form<Survey> filledForm = surveyForm.bindFromRequest();
+        try{
+            String playImportance = filledForm.data().get("playImportance");
+            String playingRelatedToLearningKnowledge = filledForm.data().get("playingRelatedToLearningKnowledge");
+            String motivatedToLearnAboutPlay = filledForm.data().get("motivatedToLearnAboutPlay");
+            String hoursPerDayPlayingWithChildren = filledForm.data().get("hoursPerDayPlayingWithChildren");
 
-        String playImportance = filledForm.data().get("playImportance");
-        String playingRelatedToLearningKnowledge = filledForm.data().get("playingRelatedToLearningKnowledge");
-        String motivatedToLearnAboutPlay = filledForm.data().get("motivatedToLearnAboutPlay");
-        String hoursPerDayPlayingWithChildren = filledForm.data().get("hoursPerDayPlayingWithChildren");
-
-        userSurvey.playImportance = Integer.parseInt(playImportance);
-        userSurvey.playingRelatedToLearningKnowledge = Integer.parseInt(playingRelatedToLearningKnowledge);
-        userSurvey.motivatedToLearnAboutPlay = Integer.parseInt(motivatedToLearnAboutPlay);
-        userSurvey.hoursPerDayPlayingWithChildren = hoursPerDayPlayingWithChildren;
-
+            userSurvey.playImportance = Integer.parseInt(playImportance);
+            userSurvey.playingRelatedToLearningKnowledge = Integer.parseInt(playingRelatedToLearningKnowledge);
+            userSurvey.motivatedToLearnAboutPlay = Integer.parseInt(motivatedToLearnAboutPlay);
+            userSurvey.hoursPerDayPlayingWithChildren = hoursPerDayPlayingWithChildren;
+        }catch(Exception e){
+            flash("warning", "You left a question unanswered.");
+            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
+        }
         userSurvey.setIsStageTwoComplete(true);
         saveUserSurvey(userSurvey);
 
@@ -127,15 +134,18 @@ public class SurveyController extends MasterController {
             return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
         }
         Form<Survey> filledForm = surveyForm.bindFromRequest();
+        try{
+            String frequencyTakeChildrenToICM = filledForm.data().get("frequencyTakeChildrenToICM");
+            String childsFavoriteExhibit = filledForm.data().get("childsFavoriteExhibit");
+            String yourFavoriteExhibit = filledForm.data().get("yourFavoriteExhibit");
 
-        String frequencyTakeChildrenToICM = filledForm.data().get("frequencyTakeChildrenToICM");
-        String childsFavoriteExhibit = filledForm.data().get("childsFavoriteExhibit");
-        String yourFavoriteExhibit = filledForm.data().get("yourFavoriteExhibit");
-
-        userSurvey.frequencyTakeChildrenToICM = frequencyTakeChildrenToICM;
-        userSurvey.childsFavoriteExhibit = childsFavoriteExhibit;
-        userSurvey.yourFavoriteExhibit = yourFavoriteExhibit;
-
+            userSurvey.frequencyTakeChildrenToICM = frequencyTakeChildrenToICM;
+            userSurvey.childsFavoriteExhibit = childsFavoriteExhibit;
+            userSurvey.yourFavoriteExhibit = yourFavoriteExhibit;
+        }catch (Exception e) {
+            flash("warning", "You left a question unanswered.");
+            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
+        }
         userSurvey.setIsStageFourComplete(true);
         saveUserSurvey(userSurvey);
 
@@ -149,17 +159,20 @@ public class SurveyController extends MasterController {
             return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
         }
         Form<Survey> filledForm = surveyForm.bindFromRequest();
+        try{
+            String howMuchHaveYouLearned = filledForm.data().get("howMuchHaveYouLearned");
+            String howOftenDoYouPlay = filledForm.data().get("howOftenDoYouPlay");
+            String howMuchFunDoYouHave = filledForm.data().get("howMuchFunDoYouHave");
+            String isRecommend = filledForm.data().get("isRecommend");
 
-        String howMuchHaveYouLearned = filledForm.data().get("howMuchHaveYouLearned");
-        String howOftenDoYouPlay = filledForm.data().get("howOftenDoYouPlay");
-        String howMuchFunDoYouHave = filledForm.data().get("howMuchFunDoYouHave");
-        String isRecommend = filledForm.data().get("isRecommend");
-
-        userSurvey.howMuchHaveYouLearned = Integer.parseInt(howMuchHaveYouLearned);
-        userSurvey.howOftenDoYouPlay = howOftenDoYouPlay;
-        userSurvey.howMuchFunDoYouHave = Integer.parseInt(howMuchFunDoYouHave);
-        userSurvey.isRecommend = Boolean.parseBoolean(isRecommend);
-
+            userSurvey.howMuchHaveYouLearned = Integer.parseInt(howMuchHaveYouLearned);
+            userSurvey.howOftenDoYouPlay = howOftenDoYouPlay;
+            userSurvey.howMuchFunDoYouHave = Integer.parseInt(howMuchFunDoYouHave);
+            userSurvey.isRecommend = Boolean.parseBoolean(isRecommend);
+        }catch (Exception e) {
+            flash("warning", "You left a question unanswered.");
+            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
+        }
         userSurvey.setIsStageFiveComplete(true);
         saveUserSurvey(userSurvey);
         return ok( landing.render(getLoggedInUser()) );
