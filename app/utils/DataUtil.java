@@ -25,6 +25,8 @@ public class DataUtil {
 
             mongoClient = new MongoClient( "ds061787.mongolab.com" , 61787 );
 
+            mongoClient.setReadPreference(ReadPreference.primary());
+
             DB dataBase = mongoClient.getDB("heroku_app15452455");
 
             dataBase.authenticate("heroku_app15452455", "73mi73eoolvr4s7v47ugutfru9".toCharArray());
