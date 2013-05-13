@@ -7,8 +7,6 @@ import utils.DataUtil;
 
 import models.*;
 
-import static play.data.Form.form;
-
 public class Admin extends MasterController {
 
     public static Result index() {

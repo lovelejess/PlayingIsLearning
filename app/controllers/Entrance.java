@@ -23,7 +23,6 @@ public class Entrance extends MasterController {
     final static Form<User> registerForm = form(User.class);
     final static Form<User> securityForm = form(User.class);
 
-
     public static Result index() {
         if(getLoggedInUser() != null) {
             return ok( landing.render(getLoggedInUser()) );
@@ -101,7 +100,6 @@ public class Entrance extends MasterController {
         }
 
         return ok( security.render(securityForm, newUser.getId()));
-
     }
 
 
@@ -132,8 +130,6 @@ public class Entrance extends MasterController {
         }
 
         return ok( landing.render(user));
-
     }
-
 
 }
