@@ -1,25 +1,11 @@
-@(message: Message)
-
-@import enums.MessageLevelEnum
-
-@if(message != null) {
-
-    @if(message.getLevel == MessageLevelEnum.ERROR) {
-        <div class="alert alert-danger">
+<div style='margin-top: -3em;'>
+    @if(!flash.isEmpty()) {
+        @for((msgKey, msgValue) <- flash) {
+            <div class="alert alert-@msgKey" data-dismiss="alert">
+                <a title='@Messages("misc.message.close")' style="color:black;" class="close">×</a>
+                @msgKey : @msgValue
+            </div>
+        }
     }
-    @if(message.getLevel == MessageLevelEnum.INFO) {
-        <div class="alert alert-info">
-    }
-    @if(message.getLevel == MessageLevelEnum.OK) {
-        <div class="alert alert-success">
-    }
-    @if(message.getLevel == MessageLevelEnum.WARNING) {
-        <div class="alert alert-block">
-    }
-
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>@message.getLevel.label :</strong> @message.getMessage
-    </div>
-}
-
+</div>
 

@@ -12,7 +12,7 @@ import utils.DataUtil;
 
 public abstract class MasterController extends Controller {
 
-    protected static User getLoggedInUser() {
+    public static User getLoggedInUser() {
         String userID = Http.Context.current().session().get("user");
         if(userID == null) {
             return null;

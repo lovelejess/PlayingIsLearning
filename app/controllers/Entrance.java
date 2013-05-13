@@ -1,12 +1,10 @@
 package controllers;
 
-import enums.MessageLevelEnum;
 import net.vz.mongodb.jackson.JacksonDBCollection;
 import net.vz.mongodb.jackson.WriteResult;
 import play.mvc.*;
 import play.data.*;
 import views.html.*;
-
 
 import utils.DataUtil;
 import utils.EncryptionUtil;
@@ -30,7 +28,7 @@ public class Entrance extends MasterController {
         if(getLoggedInUser() != null) {
             return ok( landing.render(getLoggedInUser()) );
         }
-        return ok( index.render(loginForm, registerForm, new Message("This application is in dev mode", MessageLevelEnum.INFO)) );
+        return ok( index.render(loginForm, registerForm));
     }
 
     public static Result playing() {
@@ -41,15 +39,17 @@ public class Entrance extends MasterController {
         return ok( gog.render());
     }
 
-    /**
-     * Handle login.
-     */
+    public static Result resources() {
+        return ok( resources.render());
+    }
+
     public static Result login() {
         Form<User> filledForm = loginForm.bindFromRequest();
         String userName = filledForm.data().get("username");
 
         if(userName == null || userName.isEmpty()) {
-            return badRequest( index.render(filledForm, registerForm, new Message("Please enter a username", MessageLevelEnum.ERROR)) );
+            flash("error", "Please enter a username");
+            return badRequest( index.render(filledForm, registerForm));
         }
 
         if (User.isUsernameTaken(userName)) {
@@ -59,26 +59,33 @@ public class Entrance extends MasterController {
                 return ok( landing.render(user) );
             }
         }
-
-        return badRequest( index.render(filledForm, registerForm,  new Message("Your username or password is incorrect", MessageLevelEnum.ERROR)) );
+        flash("error", "Your username or password is incorrect");
+        return badRequest( index.render(filledForm, registerForm));
 
     }
 
-    /**
-     * Handle registration.
-     */
+    public static Result logout() {
+        Http.Context.current().session().remove("user");
+        flash("info", "You are now logged out");
+        return ok( index.render(loginForm, registerForm) );
+
+    }
+
     public static Result register() {
         Form<User> filledForm = registerForm.bindFromRequest();
         User newUser;
 
         if (User.isUsernameTaken(filledForm.data().get("username"))) {
-            return badRequest( index.render(loginForm, filledForm,  new Message("That username is already taken", MessageLevelEnum.ERROR)) );
+            flash("error", "That username is already taken");
+            return badRequest( index.render(loginForm, filledForm));
         }
         if (filledForm.data().get("username") == null || filledForm.data().get("username").isEmpty()) {
-            return badRequest( index.render(loginForm, filledForm,  new Message("Please enter a username", MessageLevelEnum.ERROR)) );
+            flash("error", "Please enter a username");
+            return badRequest( index.render(loginForm, filledForm));
         }
         if (!filledForm.data().get("repeatPassword").equals(filledForm.data().get("password")) || StringUtil.isEmpty(filledForm.data().get("repeatPassword")) || StringUtil.isEmpty(filledForm.data().get("password"))) {
-            return badRequest( index.render(loginForm, filledForm,  new Message("Your passwords do not match", MessageLevelEnum.ERROR)) );
+            flash("error", "Your passwords do not match");
+            return badRequest( index.render(loginForm, filledForm));
         }
         try {
             JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
@@ -90,10 +97,11 @@ public class Entrance extends MasterController {
             Http.Context.current().session().put("user", result.getSavedId());
 
         } catch (Exception e) {
-            return internalServerError( index.render(loginForm, filledForm,  new Message("Unexpected error", MessageLevelEnum.ERROR)) );
+            flash("error", "Unexpected error: " + e.toString());
+            return internalServerError( index.render(loginForm, filledForm));
         }
 
-        return ok( security.render(securityForm, newUser.getId(), null));
+        return ok( security.render(securityForm, newUser.getId()));
 
     }
 
@@ -120,7 +128,8 @@ public class Entrance extends MasterController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return internalServerError( index.render(loginForm, filledForm,  new Message("Unexpected error:" + e.getMessage(), MessageLevelEnum.ERROR)) );
+            flash("error", "Unexpected error: " + e.toString());
+            return internalServerError( index.render(loginForm, filledForm));
         }
 
         return ok( landing.render(user));

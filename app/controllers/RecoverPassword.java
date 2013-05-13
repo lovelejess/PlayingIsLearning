@@ -1,15 +1,11 @@
 package controllers;
 
-import enums.MessageLevelEnum;
-import models.Message;
 import models.User;
 import play.data.Form;
 import play.mvc.Http;
 import play.mvc.Result;
 import play.data.*;
-import utils.DataUtil;
 import utils.EncryptionUtil;
-import utils.StringUtil;
 import views.html.*;
 
 
@@ -37,8 +33,8 @@ public class RecoverPassword extends MasterController {
             Http.Context.current().session().put("recover_user", user.username);
             return ok( recoverPassword.render(user.securityQuestionOne, user.securityQuestionTwo,user.securityQuestionThree, true, null, "", userForm, secureForm) );
         }
-
-        return ok( index.render(form(User.class), form(User.class), new Message("Sorry, that user doesn't exist", MessageLevelEnum.ERROR)) );
+        flash("error", "Sorry, that user doesn't exist");
+        return ok( index.render(form(User.class), form(User.class)));
     }
 
     public static Result secureQuestions() {

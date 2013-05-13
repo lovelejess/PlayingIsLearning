@@ -1,8 +1,7 @@
-@(surveyForm: Form[User], survey: Survey)
+@(surveyForm: Form[Survey], survey: Survey)
 
 @import helper._
 @import helper.twitterBootstrap._
-
 
 @form(routes.SurveyController.stageOne) {
 
@@ -43,6 +42,10 @@
     )
     @inputText(
         surveyForm("c5"),
+        '_label -> "Age of child five"
+    )
+    @inputText(
+        surveyForm("c6"),
         '_label -> "Age of child five"
     )
 

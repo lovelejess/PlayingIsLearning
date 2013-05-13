@@ -38,15 +38,15 @@ public class Survey {
     public Boolean isStageTwoComplete;
     public Boolean isParent;
     public String relationshipToChild;
-    public String age;
-    public String zip;
-    public String childrenInCare;
+    public Integer age;
+    public Integer zip;
+    public Integer childrenInCare;
     public BasicDBObject childAges;
     public String race;
     public String ethnicity;
     public String income;
     public Boolean isTwoParentHousehold;
-    public String isEnglishPrimaryLanguage;
+    public Boolean isEnglishPrimaryLanguage;
     public String primaryLanguage;
 
     public Boolean isStageThreeComplete;

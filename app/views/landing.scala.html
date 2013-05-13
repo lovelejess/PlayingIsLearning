@@ -7,22 +7,6 @@
             <div class="alert alert-success">Hello <b>@user.username</b> </div>
         <br>
 
-        <!--<div class="btn-group">-->
-            <!--<button class="btn btn-info">My Passports</button>-->
-            <!--<button class="btn dropdown-toggle btn-info" data-toggle="dropdown">-->
-                <!--<span class="caret"></span>-->
-            <!--</button>-->
-            <!--<ul class="dropdown-menu">-->
-                <!--<li><a tabindex="-1" href="#">My family Passport</a></li>-->
-                <!--<li><a tabindex="-1" href="#">Jill's Passport</a></li>-->
-                <!--<li><a tabindex="-1" href="#">Nick's Passport</a></li>-->
-                <!--<li class="divider"></li>-->
-                <!--<li><a tabindex="-1" href="#">View my progress</a></li>-->
-            <!--</ul>-->
-        <!--</div>-->
-
-        <br>
-
         <a href="#myModal" id="surveyButton" style="display: none;" role="button" class="btn" data-toggle="modal"> </a>
 
         <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="position: fixed;top: 50%;left: 50%;">
@@ -38,51 +22,47 @@
                 <button class="btn btn-primary" onclick="location.href='/survey'">Yes</button>
             </div>
         </div>
-
         <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
+        <div class="row-fluid">
+            <table class="table table-bordered table-striped responsive-utilities">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
 
-            <div class="row-fluid">
+                        <tr>
+                            <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/train.png")'/> <a href='@routes.Assets.at("images/cards/GOG_Cards-29.png")' title="TrainRoom" data-gallery="gallery" rel='gallery'>TrainRoom</a></td>
+                            <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/trail.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-21.png")' title="Bodies in Motion" data-gallery="gallery" rel='gallery'>Bodies in Motion</a></td>
+                            <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/windMill.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-57.png")' title="Wind Tunnel" data-gallery="gallery" rel='gallery'>Wind Tunnel</a></td>
+                            <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/postOffice.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-53.png")' title="Post Office" data-gallery="gallery" rel='gallery'>Post Office</a></td>
+                        </tr>
+                        <tr>
+                            <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/abcForest.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-05.png")' title="ABC Forest" data-gallery="gallery" rel='gallery'>ABC Forest</a></td>
+                            <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/art.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-13.png")' title="Art Room" data-gallery="gallery" rel='gallery'>Art Room</a></td>
+                            <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/dollarCity.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-33.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a></td>
+                            <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/reading.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-21.png")' title="Reading" data-gallery="gallery" rel='gallery'>Reading</a></td>
+                        </tr>
+                        <tr>
+                            <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/groceryStore.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-09.png")' title="Grocery Store" data-gallery="gallery" rel='gallery'>Grocery Store</a></td>
+                            <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/hospital.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-37.png")' title="Hospital" data-gallery="gallery" rel='gallery'>Hospital</a></td>
+                            <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/imagineAcres.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-01.png")' title="Imagine Acres" data-gallery="gallery" rel='gallery'>Imagine Acres</a></td>
+                            <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/takeFlight.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-25.png")' title="Take Flight" data-gallery="gallery" rel='gallery'>Take Flight</a></td>
+                        </tr>
+                        <tr>
+                            <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/lego.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-41.png")' title="Lego Room" data-gallery="gallery" rel='gallery'>Lego Room</a></td>
+                            <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/music.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-45.png")' title="Music Room" data-gallery="gallery" rel='gallery'>Music Room</a></td>
+                            <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/pizza.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-17.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a></td>
+                            <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/theatre.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-49.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a></td>
+                        </tr>
 
-                <table class="table table-bordered table-striped responsive-utilities">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" data-gallery="gallery" rel='gallery' src='@routes.Assets.at("images/train.png")'/> <a href='@routes.Assets.at("images/cards/GOG_Cards-01.png")' title="Banana" data-gallery="gallery" rel='gallery'>TrainRoom</a></td>
-                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/trail.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-02.png")' title="Banana" data-gallery="gallery" rel='gallery'>Bodies in Motion</a></td>
-                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/windMill.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-03.png")' title="Banana" data-gallery="gallery" rel='gallery'>Wind Tunnel</a></td>
-                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/postOffice.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-04.png")' title="Banana" data-gallery="gallery" rel='gallery'>Post Office</a></td>
-                    </tr>
-                    <tr>
-                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/abcForest.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-05.png")' title="Banana" data-gallery="gallery" rel='gallery'>ABC Forest</a></td>
-                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/art.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-06.png")' title="Banana" data-gallery="gallery" rel='gallery'>Art Room</a></td>
-                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/dollarCity.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-07.png")' title="Banana" data-gallery="gallery" rel='gallery'>Bank</a></td>
-                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/reading.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-08.png")' title="Banana" data-gallery="gallery" rel='gallery'>Reading</a></td>
-                    </tr>
-                    <tr>
-                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/groceryStore.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-09.png")' title="Banana" data-gallery="gallery" rel='gallery'>Grocery Store</a></td>
-                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/hospital.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-10.png")' title="Banana" data-gallery="gallery" rel='gallery'>Hospital</a></td>
-                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/imagineAcres.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-11.png")' title="Banana" data-gallery="gallery" rel='gallery'>Imagine Acres</a></td>
-                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/takeFlight.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-12.png")' title="Banana" data-gallery="gallery" rel='gallery'>Take Flight</a></td>
-                    </tr>
-                    <tr>
-                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/lego.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-13.png")' title="Banana" data-gallery="gallery" rel='gallery'>Lego Room</a></td>
-                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/music.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-14.png")' title="Banana" data-gallery="gallery" rel='gallery'>Music Room</a></td>
-                        <td class="is-hidden"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/pizza.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-15.png")' title="Banana" data-gallery="gallery" rel='gallery'>Pizzeria</a></td>
-                        <td class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/theatre.png")'/><a href='@routes.Assets.at("images/cards/GOG_Cards-16.png")' title="Banana" data-gallery="gallery" rel='gallery'>Theatre</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
+                </tbody>
+            </table>
+        </div>   </div>
     </div>
 }
 
