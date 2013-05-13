@@ -26,6 +26,7 @@
 </head>
 
     <body>
+
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
@@ -35,16 +36,17 @@
                         <li id='playing'><a href="./playing">Playing is Learning</a></li>
                         <li id='gog'><a href="./gog">Game of Games</a></li>
                         <li id='resources'><a href="./resources">Resources</a></li>
-                        <!--<li id='admin'><a href="./admin">Admin</a></li>-->
+                        @if(MasterController.getLoggedInUser() != null) {
+                            <li><a href="./logout">Log Out</a></li>
+                            <li style="margin-left: 100px;margin-top: 10px;"> Logged in as: <b>@{MasterController.getLoggedInUser().username}</b> </li>
+                        }
                     </ul>
 
                     <img class="pull-right" height='40' width='40' style="display:block;max-height: 40px;max-width: 40px;" src='@routes.Assets.at("images/goIconBlue.png")'/>
                 </div>
             </div>
         </div>
-        <br><br>
 
-        @message()
         @content
 
         <div class="bs-docs-social">
@@ -56,6 +58,7 @@
                 </ul>
             </div>
         </div>
+
     </body>
 </html>
 

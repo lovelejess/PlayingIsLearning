@@ -9,8 +9,9 @@ GET    /playing              controllers.Entrance.playing()
 GET    /gog                  controllers.Entrance.gog()
 GET    /resources            controllers.Entrance.resources()
 
-#Login
+#Login-Logout
 POST   /                     controllers.Entrance.login()
+GET    /logout               controllers.Entrance.logout()
 
 #Register
 POST   /register             controllers.Entrance.register()
