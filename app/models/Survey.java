@@ -79,10 +79,10 @@ public class Survey {
         this.childAges = new BasicDBObject();
     }
 
-    public static Survey findByUserId(String userId) {
+    public static Survey findByUserId(User user) {
         JacksonDBCollection<Survey, String> collection = DataUtil.getCollection("surveys", Survey.class);
 
-        DBCursor cursorDoc = collection.find(DBQuery.is("userId", userId));
+        DBCursor cursorDoc = collection.find(DBQuery.is("userId", user.getId()));
 
         if(cursorDoc.hasNext())
             return ((Survey)cursorDoc.next());

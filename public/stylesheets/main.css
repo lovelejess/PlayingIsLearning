@@ -20,6 +20,16 @@ h3 code {
     font-weight: normal;
 }
 
+.buttonset > input {
+    display: inline;
+}
+.buttonset > label {
+    display: inline;
+}
+.clearfix {
+    margin-bottom: 2em;
+}
+
 
 
 /* Tweak navbar brand link to be super sleek
