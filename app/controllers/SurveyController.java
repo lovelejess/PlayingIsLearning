@@ -83,7 +83,7 @@ public class SurveyController extends MasterController {
         userSurvey.setIsStageOneComplete(true);
         saveUserSurvey(userSurvey);
 
-        return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
+        return redirect(routes.Entrance.index());
     }
 
     public static Result stageTwo() {

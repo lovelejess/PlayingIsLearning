@@ -3,6 +3,7 @@
 @import helper._
 @import helper.twitterBootstrap._
 
+        <div style="text-align: center;">
 @form(routes.SurveyController.stageOne) {
 
     @select(surveyForm("isParent"), options("true"->"Yes", "false"->"No"), '_label -> "Are you a parent?")
@@ -68,3 +69,4 @@
     </div>
 
 }
+        </div>

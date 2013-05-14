@@ -27,6 +27,7 @@ public class Entrance extends MasterController {
         if(getLoggedInUser() != null) {
             return ok( landing.render(getLoggedInUser()) );
         }
+
         return ok( index.render(loginForm, registerForm));
     }
 
@@ -129,7 +130,8 @@ public class Entrance extends MasterController {
             return internalServerError( index.render(loginForm, filledForm));
         }
 
-        return ok( landing.render(user));
+        return redirect(routes.SurveyController.index());
+
     }
 
 }
