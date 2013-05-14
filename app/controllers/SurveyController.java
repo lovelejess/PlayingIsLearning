@@ -22,7 +22,7 @@ public class SurveyController extends MasterController {
     final static Form<Survey> surveyForm = form(Survey.class);
 
     public static Result index() {
-        Survey userSurvey = Survey.findByUserId(getLoggedInUser().getId());
+        Survey userSurvey = Survey.findByUser(getLoggedInUser());
         if(userSurvey == null) {
             userSurvey = new Survey(getLoggedInUser().getId());
             JacksonDBCollection<Survey, String> collection = DataUtil.getCollection("surveys", Survey.class);
@@ -32,7 +32,7 @@ public class SurveyController extends MasterController {
     }
 
     public static Result stageOne() {
-        Survey userSurvey = Survey.findByUserId(getLoggedInUser());
+        Survey userSurvey = Survey.findByUser(getLoggedInUser());
         if(userSurvey == null) {
             flash("error","");
             return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
@@ -87,7 +87,7 @@ public class SurveyController extends MasterController {
     }
 
     public static Result stageTwo() {
-        Survey userSurvey = Survey.findByUserId(getLoggedInUser().getId());
+        Survey userSurvey = Survey.findByUser(getLoggedInUser());
         if(userSurvey == null) {
             flash("error","");
             return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
@@ -114,7 +114,7 @@ public class SurveyController extends MasterController {
     }
 
     public static Result stageThree() {
-        Survey userSurvey = Survey.findByUserId(getLoggedInUser().getId());
+        Survey userSurvey = Survey.findByUser(getLoggedInUser());
         if(userSurvey == null) {
             flash("error","");
             return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
@@ -128,7 +128,7 @@ public class SurveyController extends MasterController {
     }
 
     public static Result stageFour() {
-        Survey userSurvey = Survey.findByUserId(getLoggedInUser().getId());
+        Survey userSurvey = Survey.findByUser(getLoggedInUser());
         if(userSurvey == null) {
             flash("error","");
             return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
@@ -153,7 +153,7 @@ public class SurveyController extends MasterController {
     }
 
     public static Result stageFive() {
-        Survey userSurvey = Survey.findByUserId(getLoggedInUser().getId());
+        Survey userSurvey = Survey.findByUser(getLoggedInUser());
         if(userSurvey == null) {
             flash("error","");
             return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
@@ -198,7 +198,7 @@ public class SurveyController extends MasterController {
     }
 
     public static String getStageForLoggedInUser() {
-        Survey userSurvey = Survey.findByUserId(getLoggedInUser().getId());
+        Survey userSurvey = Survey.findByUser(getLoggedInUser());
         if(userSurvey == null) {
             return null;
         }
