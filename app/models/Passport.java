@@ -1,9 +1,7 @@
 package models;
 
+import com.mongodb.BasicDBObject;
 import enums.PassportTypeEnum;
-import play.data.validation.Constraints;
-
-import java.util.List;
 
 /**
  * User: Charles
@@ -18,7 +16,7 @@ public class Passport {
 
     public PassportTypeEnum type;
 
-    public List<Card> cardsComplete;
+    public BasicDBObject cardsComplete;
 
     public Passport() {   }
 

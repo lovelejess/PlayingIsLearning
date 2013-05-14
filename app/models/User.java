@@ -1,7 +1,5 @@
 package models;
 
-import javax.validation.*;
-
 import net.vz.mongodb.jackson.*;
 import org.codehaus.jackson.annotate.JsonProperty;
 import utils.DataUtil;
