@@ -5,7 +5,7 @@
 
 @form(routes.SurveyController.stageOne) {
 
-    @checkbox(field = surveyForm("isParent"), '_label -> "Are you a parent?")
+    @select(surveyForm("isParent"), options("true"->"Yes", "false"->"No"), '_label -> "Are you a parent?")
 
     @inputText(
         surveyForm("relationshipToChild"),
@@ -46,7 +46,7 @@
     )
     @inputText(
         surveyForm("c6"),
-        '_label -> "Age of child five"
+        '_label -> "Age of child six"
     )
 
     @select(surveyForm("race"), options("AfricanAmerican"->"African American", "Caucasian"->"Caucasian", "Asian"->"Asian", "Multiracial"->"Multiracial", "Other"->"Other"), '_label -> "What is your race?")
