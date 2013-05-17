@@ -1,5 +1,6 @@
 package models;
 
+import com.mongodb.MongoException;
 import net.vz.mongodb.jackson.*;
 import org.codehaus.jackson.annotate.JsonProperty;
 import utils.DataUtil;
@@ -46,22 +47,32 @@ public class User {
     }
 
     public static Boolean isUsernameTaken(String username) {
-        JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
+        try {
+            JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
 
-        DBCursor cursorDoc = collection.find(DBQuery.is("username", username));
+            DBCursor cursorDoc = collection.find(DBQuery.is("username", username));
 
-        return (cursorDoc.hasNext());
+            return (cursorDoc.hasNext());
+        } catch (MongoException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static User findUserByName(String username) {
-        JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
+        try {
+            JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
 
-        DBCursor cursorDoc = collection.find(DBQuery.is("username", username));
+            DBCursor cursorDoc = collection.find(DBQuery.is("username", username));
 
-        if(cursorDoc.hasNext())
-            return ((User)cursorDoc.next());
-        else
+            if (cursorDoc.hasNext())
+                return ((User) cursorDoc.next());
+            else
+                return null;
+        } catch (MongoException e) {
+            e.printStackTrace();
             return null;
+        }
 
     }
 

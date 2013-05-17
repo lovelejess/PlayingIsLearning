@@ -1,10 +1,12 @@
 package utils;
 
 import com.mongodb.DB;
+import com.mongodb.MongoException;
 import com.mongodb.ReadPreference;
 import com.mongodb.MongoClient;
 import models.User;
 import net.vz.mongodb.jackson.DBCursor;
+import net.vz.mongodb.jackson.DBQuery;
 import net.vz.mongodb.jackson.JacksonDBCollection;
 
 import java.net.UnknownHostException;
@@ -23,15 +25,15 @@ public class DataUtil {
 
         try {
 
-            mongoClient = new MongoClient( "ds061787.mongolab.com" , 61787 );
-//            mongoClient = new MongoClient( );
+//            mongoClient = new MongoClient( "albite.its.uiowa.edu" , 27017 );
+            mongoClient = new MongoClient( );
 
             mongoClient.setReadPreference(ReadPreference.primary());
 
-            DB dataBase = mongoClient.getDB("heroku_app15452455");
-//            DB dataBase = mongoClient.getDB("icm");
+//            DB dataBase = mongoClient.getDB("heroku_app15452455");
+            DB dataBase = mongoClient.getDB("icm");
 
-            dataBase.authenticate("heroku_app15452455", "73mi73eoolvr4s7v47ugutfru9".toCharArray());
+//            dataBase.authenticate("psych_chunt", "Fy83#gh24".toCharArray());
 
             return dataBase;
 
@@ -65,25 +67,21 @@ public class DataUtil {
 
     }
 
-    public static List<String> dump(String collection, Class clazz) {
+    public static Boolean isDatabase() {
 
         try {
+            JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
 
-            List<String> dumpList = new ArrayList<String>();
+            DBCursor cursorDoc = collection.find(DBQuery.is("username", "test"));
 
-            JacksonDBCollection jacksonCollection = getCollection(collection, clazz);
-
-            DBCursor cursorDoc = jacksonCollection.find();
-
-            while (cursorDoc.hasNext()) {
-                User user = (User)cursorDoc.next();
-                dumpList.add(user.username);
-            }
-
-            return dumpList;
-
-        } catch (Exception e) {
-            return null;
+            if (cursorDoc.hasNext())
+                return true;
+            else
+                return true;
+        } catch (MongoException e) {
+            e.printStackTrace();
+            return false;
         }
     }
+
 }

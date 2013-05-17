@@ -10,7 +10,7 @@ import models.*;
 public class Admin extends MasterController {
 
     public static Result index() {
-        return ok(admin.render(DataUtil.dump("users",User.class)));
+        return ok(admin.render());
     }
 
 }

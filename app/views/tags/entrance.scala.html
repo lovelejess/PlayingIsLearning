@@ -4,18 +4,18 @@
 @import helper.twitterBootstrap._
 
 
-<img height='500' width='400' style="display:block;max-height: 500px;max-width: 400px;margin-left: auto;margin-right: auto;margin-top: -100px;" src='@routes.Assets.at("images/PlayLogo2.jpg")'/>
+<img height='500' width='400' style="display:block;max-height: 400px;max-width: 283px;margin-left: auto;margin-right: auto;" src='@routes.Assets.at("images/playing_is_learning.png")'/>
 
 <div>
     @form(routes.Entrance.login) {
 
-        <fieldset style="margin-top: -75px;">
+        <fieldset style="margin-top: 10px;">
             @inputText(
                 loginForm("username"),
                 '_label -> "Username",
                 '_error -> loginForm.globalError
             )
-
+            <div style="margin-top: -30px;"></div>
             @inputPassword(
                 loginForm("password"),
                 '_label -> "Password"
