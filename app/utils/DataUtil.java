@@ -25,15 +25,15 @@ public class DataUtil {
 
         try {
 
-//            mongoClient = new MongoClient( "albite.its.uiowa.edu" , 27017 );
-            mongoClient = new MongoClient( );
+          mongoClient = new MongoClient( "ds061787.mongolab.com" , 61787 );
+//            mongoClient = new MongoClient( );
 
             mongoClient.setReadPreference(ReadPreference.primary());
 
-//            DB dataBase = mongoClient.getDB("heroku_app15452455");
-            DB dataBase = mongoClient.getDB("icm");
+            DB dataBase = mongoClient.getDB("heroku_app15452455");
+//            DB dataBase = mongoClient.getDB("icm");
 
-//            dataBase.authenticate("psych_chunt", "Fy83#gh24".toCharArray());
+            dataBase.authenticate("heroku_app15452455", "73mi73eoolvr4s7v47ugutfru9".toCharArray());
 
             return dataBase;
 
