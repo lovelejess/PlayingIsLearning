@@ -1,10 +1,10 @@
 
-    @if(!flash.isEmpty()) {
-        @for((msgKey, msgValue) <- flash) {
-            <div class="alert alert-@msgKey" data-dismiss="alert">
-                <a title='@Messages("misc.message.close")' style="color:black;" class="close">×</a>
-                @msgKey : @msgValue
-            </div>
-        }
+@if(!flash.isEmpty()) {
+    @for((msgKey, msgValue) <- flash) {
+        <div class="alert alert-@msgKey" data-dismiss="alert">
+            <a title='@Messages("misc.message.close")' style="color:black;" class="close">×</a>
+            @msgKey : @msgValue
+        </div>
     }
+}
 
