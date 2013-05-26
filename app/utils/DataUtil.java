@@ -39,8 +39,6 @@ public class DataUtil {
             return null;
         }
 
-
-
     }
 
     public static JacksonDBCollection getCollection(String collection, Class clazz) {

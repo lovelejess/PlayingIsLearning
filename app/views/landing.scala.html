@@ -2,23 +2,13 @@
 
 <link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap.min.css">
 
-<script src='@routes.Assets.at("javascripts/jquery-1.9.0.min.js")' type="text/javascript"></script>
-<script src="http://blueimp.github.com/cdn/js/bootstrap.min.js"></script>
-<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
-
-<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-image-gallery.min.css")'/>
-<script src='@routes.Assets.at("javascripts/bootstrap-image-gallery.min.js")' type="text/javascript"></script>
-<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
-<script src="js/bootstrap-image-gallery.min.js"></script>
-<link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
-
 @main("Iowa Children's Museum") {
     <div class="container">
         <br>
             <div class="alert alert-success">Hello <b>@user.username</b> </div>
 
         <div class="alert alert-info">
-            Use the following code word to receive a 'Game of Games' passport at the Iowa Children's Museum: <code style="font-size: 20px;"> Eeyore</code>
+            Use the following code word to receive a 'Game of Games' passport at the Iowa Children's Museum: <code style="font-size: 20px;"> @{MasterController.getCodeOfTheDay()}</code>
         </div>
 
         <a href="#myModal" id="surveyButton" style="display: none;" role="button" class="btn" data-toggle="modal"> </a>
@@ -80,16 +70,16 @@
                             <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-16.png")' title="Art Room" data-gallery="gallery" rel='gallery'>Art Room</a>
                         </td>
                         <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/dollarCity.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-17.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-18.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-19.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-20.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
+                            <a href='@routes.Assets.at("images/cards/GOG_Cards-33.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
+                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-34.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
+                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-35.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
+                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-36.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/reading.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-21.png")' title="Reading" data-gallery="gallery" rel='gallery'>Reading</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-22.png")' title="Reading" data-gallery="gallery" rel='gallery'>Reading</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-23.png")' title="Reading" data-gallery="gallery" rel='gallery'>Reading</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-24.png")' title="Reading" data-gallery="gallery" rel='gallery'>Reading</a>
+                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/theatre.png")'/>
+                            <a href='@routes.Assets.at("images/cards/GOG_Cards-49.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
+                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-50.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
+                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-51.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
+                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-52.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
                         </td>
                     </tr>
                     <tr>
@@ -137,11 +127,11 @@
                             <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-19.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
                             <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-20.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/theatre.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-49.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-50.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-51.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-52.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
+                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/reading.png")'/>
+                            <a href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
+                            <a style="display: none;" href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
+                            <a style="display: none;" href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
+                            <a style="display: none;" href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
                         </td>
                     </tr>
                 </tbody>
@@ -149,6 +139,20 @@
         </div>
     </div>
 }
+
+
+<link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap.min.css">
+<!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
+
+<script src='@routes.Assets.at("javascripts/jquery-1.9.0.min.js")' type="text/javascript"></script>
+<script src="http://blueimp.github.com/cdn/js/bootstrap.min.js"></script>
+<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+
+<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-image-gallery.min.css")'/>
+<script src='@routes.Assets.at("javascripts/bootstrap-image-gallery.min.js")' type="text/javascript"></script>
+<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+<script src="js/bootstrap-image-gallery.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
 
 @if(SurveyController.getStageForLoggedInUser() != "done"){
     <script type="text/javascript">

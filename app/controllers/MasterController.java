@@ -3,6 +3,7 @@ package controllers;
 import models.User;
 import play.mvc.Controller;
 import play.mvc.Http;
+import utils.CodeGenerator;
 import utils.DataUtil;
 
 /**
@@ -20,6 +21,10 @@ public abstract class MasterController extends Controller {
         else {
            return  (User)DataUtil.getEntityById("users", User.class, userID);
         }
+    }
+
+    public static String getCodeOfTheDay() {
+        return CodeGenerator.getCodeOfTheDay();
     }
 
 }
