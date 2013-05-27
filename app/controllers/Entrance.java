@@ -29,7 +29,7 @@ public class Entrance extends MasterController {
             return ok( index.render(loginForm, registerForm));
         }
         if(getLoggedInUser() != null) {
-            return ok( landing.render(getLoggedInUser()) );
+            return redirect("/landing");
         }
 
         return ok( index.render(loginForm, registerForm));
@@ -64,12 +64,11 @@ public class Entrance extends MasterController {
             if (User.getDecryptedPasswordForUser(userName).equals(filledForm.data().get("password"))) {
                 User user = User.findUserByName(userName);
                 Http.Context.current().session().put("user", user.getId());
-                return ok( landing.render(user) );
+                return redirect("/landing");
             }
         }
         flash("error", "Your username or password is incorrect");
         return badRequest( index.render(filledForm, registerForm));
-
     }
 
     public static Result logout() {

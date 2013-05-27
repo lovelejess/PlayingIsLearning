@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Passport;
 import models.User;
 import play.mvc.Controller;
 import play.mvc.Http;
@@ -25,6 +26,10 @@ public abstract class MasterController extends Controller {
 
     public static String getCodeOfTheDay() {
         return CodeGenerator.getCodeOfTheDay();
+    }
+
+    public static Boolean userHasPassport() {
+        return Passport.isPassportForUser(getLoggedInUser().getId());
     }
 
 }

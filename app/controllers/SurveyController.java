@@ -157,7 +157,7 @@ public class SurveyController extends MasterController {
         }
         userSurvey.setIsStageFiveComplete(true);
         saveUserSurvey(userSurvey);
-        return ok( landing.render(getLoggedInUser()) );
+        return redirect("/landing");
     }
 
     private static String getStage(Survey userSurvey) {
@@ -175,7 +175,14 @@ public class SurveyController extends MasterController {
     }
 
     public static String getStageForLoggedInUser() {
+        String isPrompted = Http.Context.current().session().get("surveyPrompt");
+        if(isPrompted != null && isPrompted.equals("true")) {
+            return "done";
+        }
+
         Survey userSurvey = Survey.findByUser(getLoggedInUser());
+        Http.Context.current().session().put("surveyPrompt", "true");
+
         if(userSurvey == null)
             return null;
         if(userSurvey.getIsStageOneComplete() == null || !userSurvey.getIsStageOneComplete())
@@ -188,6 +195,7 @@ public class SurveyController extends MasterController {
             return "four";
         if(userSurvey.getIsStageFiveComplete() == null || !userSurvey.getIsStageFiveComplete())
             return "five";
+
         return "done";
     }
 

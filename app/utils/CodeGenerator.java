@@ -10,7 +10,7 @@ import java.util.*;
 public class CodeGenerator {
 
     private static List<String> getCodeWordList() {
-        List<String> codes = new ArrayList<>();
+        List<String> codes = new ArrayList<String>();
 
         codes.add("Bugs Bunny");
         codes.add("Daffy Duck");

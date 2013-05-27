@@ -35,6 +35,10 @@ POST   /stageFive            controllers.SurveyController.stageFive()
 #Admin
 GET    /admin                controllers.Admin.index()
 
+#Account
+GET    /landing              controllers.Account.index()
+POST    /createPassport              controllers.Account.createPassport()
+
 # Import Secure routes
 #*     /                     module:secure
 

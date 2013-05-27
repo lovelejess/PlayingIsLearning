@@ -1,10 +1,13 @@
 package models;
 
+import net.vz.mongodb.jackson.MongoCollection;
+
 /**
  * User: Charles
  * Date: 5/4/13
  */
 
+@MongoCollection(name = "cards")
 public class Card {
 
     public String cardName;
