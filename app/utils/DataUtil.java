@@ -22,7 +22,6 @@ public class DataUtil {
     public static DB getDB() {
 
         try {
-
             mongoClient = new MongoClient("ds061787.mongolab.com", 61787);
 //            mongoClient = new MongoClient( );
 
@@ -38,7 +37,6 @@ public class DataUtil {
         } catch (UnknownHostException e) {
             return null;
         }
-
     }
 
     public static JacksonDBCollection getCollection(String collection, Class clazz) {
@@ -48,7 +46,9 @@ public class DataUtil {
             return JacksonDBCollection.wrap(getDB().getCollection(collection), clazz, String.class);
 
         } catch (Exception e) {
+
             return null;
+
         }
 
     }
