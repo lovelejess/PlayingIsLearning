@@ -45,7 +45,7 @@ public class Account extends MasterController {
             flash("error", "Please enter a passport name");
             return ok(landing.render(getLoggedInUser(), passportForm));
         }
-
+                //todo check name is unique
         try {
             JacksonDBCollection<Passport, String> collection = DataUtil.getCollection("passports", Passport.class);
 
