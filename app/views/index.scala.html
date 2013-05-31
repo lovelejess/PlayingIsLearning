@@ -2,31 +2,29 @@
 
 @import tags._
 
-@main("Iowa Children's Museum") {
+@main() {
 
-    <div class="jumbotron masthead">
-        <div class="container">
+    <div class="container">
 
-            <div style="margin-top: -40px;">
-                @message()
-            </div>
-
-            <div id="entrance">
-                @entrance(loginForm)
-            </div>
-            <div id="parentCaregiver" style="display: none;">
-                @parentCaregiver()
-            </div>
-            <div id="codes" style="display: none;">
-                @codes()
-            </div>
-            <div id="terms" style="display: none;">
-                @terms()
-            </div>
-            <div id="register" style="display: none;">
-                @register(registerForm)
-            </div>
-
+        <div>
+            @message()
         </div>
+
+        <div id="entrance">
+            @entrance(loginForm)
+        </div>
+        <div id="parentCaregiver" style="display: none;">
+            @parentCaregiver()
+        </div>
+        <div id="codes" style="display: none;">
+            @codes()
+        </div>
+        <div id="terms" style="display: none;">
+            @terms()
+        </div>
+        <div id="register" style="display: none;">
+            @register(registerForm)
+        </div>
+
     </div>
 }

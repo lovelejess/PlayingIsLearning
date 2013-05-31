@@ -3,51 +3,49 @@
 @import helper._
 @import helper.twitterBootstrap._
 
-@main("Iowa Children's Museum") {
+@main() {
 
-    <div class="jumbotron masthead">
-        <div class="container">
+    <div class="container">
 
-            <h2 style="margin-top: -2em;">Security Questions</h2>
-            <i style="margin-top: -2.5em;">(For password recovery)</i>
-            <br> <br> <br>
-            @form(routes.Entrance.security) {
+        <h2 style="margin-top: -2em;">Security Questions</h2>
+        <i style="margin-top: -2.5em;">(For password recovery)</i>
+        <br> <br> <br>
+        @form(routes.Entrance.security) {
 
-                @select(securityForm("securityQuestionOne"), options("Where were you born?"->"Where were you born?", "What is your favorite pet?"->"What is your favorite pet?", "What was your favorite toy as a child?"->"What was your favorite toy as a child?", "What is your favorite zoo animal?"->"What is your favorite zoo animal?", "What is your favorite food?"->"What is your favorite food?", "What is your favorite restaurant?"->"What is your favorite restaurant?"), '_label -> "Choose a security question")
+            @select(securityForm("securityQuestionOne"), options("Where were you born?"->"Where were you born?", "What is your favorite pet?"->"What is your favorite pet?", "What was your favorite toy as a child?"->"What was your favorite toy as a child?", "What is your favorite zoo animal?"->"What is your favorite zoo animal?", "What is your favorite food?"->"What is your favorite food?", "What is your favorite restaurant?"->"What is your favorite restaurant?"), '_label -> "Choose a security question")
 
-                @inputText(
-                    securityForm("securityAnswerOne"),
-                    '_label -> "Security Answer One",
-                    '_help -> "Please choose an answer.",
-                    '_error -> securityForm.globalError
-                )
+            @inputText(
+                securityForm("securityAnswerOne"),
+                '_label -> "Security Answer One",
+                '_help -> "Please choose an answer.",
+                '_error -> securityForm.globalError
+            )
 
-                @select(securityForm("securityQuestionTwo"), options("Where were you born?"->"Where were you born?", "What is your favorite pet?"->"What is your favorite pet?", "What was your favorite toy as a child?"->"What was your favorite toy as a child?", "What is your favorite zoo animal?"->"What is your favorite zoo animal?", "What is your favorite food?"->"What is your favorite food?", "What is your favorite restaurant?"->"What is your favorite restaurant?"), '_label -> "Choose a security question")
+            @select(securityForm("securityQuestionTwo"), options("Where were you born?"->"Where were you born?", "What is your favorite pet?"->"What is your favorite pet?", "What was your favorite toy as a child?"->"What was your favorite toy as a child?", "What is your favorite zoo animal?"->"What is your favorite zoo animal?", "What is your favorite food?"->"What is your favorite food?", "What is your favorite restaurant?"->"What is your favorite restaurant?"), '_label -> "Choose a security question")
 
-                @inputText(
-                    securityForm("securityAnswerTwo"),
-                    '_label -> "Security Answer Two",
-                    '_help -> "Please choose an answer.",
-                    '_error -> securityForm.globalError
-                )
+            @inputText(
+                securityForm("securityAnswerTwo"),
+                '_label -> "Security Answer Two",
+                '_help -> "Please choose an answer.",
+                '_error -> securityForm.globalError
+            )
 
-                @select(securityForm("securityQuestionThree"), options("Where were you born?"->"Where were you born?", "What is your favorite pet?"->"What is your favorite pet?", "What was your favorite toy as a child?"->"What was your favorite toy as a child?", "What is your favorite zoo animal?"->"What is your favorite zoo animal?", "What is your favorite food?"->"What is your favorite food?", "What is your favorite restaurant?"->"What is your favorite restaurant?"), '_label -> "Choose a security question")
+            @select(securityForm("securityQuestionThree"), options("Where were you born?"->"Where were you born?", "What is your favorite pet?"->"What is your favorite pet?", "What was your favorite toy as a child?"->"What was your favorite toy as a child?", "What is your favorite zoo animal?"->"What is your favorite zoo animal?", "What is your favorite food?"->"What is your favorite food?", "What is your favorite restaurant?"->"What is your favorite restaurant?"), '_label -> "Choose a security question")
 
-                @inputText(
-                    securityForm("securityAnswerThree"),
-                    '_label -> "Security Answer Three",
-                    '_help -> "Please choose an answer.",
-                    '_error -> securityForm.globalError
-                )
+            @inputText(
+                securityForm("securityAnswerThree"),
+                '_label -> "Security Answer Three",
+                '_help -> "Please choose an answer.",
+                '_error -> securityForm.globalError
+            )
 
-                <br>
+            <br>
 
-                <div class="actions">
-                    <input type="submit" class="btn btn-success" value="Finish">
-                </div>
+            <div class="actions">
+                <input type="submit" class="btn btn-success" value="Finish">
+            </div>
 
-            }
+        }
 
-        </div>
     </div>
 }

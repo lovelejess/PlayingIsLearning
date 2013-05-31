@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@()(content: Html)
 
 @import helper._
 @import helper.twitterBootstrap._
@@ -8,7 +8,9 @@
 
 <html>
 <head>
-    <title>@title</title>
+    <title>Iowa Children's Museum</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
     <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-responsive.css")'>
     <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.css")'>
@@ -26,42 +28,43 @@
 </head>
 
     <body>
+        <div class="jumbotron masthead">
+            <div class="container">
+                <div class="navbar">
+                    <div class="navbar-inner">
 
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
+                        <ul class="nav">
+                            <li id='home'><a href="./index">Home</a></li>
+                            <li id='playing'><a href="./playing">Playing is Learning</a></li>
+                            <li id='gog'><a href="./gog">Game of Games</a></li>
+                            <li id='resources'><a href="./resources">Resources</a></li>
+                        </ul>
+                        <ul class="nav pull-right">
+                            @if(MasterController.getLoggedInUser() != null) {
+
+                                <li><a href="#">Logged in as: <b>@{MasterController.getLoggedInUser().username}</b></a></li>
+                                <li><a href="./logout">Log Out</a></li>
+
+                            }
+                            <img height='40' width='40' style="display:block;max-height: 40px;max-width: 40px;"
+                                 src='@routes.Assets.at("images/goIconBlue.png")'/>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            @content
+
+            <div class="bs-docs-social">
                 <div class="container">
-
-                    <ul class="nav">
-                        <li id='home'><a href="./index">Home</a></li>
-                        <li id='playing'><a href="./playing">Playing is Learning</a></li>
-                        <li id='gog'><a href="./gog">Game of Games</a></li>
-                        <li id='resources'><a href="./resources">Resources</a></li>
-                    </ul>
-                    <ul class="nav pull-right">
-                        @if(MasterController.getLoggedInUser() != null) {
-
-                            <li><a href="#">Logged in as: <b>@{MasterController.getLoggedInUser().username}</b></a>   </li>
-                            <li><a href="./logout">Log Out</a></li>
-
-                        }
-                        <img height='40' width='40' style="display:block;max-height: 40px;max-width: 40px;" src='@routes.Assets.at("images/goIconBlue.png")'/>
+                    <ul class="bs-docs-social-buttons">
+                        <li>
+                            <a href="https://www.facebook.com/groups/461824517237446/">Join us on Facebook</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-
-        @content
-
-        <div class="bs-docs-social">
-            <div class="container">
-                <ul class="bs-docs-social-buttons">
-                    <li>
-                        <a href="https://www.facebook.com/groups/461824517237446/">Join us on Facebook</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
     </body>
 </html>
 

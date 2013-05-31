@@ -4,51 +4,106 @@
 @import helper._
 @import helper.twitterBootstrap._
 
-@main("Iowa Children's Museum") {
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Iowa Children's Museum</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-responsive.css")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.css")'>
+    <link rel="shortcut icon" type="image/gif" href='@routes.Assets.at("images/favicon.png")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-image-gallery.min.css")'/>
+
+    <script src='@routes.Assets.at("javascripts/jquery-1.9.0.min.js")' type="text/javascript"></script>
+    <script src='@routes.Assets.at("javascripts/bootstrap.min.js")' type="text/javascript"></script>
+    <script src='@routes.Assets.at("javascripts/underscore-min.js")' type="text/javascript"></script>
+    <script src='@routes.Assets.at("javascripts/backbone-min.js")' type="text/javascript"></script>
+    <script src='@routes.Assets.at("javascripts/router.js")' type="text/javascript"></script>
+    <script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+    <script src='@routes.Assets.at("javascripts/bootstrap-image-gallery.min.js")' type="text/javascript"></script>
+
+</head>
+
+<body>
+
     <div class="container">
-        <br>
-        <div class="alert alert-success">  <span style="margin-right: 3em;">Hello <b>@user.username</b>.</span>
+        <div class="navbar">
+            <div class="navbar-inner">
 
-            @if(MasterController.userHasPassport()){
+                <ul class="nav">
+                    <li id='home'><a href="./index">Home</a></li>
+                    <li id='playing'><a href="./playing">Playing is Learning</a></li>
+                    <li id='gog'><a href="./gog">Game of Games</a></li>
+                    <li id='resources'><a href="./resources">Resources</a></li>
+                </ul>
+                <ul class="nav pull-right">
+                    @if(MasterController.getLoggedInUser() != null) {
 
-                <div class="btn-group" style="display: inline;">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                        My Passports
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        @for(p <- Account.getUserPassports()) {
-                            <li><a href='#'>@p.passportName</a></li>
-                        }
-                    </ul>
-                </div>
+                    <li><a href="#">Logged in as: <b>@{MasterController.getLoggedInUser().username}</b></a></li>
+                    <li><a href="./logout">Log Out</a></li>
 
-                <a onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create another passport</a>
-            }
-            @if(!MasterController.userHasPassport()){
-                <span>You don't yet have a passport.</span> <span onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create a passport</span>
-            }
-
+                    }
+                    <img height='40' width='40' style="display:block;max-height: 40px;max-width: 40px;"
+                         src='@routes.Assets.at("images/goIconBlue.png")'/>
+                </ul>
+            </div>
         </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="span12">
+                <div class="alert alert-success">  <span style="margin-right: 3em;">Hello <b>@user.username</b>.</span>
+
+                    @if(MasterController.userHasPassport()) {
+
+                    <div class="btn-group" style="display: inline;">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            My Passports
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            @for(p <- Account.getUserPassports()) {
+                            <li><a href='#'>@p.passportName</a></li>
+                            }
+                        </ul>
+                    </div>
+
+                    <a onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create another passport</a>
+                    }
+                    @if(!MasterController.userHasPassport()){
+                    <span>You don't yet have a passport.</span> <span onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create a passport</span>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+
 
         <div id='createPassport' class="well" style="display: none;">
 
             @form(routes.Account.createPassport) {
 
-                <fieldset>
-                    @inputText(
-                        passportForm("passportName"),
-                        '_label -> "PassportName",
-                        '_error -> passportForm.globalError
-                    )
+            <fieldset>
+                @inputText(
+                passportForm("passportName"),
+                '_label -> "PassportName",
+                '_error -> passportForm.globalError
+                )
 
-                    @select(passportForm("type"), options(PassportTypeEnum.values().toList.map(_.toString)), '_label -> "Select a passport type")
-                </fieldset>
+                @select(passportForm("type"), options(PassportTypeEnum.values().toList.map(_.toString)), '_label -> "Select a passport type")
+            </fieldset>
 
-                <div class="actions">
-                    <input type="submit" class="btn btn-large btn-success" value="Create">
-                    <a onclick="$('#createPassport').toggle();" class="btn btn-large btn-warning">Cancel</a>
-                </div>
+            <div class="actions">
+                <input type="submit" class="btn btn-large btn-success" value="Create">
+                <a onclick="$('#createPassport').toggle();" class="btn btn-large btn-warning">Cancel</a>
+            </div>
             }
 
         </div>
@@ -76,137 +131,165 @@
         <div class="row-fluid">
             <table class="table table-bordered table-striped responsive-utilities">
                 <tbody>
-                    <tr>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/train.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-29.png")' title="TrainRoom" data-gallery="gallery" rel='gallery'>TrainRoom</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-30.png")' title="TrainRoom" data-gallery="gallery" rel='gallery'> </a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-31.png")' title="TrainRoom" data-gallery="gallery" rel='gallery'> </a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-32.png")' title="TrainRoom" data-gallery="gallery" rel='gallery'> </a>
-                        </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/trail.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-21.png")' title="Bodies in Motion" data-gallery="gallery" rel='gallery'>Bodies in Motion</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-22.png")' title="Bodies in Motion" data-gallery="gallery" rel='gallery'>Bodies in Motion</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-23.png")' title="Bodies in Motion" data-gallery="gallery" rel='gallery'>Bodies in Motion</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-24.png")' title="Bodies in Motion" data-gallery="gallery" rel='gallery'>Bodies in Motion</a>
-                        </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/windMill.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-57.png")' title="Wind Tunnel" data-gallery="gallery" rel='gallery'>Wind Tunnel</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-58.png")' title="Wind Tunnel" data-gallery="gallery" rel='gallery'>Wind Tunnel</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-59.png")' title="Wind Tunnel" data-gallery="gallery" rel='gallery'>Wind Tunnel</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-60.png")' title="Wind Tunnel" data-gallery="gallery" rel='gallery'>Wind Tunnel</a>
-                        </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/postOffice.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-53.png")' title="Post Office" data-gallery="gallery" rel='gallery'>Post Office</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-54.png")' title="Post Office" data-gallery="gallery" rel='gallery'>Post Office</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-55.png")' title="Post Office" data-gallery="gallery" rel='gallery'>Post Office</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-56.png")' title="Post Office" data-gallery="gallery" rel='gallery'>Post Office</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/abcForest.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-05.png")' title="ABC Forest" data-gallery="gallery" rel='gallery'>ABC Forest</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-06.png")' title="ABC Forest" data-gallery="gallery" rel='gallery'>ABC Forest</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-07.png")' title="ABC Forest" data-gallery="gallery" rel='gallery'>ABC Forest</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-08.png")' title="ABC Forest" data-gallery="gallery" rel='gallery'>ABC Forest</a>
-                        </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/art.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-13.png")' title="Art Room" data-gallery="gallery" rel='gallery'>Art Room</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-14.png")' title="Art Room" data-gallery="gallery" rel='gallery'>Art Room</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-15.png")' title="Art Room" data-gallery="gallery" rel='gallery'>Art Room</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-16.png")' title="Art Room" data-gallery="gallery" rel='gallery'>Art Room</a>
-                        </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/dollarCity.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-33.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-34.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-35.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-36.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
-                        </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/theatre.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-49.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-50.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-51.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-52.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/groceryStore.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-09.png")' title="Grocery Store" data-gallery="gallery" rel='gallery'>Grocery Store</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-10.png")' title="Grocery Store" data-gallery="gallery" rel='gallery'>Grocery Store</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-11.png")' title="Grocery Store" data-gallery="gallery" rel='gallery'>Grocery Store</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-12.png")' title="Grocery Store" data-gallery="gallery" rel='gallery'>Grocery Store</a>
-                        </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/hospital.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-37.png")' title="Hospital" data-gallery="gallery" rel='gallery'>Hospital</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-38.png")' title="Hospital" data-gallery="gallery" rel='gallery'>Hospital</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-39.png")' title="Hospital" data-gallery="gallery" rel='gallery'>Hospital</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-40.png")' title="Hospital" data-gallery="gallery" rel='gallery'>Hospital</a>
-                        </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/imagineAcres.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-01.png")' title="Imagine Acres" data-gallery="gallery" rel='gallery'>Imagine Acres</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-02.png")' title="Imagine Acres" data-gallery="gallery" rel='gallery'>Imagine Acres</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-03.png")' title="Imagine Acres" data-gallery="gallery" rel='gallery'>Imagine Acres</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-04.png")' title="Imagine Acres" data-gallery="gallery" rel='gallery'>Imagine Acres</a>
-                        </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/takeFlight.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-25.png")' title="Take Flight" data-gallery="gallery" rel='gallery'>Take Flight</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-26.png")' title="Take Flight" data-gallery="gallery" rel='gallery'>Take Flight</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-27.png")' title="Take Flight" data-gallery="gallery" rel='gallery'>Take Flight</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-28.png")' title="Take Flight" data-gallery="gallery" rel='gallery'>Take Flight</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/lego.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-41.png")' title="Lego Room" data-gallery="gallery" rel='gallery'>Lego Room</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-42.png")' title="Lego Room" data-gallery="gallery" rel='gallery'>Lego Room</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-43.png")' title="Lego Room" data-gallery="gallery" rel='gallery'>Lego Room</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-44.png")' title="Lego Room" data-gallery="gallery" rel='gallery'>Lego Room</a>
-                        </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/music.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-45.png")' title="Music Room" data-gallery="gallery" rel='gallery'>Music Room</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-46.png")' title="Music Room" data-gallery="gallery" rel='gallery'>Music Room</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-47.png")' title="Music Room" data-gallery="gallery" rel='gallery'>Music Room</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-48.png")' title="Music Room" data-gallery="gallery" rel='gallery'>Music Room</a>
-                        </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/pizza.png")'/>
-                            <a href='@routes.Assets.at("images/cards/GOG_Cards-17.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-18.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-19.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
-                            <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-20.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
-                        </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/reading.png")'/>
-                            <a href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
-                            <a style="display: none;" href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
-                            <a style="display: none;" href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
-                            <a style="display: none;" href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/train.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-29.png")' title="TrainRoom" data-gallery="gallery" rel='gallery'>TrainRoom</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-30.png")' title="TrainRoom" data-gallery="gallery" rel='gallery'> </a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-31.png")' title="TrainRoom" data-gallery="gallery" rel='gallery'> </a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-32.png")' title="TrainRoom" data-gallery="gallery" rel='gallery'> </a>
+                    </td>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/trail.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-21.png")' title="Bodies in Motion" data-gallery="gallery" rel='gallery'>Bodies in Motion</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-22.png")' title="Bodies in Motion" data-gallery="gallery" rel='gallery'>Bodies in Motion</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-23.png")' title="Bodies in Motion" data-gallery="gallery" rel='gallery'>Bodies in Motion</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-24.png")' title="Bodies in Motion" data-gallery="gallery" rel='gallery'>Bodies in Motion</a>
+                    </td>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/windMill.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-57.png")' title="Wind Tunnel" data-gallery="gallery" rel='gallery'>Wind Tunnel</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-58.png")' title="Wind Tunnel" data-gallery="gallery" rel='gallery'>Wind Tunnel</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-59.png")' title="Wind Tunnel" data-gallery="gallery" rel='gallery'>Wind Tunnel</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-60.png")' title="Wind Tunnel" data-gallery="gallery" rel='gallery'>Wind Tunnel</a>
+                    </td>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/postOffice.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-53.png")' title="Post Office" data-gallery="gallery" rel='gallery'>Post Office</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-54.png")' title="Post Office" data-gallery="gallery" rel='gallery'>Post Office</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-55.png")' title="Post Office" data-gallery="gallery" rel='gallery'>Post Office</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-56.png")' title="Post Office" data-gallery="gallery" rel='gallery'>Post Office</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/abcForest.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-05.png")' title="ABC Forest" data-gallery="gallery" rel='gallery'>ABC Forest</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-06.png")' title="ABC Forest" data-gallery="gallery" rel='gallery'>ABC Forest</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-07.png")' title="ABC Forest" data-gallery="gallery" rel='gallery'>ABC Forest</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-08.png")' title="ABC Forest" data-gallery="gallery" rel='gallery'>ABC Forest</a>
+                    </td>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/art.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-13.png")' title="Art Room" data-gallery="gallery" rel='gallery'>Art Room</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-14.png")' title="Art Room" data-gallery="gallery" rel='gallery'>Art Room</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-15.png")' title="Art Room" data-gallery="gallery" rel='gallery'>Art Room</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-16.png")' title="Art Room" data-gallery="gallery" rel='gallery'>Art Room</a>
+                    </td>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/dollarCity.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-33.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-34.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-35.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-36.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
+                    </td>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/theatre.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-49.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-50.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-51.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-52.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/groceryStore.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-09.png")' title="Grocery Store" data-gallery="gallery" rel='gallery'>Grocery Store</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-10.png")' title="Grocery Store" data-gallery="gallery" rel='gallery'>Grocery Store</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-11.png")' title="Grocery Store" data-gallery="gallery" rel='gallery'>Grocery Store</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-12.png")' title="Grocery Store" data-gallery="gallery" rel='gallery'>Grocery Store</a>
+                    </td>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/hospital.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-37.png")' title="Hospital" data-gallery="gallery" rel='gallery'>Hospital</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-38.png")' title="Hospital" data-gallery="gallery" rel='gallery'>Hospital</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-39.png")' title="Hospital" data-gallery="gallery" rel='gallery'>Hospital</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-40.png")' title="Hospital" data-gallery="gallery" rel='gallery'>Hospital</a>
+                    </td>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/imagineAcres.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-01.png")' title="Imagine Acres" data-gallery="gallery" rel='gallery'>Imagine Acres</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-02.png")' title="Imagine Acres" data-gallery="gallery" rel='gallery'>Imagine Acres</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-03.png")' title="Imagine Acres" data-gallery="gallery" rel='gallery'>Imagine Acres</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-04.png")' title="Imagine Acres" data-gallery="gallery" rel='gallery'>Imagine Acres</a>
+                    </td>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/takeFlight.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-25.png")' title="Take Flight" data-gallery="gallery" rel='gallery'>Take Flight</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-26.png")' title="Take Flight" data-gallery="gallery" rel='gallery'>Take Flight</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-27.png")' title="Take Flight" data-gallery="gallery" rel='gallery'>Take Flight</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-28.png")' title="Take Flight" data-gallery="gallery" rel='gallery'>Take Flight</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/lego.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-41.png")' title="Lego Room" data-gallery="gallery" rel='gallery'>Lego Room</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-42.png")' title="Lego Room" data-gallery="gallery" rel='gallery'>Lego Room</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-43.png")' title="Lego Room" data-gallery="gallery" rel='gallery'>Lego Room</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-44.png")' title="Lego Room" data-gallery="gallery" rel='gallery'>Lego Room</a>
+                    </td>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/music.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-45.png")' title="Music Room" data-gallery="gallery" rel='gallery'>Music Room</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-46.png")' title="Music Room" data-gallery="gallery" rel='gallery'>Music Room</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-47.png")' title="Music Room" data-gallery="gallery" rel='gallery'>Music Room</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-48.png")' title="Music Room" data-gallery="gallery" rel='gallery'>Music Room</a>
+                    </td>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/pizza.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-17.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-18.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-19.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-20.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
+                    </td>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/reading.png")'/>
+                        <a href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
+                        <a style="display: none;" href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
+                        <a style="display: none;" href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
+                        <a style="display: none;" href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
     </div>
-}
 
-@if(SurveyController.getStageForLoggedInUser() != "done"){
+
+    @if(SurveyController.getStageForLoggedInUser() != "done"){
     <script type="text/javascript">
-       document.getElementById('surveyButton').click();
+        document.getElementById('surveyButton').click();
     </script>
-}
+    }
 
-<div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1" style="position: fixed; top: 50%; left: 50%;">
-    <div class="modal-header">
-        <a class="close" data-dismiss="modal">&times;</a>
-        <h3 class="modal-title"></h3>
+    <div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1" style="position: fixed; top: 50%; left: 50%;">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">&times;</a>
+            <h3 class="modal-title"></h3>
+        </div>
+        <div class="modal-body"><div class="modal-image"></div></div>
+        <div class="modal-footer">
+            <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
+            <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
+            <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
+            <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
+        </div>
     </div>
-    <div class="modal-body"><div class="modal-image"></div></div>
-    <div class="modal-footer">
-        <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
-        <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
-        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
-        <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
-    </div>
-</div>
 
-<script type="text/javascript">$('#modal-gallery').addClass('modal-fullscreen');</script>
+    <script type="text/javascript">$('#modal-gallery').addClass('modal-fullscreen');</script>
+
+    <div class="bs-docs-social">
+        <div class="container">
+            <ul class="bs-docs-social-buttons">
+                <li>
+                    <a href="https://www.facebook.com/groups/461824517237446/">Join us on Facebook</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+    var path = window.location.pathname.replace("/","").replace("#","");
+
+    if(path.trim() == "" || path.trim() == "index")
+        $("#home").addClass("active");
+    else
+        $("#"+path).addClass("active");
+
+</script>
+
+
+
+
 
 
 
