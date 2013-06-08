@@ -36,8 +36,9 @@ POST   /stageFive            controllers.SurveyController.stageFive()
 GET    /admin                controllers.Admin.index()
 
 #Account
-GET    /landing              controllers.Account.index()
-POST    /createPassport              controllers.Account.createPassport()
+GET    /landing                      controllers.Account.index()
+POST   /landing/createPassport       controllers.Account.createPassport()
+GET    /landing/passport/:name       controllers.Account.usePassport(name: String)
 
 # Import Secure routes
 #*     /                     module:secure

@@ -3,7 +3,6 @@ package controllers;
 import com.mongodb.MongoException;
 import enums.PassportTypeEnum;
 import models.Passport;
-import models.User;
 import net.vz.mongodb.jackson.DBCursor;
 import net.vz.mongodb.jackson.DBQuery;
 import net.vz.mongodb.jackson.JacksonDBCollection;
@@ -11,7 +10,6 @@ import net.vz.mongodb.jackson.WriteResult;
 import play.mvc.*;
 import play.data.*;
 import utils.DataUtil;
-import utils.EncryptionUtil;
 import views.html.*;
 
 import java.util.ArrayList;
@@ -58,8 +56,7 @@ public class Account extends MasterController {
             return internalServerError(landing.render(getLoggedInUser(), passportForm));
         }
 
-        return ok(landing.render(getLoggedInUser(), passportForm));
-
+        return redirect("/landing/passport/"+passportName);
     }
 
     public static List<Passport> getUserPassports() {
@@ -80,5 +77,36 @@ public class Account extends MasterController {
             return null;
         }
     }
+
+    public static Result usePassport(String passportName) {
+        if(!DataUtil.isDatabase()) {
+            flash("error", "Our database is currently down. Please contact a system administrator.");
+            return ok(landing.render(getLoggedInUser(),passportForm));
+        }
+
+        Http.Context.current().session().put("passport", passportName);
+
+        return ok(landing.render(getLoggedInUser(), passportForm));
+    }
+
+    public static Boolean isPassportSelected() {
+        String passport = Http.Context.current().session().get("passport");
+        if(passport == null || passport.isEmpty()) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public static String getSelectedPassport() {
+        String passport = Http.Context.current().session().get("passport");
+        if(passport != null && !passport.isEmpty()) {
+            return passport;
+        }
+        return null;
+    }
+
+
 
 }

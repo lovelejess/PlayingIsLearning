@@ -4,9 +4,6 @@
 @import helper._
 @import helper.twitterBootstrap._
 
-
-<!DOCTYPE html>
-
 <html>
 <head>
     <title>Iowa Children's Museum</title>
@@ -35,17 +32,15 @@
             <div class="navbar-inner">
 
                 <ul class="nav">
-                    <li id='home'><a href="./index">Home</a></li>
-                    <li id='playing'><a href="./playing">Playing is Learning</a></li>
-                    <li id='gog'><a href="./gog">Game of Games</a></li>
-                    <li id='resources'><a href="./resources">Resources</a></li>
+                    <li id='home'><a href="/index">Home</a></li>
+                    <li id='playing'><a href="/playing">Playing is Learning</a></li>
+                    <li id='gog'><a href="/gog">Game of Games</a></li>
+                    <li id='resources'><a href="/resources">Resources</a></li>
                 </ul>
                 <ul class="nav pull-right">
                     @if(MasterController.getLoggedInUser() != null) {
-
-                    <li><a href="#">Logged in as: <b>@{MasterController.getLoggedInUser().username}</b></a></li>
-                    <li><a href="./logout">Log Out</a></li>
-
+                        <li><a href="#">Logged in as: <b>@{MasterController.getLoggedInUser().username}</b></a></li>
+                        <li><a href="/logout">Log Out</a></li>
                     }
                     <li><img height='40' width='40' style="display:block;max-height: 40px;max-width: 40px;"
                              src='@routes.Assets.at("images/goIconBlue.png")'/></li>
@@ -60,31 +55,46 @@
             <div class="span12">
                 <div class="alert alert-success">  <span style="margin-right: 3em;">Hello <b>@user.username</b>.</span>
 
-                    @if(MasterController.userHasPassport()) {
+                    @if(Account.isPassportSelected()) {
+                        <span>Currently using passport: </span> <span style="margin-right: 2em; font-weight: bold;"> @Account.getSelectedPassport() </span>
 
-                    <div class="btn-group" style="display: inline;">
-                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                            My Passports
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            @for(p <- Account.getUserPassports()) {
-                            <li><a href='#'>@p.passportName</a></li>
-                            }
-                        </ul>
-                    </div>
+                        <div class="btn-group" style="display: inline;">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                Use a different passport
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @for(p <- Account.getUserPassports()) {
+                                    <li><a href='/landing/passport/@p.passportName'>@p.passportName</a></li>
+                                }
+                            </ul>
+                        </div>
 
-                    <a onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create another passport</a>
+                        <a onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create a new passport</a>
                     }
-                    @if(!MasterController.userHasPassport()){
-                    <span>You don't yet have a passport.</span> <span onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create a passport</span>
-                    }
+                    @if(!Account.isPassportSelected()) {
+                        @if(MasterController.userHasPassport()) {
+                            <div class="btn-group" style="display: inline;">
+                                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                    My Passports
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    @for(p <- Account.getUserPassports()) {
+                                        <li><a href='./landing/passport/@p.passportName'>@p.passportName</a></li>
+                                    }
+                                </ul>
+                            </div>
 
+                            <a onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create another passport</a>
+                        }
+                        @if(!MasterController.userHasPassport()){
+                            <span>You don't yet have a passport.</span> <span onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create a passport</span>
+                        }
+                    }
                 </div>
             </div>
         </div>
-
-
 
         <div id='createPassport' class="well" style="display: none;">
 
@@ -92,9 +102,9 @@
 
             <fieldset>
                 @inputText(
-                passportForm("passportName"),
-                '_label -> "PassportName",
-                '_error -> passportForm.globalError
+                    passportForm("passportName"),
+                    '_label -> "PassportName",
+                    '_error -> passportForm.globalError
                 )
 
                 @select(passportForm("type"), options(PassportTypeEnum.values().toList.map(_.toString)), '_label -> "Select a passport type")
@@ -228,11 +238,11 @@
                         <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-19.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
                         <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-20.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
                     </td>
-                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/reading.png")'/>
-                        <a href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
-                        <a style="display: none;" href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
-                        <a style="display: none;" href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
-                        <a style="display: none;" href='#' title="Coming soon" data-gallery="gallery" rel='gallery'>Coming soon</a>
+                    <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='40' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/gog1.png")'/>
+                        <a href='@routes.Assets.at("images/cards/GOG_Cards-63.png")' title="Coming soon" data-gallery="gallery" rel='gallery'>Game of Games</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-64.png")' title="Coming soon" data-gallery="gallery" rel='gallery'>Game of Games</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-61.png")' title="Coming soon" data-gallery="gallery" rel='gallery'>Game of Games</a>
+                        <a style="display: none;" href='@routes.Assets.at("images/cards/GOG_Cards-62.png")' title="Coming soon" data-gallery="gallery" rel='gallery'>Game of Games</a>
                     </td>
                 </tr>
                 </tbody>
@@ -242,9 +252,9 @@
 
 
     @if(SurveyController.getStageForLoggedInUser() != "done"){
-    <script type="text/javascript">
-        document.getElementById('surveyButton').click();
-    </script>
+        <script type="text/javascript">
+            document.getElementById('surveyButton').click();
+        </script>
     }
 
     <div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1" style="position: fixed; top: 50%; left: 50%;">
