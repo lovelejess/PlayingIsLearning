@@ -37,9 +37,7 @@ public class DataUtil {
             return dataBase;
 
         } catch (UnknownHostException e) {
-
             return null;
-
         }
     }
 
