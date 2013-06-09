@@ -82,5 +82,25 @@ public class Passport {
         }
     }
 
+    public static Boolean isPassportNameUniqueForUser(String userId, String passportName) {
+        try {
+            JacksonDBCollection<Passport, String> collection = DataUtil.getCollection("passports", Passport.class);
+
+            DBCursor cursorDoc = collection.find(DBQuery.is("userId", userId));
+
+            while(cursorDoc.hasNext()) {
+                Passport passport = (Passport)cursorDoc.next();
+                if(passport.getPassportName().toLowerCase().equals(passportName.toLowerCase())) {
+                    return false;
+                }
+            }
+
+            return true;
+        } catch (MongoException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
 }

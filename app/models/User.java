@@ -6,6 +6,8 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import utils.DataUtil;
 import utils.EncryptionUtil;
 
+import java.util.List;
+
 @MongoCollection(name = "users")
 public class User {
 
@@ -74,6 +76,19 @@ public class User {
             return null;
         }
 
+    }
+
+    public static List<User> findAll() {
+        try {
+            JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
+
+            DBCursor cursorDoc = collection.find();
+
+            return ((List<User>)cursorDoc.toArray());
+        } catch (MongoException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static String getDecryptedPasswordForUser(String username) {

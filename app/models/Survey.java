@@ -1,9 +1,12 @@
 package models;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.MongoException;
 import net.vz.mongodb.jackson.*;
 import org.codehaus.jackson.annotate.JsonProperty;
 import utils.DataUtil;
+
+import java.util.List;
 
 /**
  * User: Charles
@@ -129,6 +132,19 @@ public class Survey {
 
     public void setIsStageFiveComplete(Boolean is) {
         isStageFiveComplete = is;
+    }
+
+    public static List<Survey> findAll() {
+        try {
+            JacksonDBCollection<Survey, String> collection = DataUtil.getCollection("surveys", Survey.class);
+
+            DBCursor cursorDoc = collection.find();
+
+            return ((List<Survey>)cursorDoc.toArray());
+        } catch (MongoException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

@@ -32,4 +32,8 @@ public abstract class MasterController extends Controller {
         return Passport.isPassportForUser(getLoggedInUser().getId());
     }
 
+    public static Boolean isAuthorized() {
+        return (getLoggedInUser().username.equals("IowaAdministrator"));
+    }
+
 }

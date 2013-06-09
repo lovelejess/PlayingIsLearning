@@ -17,7 +17,6 @@ import java.util.List;
 
 import static play.data.Form.form;
 
-
 /**
  * User: Charles
  * Date: 5/6/13
@@ -43,7 +42,12 @@ public class Account extends MasterController {
             flash("error", "Please enter a passport name");
             return ok(landing.render(getLoggedInUser(), passportForm));
         }
-                //todo check name is unique
+
+        if(!Passport.isPassportNameUniqueForUser(getLoggedInUser().getId(),passportName)) {
+            flash("error", "You have already created a passport with this name. Please choose a different name.");
+            return ok(landing.render(getLoggedInUser(), passportForm));
+        }
+
         try {
             JacksonDBCollection<Passport, String> collection = DataUtil.getCollection("passports", Passport.class);
 
