@@ -48,9 +48,7 @@ public class DataUtil {
             return JacksonDBCollection.wrap(getDB().getCollection(collection), clazz, String.class);
 
         } catch (Exception e) {
-
             return null;
-
         }
 
     }
