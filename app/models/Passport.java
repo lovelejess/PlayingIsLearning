@@ -33,6 +33,8 @@ public class Passport {
 
     public String userId;
 
+    public Integer childAge;
+
     public PassportTypeEnum type;
 
     public BasicDBObject cardsComplete;
@@ -67,6 +69,14 @@ public class Passport {
 
     public void setType(PassportTypeEnum type) {
         this.type = type;
+    }
+
+    public Integer getChildAge() {
+        return childAge;
+    }
+
+    public void setChildAge(Integer childAge) {
+        this.childAge = childAge;
     }
 
     public static Boolean isPassportForUser(String userId) {
