@@ -17,9 +17,7 @@ import java.net.UnknownHostException;
  */
 public class DataUtil {
 
-
     private static MongoClient mongoClient;
-
 
     public static DB getDB() {
 
