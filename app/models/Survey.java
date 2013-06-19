@@ -6,7 +6,7 @@ import net.vz.mongodb.jackson.*;
 import org.codehaus.jackson.annotate.JsonProperty;
 import utils.DataUtil;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * User: Charles
@@ -91,7 +91,6 @@ public class Survey {
             return ((Survey)cursorDoc.next());
         else
             return null;
-
     }
 
     public Boolean getIsStageOneComplete() {
@@ -132,6 +131,30 @@ public class Survey {
 
     public void setIsStageFiveComplete(Boolean is) {
         isStageFiveComplete = is;
+    }
+
+    public BasicDBObject getChildAges() {
+        return childAges;
+    }
+
+    public List<Integer> getChildAgesList() {
+
+        List<Integer> childAgeList = new ArrayList<Integer>();
+
+        if(getChildAges() == null)
+            return Collections.EMPTY_LIST;
+
+        for (String key : getChildAges().keySet()) {
+            if (key != null && !key.isEmpty()) {
+                String value = (String)getChildAges().get(key);
+                if(value != null && !value.isEmpty()) {
+                    Integer col = Integer.parseInt(value);
+                    childAgeList.add(col);
+                }
+            }
+        }
+
+        return childAgeList;
     }
 
     public static List<Survey> findAll() {

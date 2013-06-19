@@ -105,20 +105,22 @@
 
             @form(routes.Account.createPassport) {
 
-            <fieldset>
-                @inputText(
-                    passportForm("passportName"),
-                    '_label -> "PassportName",
-                    '_error -> passportForm.globalError
-                )
+                <fieldset>
+                    @inputText(
+                        passportForm("passportName"),
+                        '_label -> "PassportName",
+                        '_error -> passportForm.globalError
+                    )
 
-                @select(passportForm("type"), options(PassportTypeEnum.values().toList.map(_.toString)), '_label -> "Select a passport type")
-            </fieldset>
+                    @select(passportForm("type"), options(PassportTypeEnum.values().toList.map(_.toString)), '_label -> "Select a passport type")
 
-            <div class="actions">
-                <input type="submit" class="btn btn-large btn-success" value="Create">
-                <a onclick="$('#createPassport').toggle();" class="btn btn-large btn-warning">Cancel</a>
-            </div>
+                    @select(field = passportForm("childAge"), options = options(SurveyController.getChildAgesList().toList.map(_.toString)), '_label-> "Choose child age:")
+                </fieldset>
+
+                <div class="actions">
+                    <input type="submit" class="btn btn-large btn-success" value="Create">
+                    <a onclick="$('#createPassport').toggle();" class="btn btn-large btn-warning">Cancel</a>
+                </div>
             }
 
         </div>

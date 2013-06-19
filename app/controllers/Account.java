@@ -52,6 +52,15 @@ public class Account extends MasterController {
             JacksonDBCollection<Passport, String> collection = DataUtil.getCollection("passports", Passport.class);
 
             Passport newPassport = new Passport(passportName,MasterController.getLoggedInUser().getId(),passportType);
+            String childAge = filledForm.data().get("childAge");
+            if(childAge == null || childAge.isEmpty()) {
+                flash("error", "Please choose a child's age to use with this passport");
+                return ok(landing.render(getLoggedInUser(), passportForm));
+            }
+            else {
+                Integer childAgeInt = Integer.parseInt(childAge);
+                newPassport.setChildAge(childAgeInt);
+            }
 
             WriteResult<Passport, String> result = collection.insert(newPassport);
 

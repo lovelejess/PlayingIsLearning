@@ -8,6 +8,8 @@ import play.mvc.*;
 import play.data.*;
 import views.html.*;
 
+import java.util.List;
+
 import static play.data.Form.form;
 
 /**
@@ -63,7 +65,7 @@ public class SurveyController extends MasterController {
             if(childThree != null) userSurvey.childAges.put("3",childThree);
             if(childFour != null) userSurvey.childAges.put("4",childFour);
             if(childFive != null) userSurvey.childAges.put("5",childFive);
-            if(childSix != null) userSurvey.childAges.put("2",childSix);
+            if(childSix != null) userSurvey.childAges.put("6",childSix);
 
             userSurvey.race = race;
             userSurvey.ethnicity = ethnicity;
@@ -202,6 +204,10 @@ public class SurveyController extends MasterController {
     private static void saveUserSurvey(Survey userSurvey) {
         JacksonDBCollection<Survey, String> collection = DataUtil.getCollection("surveys", Survey.class);
         collection.save(userSurvey);
+    }
+
+    public static List<Integer> getChildAgesList() {
+        return Survey.findByUser(getLoggedInUser()).getChildAgesList();
     }
 
 }
