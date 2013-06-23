@@ -112,7 +112,7 @@ public class Account extends MasterController {
         }
     }
 
-    public static String getSelectedPassport() {
+    public static String getSelectedPassportName() {
         String passport = Http.Context.current().session().get("passport");
         if(passport != null && !passport.isEmpty()) {
             return passport;
@@ -120,6 +120,25 @@ public class Account extends MasterController {
         return null;
     }
 
+    public static Boolean isSelectedPassportUnder3() {
+        String passportName = Http.Context.current().session().get("passport");
+        if(passportName != null && !passportName.isEmpty()) {
+            Passport passport = Passport.findPassportByNameForUser(getLoggedInUser().getId(), passportName);
+            if(passport != null)
+                return passport.childAge <= 3;
+        }
+        return true;
+    }
+
+    public static Boolean isSelectedPassportOver3() {
+        String passportName = Http.Context.current().session().get("passport");
+        if(passportName != null && !passportName.isEmpty()) {
+            Passport passport = Passport.findPassportByNameForUser(getLoggedInUser().getId(), passportName);
+            if(passport != null)
+                return passport.childAge > 3;
+        }
+        return true;
+    }
 
 
 }

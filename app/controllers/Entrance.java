@@ -73,6 +73,7 @@ public class Entrance extends MasterController {
 
     public static Result logout() {
         Http.Context.current().session().remove("user");
+        Http.Context.current().session().remove("passport");
         flash("info", "You are now logged out");
         return ok( index.render(loginForm, registerForm) );
     }
