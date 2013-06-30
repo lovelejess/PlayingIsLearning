@@ -53,6 +53,7 @@ public class Survey {
     public String primaryLanguage;
 
     public Boolean isStageThreeComplete;
+    public BasicDBObject agesComplete;
     public BasicDBObject hoursPerDayPlaying;
     public BasicDBObject topThreePlayTimeActivities;
     public BasicDBObject whoPlayWithRanking;
@@ -137,6 +138,10 @@ public class Survey {
         return childAges;
     }
 
+    public BasicDBObject getAgesComplete() {
+        return agesComplete;
+    }
+
     public List<Integer> getChildAgesList() {
 
         List<Integer> childAgeList = new ArrayList<Integer>();
@@ -148,13 +153,31 @@ public class Survey {
             if (key != null && !key.isEmpty()) {
                 String value = (String)getChildAges().get(key);
                 if(value != null && !value.isEmpty()) {
-                    Integer col = Integer.parseInt(value);
-                    childAgeList.add(col);
+                    Integer age = Integer.parseInt(value);
+                    childAgeList.add(age);
                 }
             }
         }
 
         return childAgeList;
+    }
+
+    public Integer getNextSurveyAge() {
+        Boolean isAgeComplete = false;
+
+        for(Integer age : this.getChildAgesList()) {
+            for (String key : getAgesComplete().keySet()) {
+                if (key != null && !key.isEmpty()) {
+                    Integer ageComplete = Integer.parseInt(key);
+                    if(ageComplete.equals(age))
+                        isAgeComplete = true;
+                }
+            }
+            if(!isAgeComplete)
+                return age;
+        }
+
+        return null;
     }
 
     public static List<Survey> findAll() {

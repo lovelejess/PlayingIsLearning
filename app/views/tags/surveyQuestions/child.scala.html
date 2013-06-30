@@ -1,15 +1,98 @@
-@(surveyForm: Form[Survey], survey: Survey)
+@(surveyForm: Form[Survey], survey: Survey, age: Integer)
 
 @import helper._
 @import helper.twitterBootstrap._
 
-@form(routes.SurveyController.stageThree) {
 
-    Child specific questions coming soon. These questions will be answered at a later point.
-    <br>
-    <br>
-    <div class="actions" style="text-align: center;">
-        <input type="submit" class="btn btn-success" value="Finish">
-    </div>
+<div style="text-align: center;">
+    <h4>Questions for your @age-year-old child<h4>
+    @form(routes.SurveyController.stageThree) {
 
-}
+        <div class="well">
+                <h3>Thinking about the past week...</h3>
+            How often did you read to/with your <b style="font-size: 15px;">@age</b>-year-old child?
+                @select(surveyForm("howOftenReadToChild"), options("0"->"Never", "2"->"1-2 times", "4"->"3-4 times", "6"->"5-6 times", "7"->"7 or more times"),
+            '_label -> "")
+            How often did you play counting or number games with your <b style="font-size: 15px;">@age</b>-year-old child?
+                @select(surveyForm("howOftenPlayGames"), options("0"->"Never", "2"->"1-2 times", "4"->"3-4 times", "6"->"5-6 times", "7"->"7 or more times"),
+            '_label -> "")
+            How many hours in a typical day does your <b style="font-size: 15px;">@age</b>-year-old child spend playing?
+                @select(surveyForm("hoursPerDayPlaying"), options("0"->"Less than 1", "1"->"1", "2"->"2", "3"->"3", "4"->"4", "5"->"5", "6"->"More than five hours"),
+            '_label -> "")
+        </div>
+
+        <div class="well">
+            <div>Thinking about your <b style="font-size: 15px;">@age</b>-year-olds’ play time in the last week, who did your child play with?  Rank order the following groups using numbers 1 through 4:</div>
+            <br>
+            @inputText(
+                surveyForm("whoPlayWithRanking_alone"),
+                '_label -> "Play time alone"
+            )
+            @inputText(
+                surveyForm("whoPlayWithRanking_friends"),
+                '_label -> "Play time with friends"
+            )
+            @inputText(
+                surveyForm("whoPlayWithRanking_siblings"),
+                '_label -> "Play time with siblings"
+            )
+            @inputText(
+                surveyForm("whoPlayWithRanking_adults"),
+                '_label -> "Play time with parents/adults"
+            )
+        </div>
+
+
+        <div class="well">
+            <div>Thinking about your <b style="font-size: 15px;">@age</b>-year-olds’ play time in the last week, rank order your child’s top three most frequent playtime activities using numbers 1 through 3:</div>
+            <br>
+            @inputText(
+                surveyForm("topThreePlayTimeActivities_pretend"),
+                '_label -> "pretend play with other people, with dolls, with stuffed animals, and so on"
+            )
+            @inputText(
+                surveyForm("topThreePlayTimeActivities_physical"),
+                '_label -> "physical play such as sports or tag"
+            )
+            @inputText(
+                surveyForm("topThreePlayTimeActivities_videogames"),
+                '_label -> "video games"
+            )
+            @inputText(
+                surveyForm("topThreePlayTimeActivities_outside"),
+                '_label -> "playing outside"
+            )
+            @inputText(
+                surveyForm("topThreePlayTimeActivities_bookspuzzles"),
+                '_label -> "reading books, or solving puzzles"
+            )
+            @inputText(
+                surveyForm("topThreePlayTimeActivities_art"),
+                '_label -> "coloring or art activities"
+            )
+            @inputText(
+                surveyForm("topThreePlayTimeActivities_gog"),
+                '_label -> "playing the ‘game of games’"
+            )
+            @inputText(
+                surveyForm("topThreePlayTimeActivities_cardsorboardgames"),
+                '_label -> "playing card or board games"
+            )
+            @inputText(
+                surveyForm("topThreePlayTimeActivities_objects"),
+                '_label -> "playing with objects like legos, balls, or cars"
+            )
+            @inputText(
+                surveyForm("topThreePlayTimeActivities_other"),
+                '_label -> "other"
+            )
+        </div>
+        <br>
+
+
+        <div class="actions">
+            <input type="submit" class="btn btn-success" value="Finish">
+        </div>
+    }
+
+</div>

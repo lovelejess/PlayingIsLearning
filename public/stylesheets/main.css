@@ -388,3 +388,37 @@ only screen and (     -o-min-device-pixel-ratio: 2/1) {
         padding-bottom: 20px;
     }
 }
+
+#slideout {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+#slideout_inner {
+    position: fixed;
+    top: 40px;
+    left: -650px;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+#slideout:hover {
+    left: 250px;
+}
+#slideout:hover #slideout_inner {
+    left: 0;
+}
+.feedback {
+    position	: fixed; /* This will never scroll out of view */
+    background-color: #2F96B4;
+    border		: 5px solid #333;
+    color		: #FFF;
+    font-weight	: bold;
+    font-size	: 16px;
+    padding	: 15px;
+}

@@ -28,7 +28,7 @@ public class SurveyController extends MasterController {
             JacksonDBCollection<Survey, String> collection = DataUtil.getCollection("surveys", Survey.class);
             collection.insert(userSurvey);
         }
-        return ok( survey.render( surveyForm, userSurvey, getStage(userSurvey) ) );
+        return ok( survey.render( surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
     }
 
     public static Result stageOne() {
@@ -76,7 +76,7 @@ public class SurveyController extends MasterController {
 
         } catch(Exception e) {
             flash("warning", "You left a question unanswered.");
-            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
+            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
         }
         userSurvey.setIsStageOneComplete(true);
         saveUserSurvey(userSurvey);
@@ -100,21 +100,63 @@ public class SurveyController extends MasterController {
             userSurvey.hoursPerDayPlayingWithChildren = hoursPerDayPlayingWithChildren;
         }catch(Exception e){
             flash("warning", "You left a question unanswered.");
-            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
+            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
         }
         userSurvey.setIsStageTwoComplete(true);
         saveUserSurvey(userSurvey);
 
-        return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
+        return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
     }
 
     public static Result stageThree() {
         Survey userSurvey = Survey.findByUser(getLoggedInUser());
         Form<Survey> filledForm = surveyForm.bindFromRequest();
+        Integer childAge = userSurvey.getNextSurveyAge();
 
-        userSurvey.setIsStageThreeComplete(false);
+        String howOftenReadToChild = filledForm.data().get("howOftenReadToChild");
+        String howOftenPlayGames = filledForm.data().get("howOftenPlayGames");
+        String hoursPerDayPlaying = filledForm.data().get("hoursPerDayPlaying");
+        String whoPlayWithRanking_alone = filledForm.data().get("whoPlayWithRanking_alone");
+        String whoPlayWithRanking_friends = filledForm.data().get("whoPlayWithRanking_friends");
+        String whoPlayWithRanking_siblings = filledForm.data().get("whoPlayWithRanking_siblings");
+        String whoPlayWithRanking_adults = filledForm.data().get("whoPlayWithRanking_adults");
+        String topThreePlayTimeActivities_pretend = filledForm.data().get("topThreePlayTimeActivities_pretend");
+        String topThreePlayTimeActivities_physical = filledForm.data().get("topThreePlayTimeActivities_physical");
+        String topThreePlayTimeActivities_videogames = filledForm.data().get("topThreePlayTimeActivities_videogames");
+        String topThreePlayTimeActivities_outside = filledForm.data().get("topThreePlayTimeActivities_outside");
+        String topThreePlayTimeActivities_bookspuzzles = filledForm.data().get("topThreePlayTimeActivities_bookspuzzles");
+        String topThreePlayTimeActivities_art = filledForm.data().get("topThreePlayTimeActivities_art");
+        String topThreePlayTimeActivities_gog = filledForm.data().get("topThreePlayTimeActivities_gog");
+        String topThreePlayTimeActivities_cardsorboardgames = filledForm.data().get("topThreePlayTimeActivities_cardsorboardgames");
+        String topThreePlayTimeActivities_objects = filledForm.data().get("topThreePlayTimeActivities_objects");
+        String topThreePlayTimeActivities_other = filledForm.data().get("topThreePlayTimeActivities_other");
+
+        if(howOftenReadToChild != null) userSurvey.howOftenReadToChild.put("howOftenReadToChild:"+childAge,howOftenReadToChild);
+        if(howOftenPlayGames != null) userSurvey.howOftenPlayGames.put("howOftenPlayGames:"+childAge,howOftenPlayGames);
+        if(hoursPerDayPlaying != null) userSurvey.hoursPerDayPlaying.put("hoursPerDayPlaying:"+childAge,hoursPerDayPlaying);
+
+        if(whoPlayWithRanking_alone != null) userSurvey.whoPlayWithRanking.put("whoPlayWithRanking_alone:"+childAge,whoPlayWithRanking_alone);
+        if(whoPlayWithRanking_friends != null) userSurvey.whoPlayWithRanking.put("whoPlayWithRanking_friends:"+childAge,whoPlayWithRanking_friends);
+        if(whoPlayWithRanking_siblings != null) userSurvey.whoPlayWithRanking.put("whoPlayWithRanking_siblings:"+childAge,whoPlayWithRanking_siblings);
+        if(whoPlayWithRanking_adults != null) userSurvey.whoPlayWithRanking.put("whoPlayWithRanking_adults:"+childAge,whoPlayWithRanking_adults);
+
+        if(topThreePlayTimeActivities_pretend != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_pretend:"+childAge,topThreePlayTimeActivities_pretend);
+        if(topThreePlayTimeActivities_physical != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_physical:"+childAge,topThreePlayTimeActivities_physical);
+        if(topThreePlayTimeActivities_videogames != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_videogames:"+childAge,topThreePlayTimeActivities_videogames);
+        if(topThreePlayTimeActivities_outside != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_outside:"+childAge,topThreePlayTimeActivities_outside);
+        if(topThreePlayTimeActivities_bookspuzzles != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_bookspuzzles:"+childAge,topThreePlayTimeActivities_bookspuzzles);
+        if(topThreePlayTimeActivities_art != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_art:"+childAge,topThreePlayTimeActivities_art);
+        if(topThreePlayTimeActivities_gog != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_gog:"+childAge,topThreePlayTimeActivities_gog);
+        if(topThreePlayTimeActivities_cardsorboardgames != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_cardsorboardgames:"+childAge,topThreePlayTimeActivities_cardsorboardgames);
+        if(topThreePlayTimeActivities_objects != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_objects:"+childAge,topThreePlayTimeActivities_objects);
+        if(topThreePlayTimeActivities_other != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_other:"+childAge,topThreePlayTimeActivities_other);
+
+        if(userSurvey.getNextSurveyAge() == null)
+            userSurvey.setIsStageThreeComplete(true);
+
+        userSurvey.agesComplete.put(childAge.toString(),childAge);
         saveUserSurvey(userSurvey);
-        return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
+        return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
     }
 
     public static Result stageFour() {
@@ -131,12 +173,12 @@ public class SurveyController extends MasterController {
             userSurvey.yourFavoriteExhibit = yourFavoriteExhibit;
         }catch (Exception e) {
             flash("warning", "You left a question unanswered.");
-            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
+            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
         }
         userSurvey.setIsStageFourComplete(true);
         saveUserSurvey(userSurvey);
 
-        return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
+        return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
     }
 
     public static Result stageFive() {
@@ -155,7 +197,7 @@ public class SurveyController extends MasterController {
             userSurvey.isRecommend = Boolean.parseBoolean(isRecommend);
         }catch (Exception e) {
             flash("warning", "You left a question unanswered.");
-            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey)) );
+            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
         }
         userSurvey.setIsStageFiveComplete(true);
         saveUserSurvey(userSurvey);

@@ -49,6 +49,18 @@
         </div>
     </div>
 
+    <div id="slideout">
+        <div class="feedback"> ! </div>
+        <div id="slideout_inner" class="well">
+            <div class="modal-body">
+                <p>Looks like you still have some survey questions left. Would you like to complete a few now?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="location.href='/survey'">Yes</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="span12">
@@ -128,7 +140,7 @@
         </div>
 
         <div class="alert alert-info">
-            Use the following code word to receive a 'Game of Games' passport at the Iowa Children's Museum: <code style="font-size: 20px;"> @{MasterController.getCodeOfTheDay()}</code>
+            Use this code word to receive a 'Game of Games' passport at the Iowa Children's Museum: <code style="font-size: 20px;"> @{MasterController.getCodeOfTheDay()}</code>
         </div>
 
         <a href="#myModal" id="surveyButton" style="display: none;" role="button" class="btn" data-toggle="modal"> </a>

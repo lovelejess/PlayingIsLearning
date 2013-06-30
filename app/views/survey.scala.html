@@ -1,4 +1,4 @@
-@(surveyForm: Form[Survey], survey : Survey, stage : String)
+@(surveyForm: Form[Survey], survey : Survey, stage : String, age: Integer)
 
 @import tags.surveyQuestions._
 @import tags._
@@ -24,7 +24,7 @@
                         }
 
                         @if(stage == "three"){
-                            @child(surveyForm, survey)
+                            @child(surveyForm, survey, age)
                         }
 
                         @if(stage == "four"){
