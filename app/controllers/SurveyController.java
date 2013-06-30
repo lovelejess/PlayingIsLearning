@@ -1,5 +1,6 @@
 package controllers;
 
+import com.mongodb.BasicDBObject;
 import models.*;
 import net.vz.mongodb.jackson.JacksonDBCollection;
 import utils.DataUtil;
@@ -153,7 +154,12 @@ public class SurveyController extends MasterController {
         if(topThreePlayTimeActivities_objects != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_objects:"+childAge,topThreePlayTimeActivities_objects);
         if(topThreePlayTimeActivities_other != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_other:"+childAge,topThreePlayTimeActivities_other);
 
-        userSurvey.agesComplete.put(childAge.toString(),childAge);
+        //Some legacy accounts wont have this data structure initialized:
+        if(userSurvey.getAgesComplete() == null) {
+            userSurvey.agesComplete = new BasicDBObject();
+        }
+
+        userSurvey.getAgesComplete().put(childAge.toString(),childAge);
         saveUserSurvey(userSurvey);
 
         if(SurveyUtil.getNextSurveyAge(userSurvey) == null) {
