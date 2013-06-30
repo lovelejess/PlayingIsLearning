@@ -18,7 +18,7 @@ public class StatisticUtil {
     public static Double getAverageGuardianAge() {
         Double totalAges = 0.0;
         Double totalSurveys = 0.0;
-        for(Survey survey : Survey.findAll()) {
+        for(Survey survey : SurveyUtil.findAll()) {
             if(survey.age != null && survey.age > 0 && survey.age < 100)  {
                 totalAges += survey.age;
                 totalSurveys++;

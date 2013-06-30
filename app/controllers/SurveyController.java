@@ -3,11 +3,13 @@ package controllers;
 import models.*;
 import net.vz.mongodb.jackson.JacksonDBCollection;
 import utils.DataUtil;
+import utils.SurveyUtil;
 import views.html.*;
 import play.mvc.*;
 import play.data.*;
 import views.html.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static play.data.Form.form;
@@ -28,7 +30,7 @@ public class SurveyController extends MasterController {
             JacksonDBCollection<Survey, String> collection = DataUtil.getCollection("surveys", Survey.class);
             collection.insert(userSurvey);
         }
-        return ok( survey.render( surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
+        return ok( survey.render( surveyForm, userSurvey, getStage(userSurvey), SurveyUtil.getNextSurveyAge(userSurvey)) );
     }
 
     public static Result stageOne() {
@@ -76,7 +78,7 @@ public class SurveyController extends MasterController {
 
         } catch(Exception e) {
             flash("warning", "You left a question unanswered.");
-            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
+            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), SurveyUtil.getNextSurveyAge(userSurvey)) );
         }
         userSurvey.setIsStageOneComplete(true);
         saveUserSurvey(userSurvey);
@@ -100,18 +102,18 @@ public class SurveyController extends MasterController {
             userSurvey.hoursPerDayPlayingWithChildren = hoursPerDayPlayingWithChildren;
         }catch(Exception e){
             flash("warning", "You left a question unanswered.");
-            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
+            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), SurveyUtil.getNextSurveyAge(userSurvey)));
         }
         userSurvey.setIsStageTwoComplete(true);
         saveUserSurvey(userSurvey);
 
-        return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
+        return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), SurveyUtil.getNextSurveyAge(userSurvey)));
     }
 
     public static Result stageThree() {
         Survey userSurvey = Survey.findByUser(getLoggedInUser());
         Form<Survey> filledForm = surveyForm.bindFromRequest();
-        Integer childAge = userSurvey.getNextSurveyAge();
+        Integer childAge = SurveyUtil.getNextSurveyAge(userSurvey);
 
         String howOftenReadToChild = filledForm.data().get("howOftenReadToChild");
         String howOftenPlayGames = filledForm.data().get("howOftenPlayGames");
@@ -151,12 +153,15 @@ public class SurveyController extends MasterController {
         if(topThreePlayTimeActivities_objects != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_objects:"+childAge,topThreePlayTimeActivities_objects);
         if(topThreePlayTimeActivities_other != null) userSurvey.topThreePlayTimeActivities.put("topThreePlayTimeActivities_other:"+childAge,topThreePlayTimeActivities_other);
 
-        if(userSurvey.getNextSurveyAge() == null)
-            userSurvey.setIsStageThreeComplete(true);
-
         userSurvey.agesComplete.put(childAge.toString(),childAge);
         saveUserSurvey(userSurvey);
-        return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
+
+        if(SurveyUtil.getNextSurveyAge(userSurvey) == null) {
+            userSurvey.setIsStageThreeComplete(true);
+            saveUserSurvey(userSurvey);
+        }
+
+        return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), SurveyUtil.getNextSurveyAge(userSurvey)));
     }
 
     public static Result stageFour() {
@@ -173,12 +178,12 @@ public class SurveyController extends MasterController {
             userSurvey.yourFavoriteExhibit = yourFavoriteExhibit;
         }catch (Exception e) {
             flash("warning", "You left a question unanswered.");
-            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
+            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), SurveyUtil.getNextSurveyAge(userSurvey)));
         }
         userSurvey.setIsStageFourComplete(true);
         saveUserSurvey(userSurvey);
 
-        return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
+        return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), SurveyUtil.getNextSurveyAge(userSurvey)) );
     }
 
     public static Result stageFive() {
@@ -197,7 +202,7 @@ public class SurveyController extends MasterController {
             userSurvey.isRecommend = Boolean.parseBoolean(isRecommend);
         }catch (Exception e) {
             flash("warning", "You left a question unanswered.");
-            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), userSurvey.getNextSurveyAge()) );
+            return ok( survey.render(surveyForm, userSurvey, getStage(userSurvey), SurveyUtil.getNextSurveyAge(userSurvey)) );
         }
         userSurvey.setIsStageFiveComplete(true);
         saveUserSurvey(userSurvey);
@@ -249,7 +254,11 @@ public class SurveyController extends MasterController {
     }
 
     public static List<Integer> getChildAgesList() {
-        return Survey.findByUser(getLoggedInUser()).getChildAgesList();
+        Survey survey = Survey.findByUser(getLoggedInUser());
+        if (survey != null) {
+            return SurveyUtil.getChildAgesList(survey);
+        }
+        return new ArrayList<Integer>();
     }
 
 }

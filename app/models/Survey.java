@@ -81,17 +81,22 @@ public class Survey {
         this.howOftenReadToChild = new BasicDBObject();
         this.howOftenPlayGames = new BasicDBObject();
         this.childAges = new BasicDBObject();
+        this.agesComplete = new BasicDBObject();
     }
 
     public static Survey findByUser(User user) {
         JacksonDBCollection<Survey, String> collection = DataUtil.getCollection("surveys", Survey.class);
 
         DBCursor cursorDoc = collection.find(DBQuery.is("userId", user.getId()));
-
-        if(cursorDoc.hasNext())
-            return ((Survey)cursorDoc.next());
-        else
-            return null;
+        try {
+            if (cursorDoc.count() > 0)
+                return ((Survey) cursorDoc.next());
+            else
+                return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public Boolean getIsStageOneComplete() {
@@ -141,56 +146,4 @@ public class Survey {
     public BasicDBObject getAgesComplete() {
         return agesComplete;
     }
-
-    public List<Integer> getChildAgesList() {
-
-        List<Integer> childAgeList = new ArrayList<Integer>();
-
-        if(getChildAges() == null)
-            return Collections.EMPTY_LIST;
-
-        for (String key : getChildAges().keySet()) {
-            if (key != null && !key.isEmpty()) {
-                String value = (String)getChildAges().get(key);
-                if(value != null && !value.isEmpty()) {
-                    Integer age = Integer.parseInt(value);
-                    childAgeList.add(age);
-                }
-            }
-        }
-
-        return childAgeList;
-    }
-
-    public Integer getNextSurveyAge() {
-        Boolean isAgeComplete = false;
-
-        for(Integer age : this.getChildAgesList()) {
-            for (String key : getAgesComplete().keySet()) {
-                if (key != null && !key.isEmpty()) {
-                    Integer ageComplete = Integer.parseInt(key);
-                    if(ageComplete.equals(age))
-                        isAgeComplete = true;
-                }
-            }
-            if(!isAgeComplete)
-                return age;
-        }
-
-        return null;
-    }
-
-    public static List<Survey> findAll() {
-        try {
-            JacksonDBCollection<Survey, String> collection = DataUtil.getCollection("surveys", Survey.class);
-
-            DBCursor cursorDoc = collection.find();
-
-            return ((List<Survey>)cursorDoc.toArray());
-        } catch (MongoException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
 }
