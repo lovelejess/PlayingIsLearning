@@ -34,6 +34,7 @@ POST   /stageFive            controllers.SurveyController.stageFive()
 
 #Admin
 GET    /admin                controllers.Admin.index()
+POST   /stageFive            controllers.Admin.index()
 
 #Account
 GET    /landing                      controllers.Account.index()

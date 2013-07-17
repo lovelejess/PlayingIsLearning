@@ -29,16 +29,18 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        More coming...
+                                        <b>Avg # of children in care</b>
                                     </td>
                                     <td>
-
+                                        @{StatisticUtil.getAverageChildrenInCare()}
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <p><b>Data Dump:</b></p>
+                    <pre>@{StatisticUtil.getAllSurveyData()}</pre>
                 </div>
             </div>
         }

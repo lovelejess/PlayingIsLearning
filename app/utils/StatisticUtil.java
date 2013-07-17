@@ -1,8 +1,9 @@
 package utils;
 
-import controllers.MasterController;
 import models.Survey;
 import models.User;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.ObjectWriter;
 
 /**
  * User: Charles
@@ -25,5 +26,32 @@ public class StatisticUtil {
             }
         }
         return (totalAges/totalSurveys);
+    }
+
+    public static Double getAverageChildrenInCare() {
+        Double totalChildren = 0.0;
+        Double totalSurveys = 0.0;
+        for(Survey survey : SurveyUtil.findAll()) {
+            if(survey.childrenInCare != null && survey.childrenInCare > 0)  {
+                totalChildren += survey.childrenInCare;
+                totalSurveys++;
+            }
+        }
+        return (totalChildren/totalSurveys);
+    }
+
+    public static String getAllSurveyData() {
+        StringBuilder rawData = new StringBuilder();
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        try {
+            for (Survey survey : SurveyUtil.findAll()) {
+                String json = ow.writeValueAsString(survey);
+                rawData.append("------------------------------------Survey " + survey.getId() + "--------------------------------------------");
+                rawData.append(json);
+            }
+        } catch (Exception e) {
+            //
+        }
+        return rawData.toString();
     }
 }
