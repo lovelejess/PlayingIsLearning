@@ -95,16 +95,10 @@ public class Passport {
         try {
             JacksonDBCollection<Passport, String> collection = DataUtil.getCollection("passports", Passport.class);
 
-            DBCursor cursorDoc = collection.find(DBQuery.is("userId", userId));
+            DBCursor cursorDoc = collection.find(DBQuery.and(DBQuery.is("userId", userId),DBQuery.is("passportName", passportName)));
 
-            while(cursorDoc.hasNext()) {
-                Passport passport = (Passport)cursorDoc.next();
-                if(passport.getPassportName().toLowerCase().equals(passportName.toLowerCase())) {
-                    return false;
-                }
-            }
+            return !(cursorDoc.count() > 0);
 
-            return true;
         } catch (MongoException e) {
             return null;
         }
@@ -114,13 +108,10 @@ public class Passport {
         try {
             JacksonDBCollection<Passport, String> collection = DataUtil.getCollection("passports", Passport.class);
 
-            DBCursor cursorDoc = collection.find(DBQuery.is("userId", userId));
+            DBCursor cursorDoc = collection.find(DBQuery.and(DBQuery.is("userId", userId),DBQuery.is("passportName", passportName)));
 
-            while(cursorDoc.hasNext()) {
-                Passport passport = (Passport)cursorDoc.next();
-                if(passport.getPassportName().toLowerCase().equals(passportName.toLowerCase())) {
-                    return passport;
-                }
+            if(cursorDoc.hasNext()) {
+                return(Passport)cursorDoc.next();
             }
 
             return null;
