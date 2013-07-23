@@ -11,7 +11,6 @@ import org.codehaus.jackson.map.ObjectWriter;
  */
 public class StatisticUtil {
 
-
     public static Integer getTotalUsers() {
         return User.findAll().size();
     }
@@ -53,5 +52,55 @@ public class StatisticUtil {
             //
         }
         return rawData.toString();
+    }
+
+    public static Integer getSurveysTakenToStage1() {
+       Integer surveys = 0;
+        for(Survey survey : SurveyUtil.findAll()) {
+            if(survey.isStageOneComplete != null && survey.isStageOneComplete)  {
+                surveys++;
+            }
+        }
+        return surveys;
+    }
+
+    public static Integer getSurveysTakenToStage2() {
+        Integer surveys = 0;
+        for(Survey survey : SurveyUtil.findAll()) {
+            if(survey.isStageTwoComplete != null && survey.isStageTwoComplete)  {
+                surveys++;
+            }
+        }
+        return surveys;
+    }
+
+    public static Integer getSurveysTakenToStage3() {
+        Integer surveys = 0;
+        for(Survey survey : SurveyUtil.findAll()) {
+            if(survey.isStageThreeComplete != null && survey.isStageThreeComplete)  {
+                surveys++;
+            }
+        }
+        return surveys;
+    }
+
+    public static Integer getSurveysTakenToStage4() {
+        Integer surveys = 0;
+        for(Survey survey : SurveyUtil.findAll()) {
+            if(survey.isStageFourComplete != null && survey.isStageFourComplete)  {
+                surveys++;
+            }
+        }
+        return surveys;
+    }
+
+    public static Integer getSurveysTakenToStage5() {
+        Integer surveys = 0;
+        for(Survey survey : SurveyUtil.findAll()) {
+            if(survey.isStageFiveComplete != null && survey.isStageFiveComplete)  {
+                surveys++;
+            }
+        }
+        return surveys;
     }
 }
