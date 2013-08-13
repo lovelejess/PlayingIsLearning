@@ -11,7 +11,7 @@
 
         <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
         <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-responsive.css")'>
-        <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.css")'>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
         <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-image-gallery.min.css")'>
         <link rel="shortcut icon" type="image/gif" href='@routes.Assets.at("images/favicon.png")'>
 
@@ -20,17 +20,13 @@
         <script src='@routes.Assets.at("javascripts/underscore-min.js")' type="text/javascript"></script>
         <script src='@routes.Assets.at("javascripts/backbone-min.js")' type="text/javascript"></script>
         <script src='@routes.Assets.at("javascripts/router.js")' type="text/javascript"></script>
-        <script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
-        <script src='@routes.Assets.at("javascripts/bootstrap-image-gallery.min.js")' type="text/javascript"></script>
     </head>
 
     <body>
-        <div class="jumbotron masthead">
-            <div class="container">
-                <div class="navbar">
-                    <div class="navbar-inner">
-
-                        <ul class="nav">
+        <div class="supertron">
+                <div class="navbar navbar-fixed-top">
+                    <div class="container">
+                        <ul class="nav navbar-nav">
                             <li id='home'><a href="/index">Home</a></li>
                             <li id='playing'><a href="/playing">Playing is Learning</a></li>
                             <li id='gog'><a href="/gog">Game of Games</a></li>
@@ -42,7 +38,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            <br> <br> <br>
 
             @content
 

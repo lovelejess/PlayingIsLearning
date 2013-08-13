@@ -12,43 +12,36 @@
 
         <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
         <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-responsive.css")'>
-        <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.css")'>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
         <link rel="shortcut icon" type="image/gif" href='@routes.Assets.at("images/favicon.png")'>
-        <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-image-gallery.min.css")'/>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/blueimp-gallery.min.css")'>
 
         <script src='@routes.Assets.at("javascripts/jquery-1.9.0.min.js")' type="text/javascript"></script>
         <script src='@routes.Assets.at("javascripts/bootstrap.min.js")' type="text/javascript"></script>
-        <script src='@routes.Assets.at("javascripts/underscore-min.js")' type="text/javascript"></script>
-        <script src='@routes.Assets.at("javascripts/backbone-min.js")' type="text/javascript"></script>
-        <script src='@routes.Assets.at("javascripts/router.js")' type="text/javascript"></script>
-        <script src='@routes.Assets.at("javascripts/load-image.min.js")' type="text/javascript"></script>
-        <script src='@routes.Assets.at("javascripts/bootstrap-image-gallery.min.js")' type="text/javascript"></script>
+
     </head>
 
     <body>
 
-        <div class="container">
-            <div class="navbar">
-                <div class="navbar-inner">
-
-                    <ul class="nav">
-                        <li id='home'><a href="/index">Home</a></li>
-                        <li id='playing'><a href="/playing">Playing is Learning</a></li>
-                        <li id='gog'><a href="/gog">Game of Games</a></li>
-                        <li id='resources'><a href="/resources">Resources</a></li>
-                    </ul>
-                    <ul class="nav pull-right">
-                        @if(MasterController.getLoggedInUser() != null) {
-                            <li><a href="#">Logged in as: <b>@{MasterController.getLoggedInUser().username}</b></a></li>
-                            <li><a href="/logout">Log Out</a></li>
-                        }
-                        <li><img height='40' width='40' style="display:block;max-height: 40px;max-width: 40px;"
-                                 src='@routes.Assets.at("images/goIconBlue.png")'/></li>
-                    </ul>
-                </div>
+        <div class="navbar navbar-fixed-top">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li id='home'><a href="/index">Home</a></li>
+                    <li id='playing'><a href="/playing">Playing is Learning</a></li>
+                    <li id='gog'><a href="/gog">Game of Games</a></li>
+                    <li id='resources'><a href="/resources">Resources</a></li>
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    @if(MasterController.getLoggedInUser() != null) {
+                        <li><a href="#">Logged in as: <b>@{MasterController.getLoggedInUser().username}</b></a></li>
+                        <li><a href="/logout">Log Out</a></li>
+                    }
+                    <li><img height='40' width='40' style="display:block;max-height: 40px;max-width: 40px;"
+                    src='@routes.Assets.at("images/goIconBlue.png")'/></li>
+                </ul>
             </div>
         </div>
-
+        <br><br><br>
         <div id="slideout">
             <div class="feedback"> ! </div>
             <div id="slideout_inner" class="well">
@@ -62,57 +55,58 @@
         </div>
 
         <div class="container">
-            <div class="row">
-                <div class="span12">
-                    <div>
-                        @message()
+
+            <div>
+                @message()
+            </div>
+
+            @if(!Account.isPassportSelected()) {
+                <div class="alert">Select or create a passport to see cards for your child's age</div>
+            }
+
+            <div class="alert alert-success">  <span style="margin-right: 3em;">Hello <b>@user.username</b>.</span>
+
+                @if(Account.isPassportSelected()) {
+                    <span>Currently using passport: </span> <span style="margin-right: 2em; font-weight: bold;"> @Account.getSelectedPassportName() </span>
+
+                    <div class="btn-group" style="display: inline;">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            Use a different passport
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            @for(p <- Account.getUserPassports()) {
+                                <li><a href='/landing/passport/@p.passportName'>@p.passportName</a></li>
+                            }
+                        </ul>
                     </div>
 
-                    @if(!Account.isPassportSelected()) {
-                        <div class="alert">Select or create a passport to see cards for your child's age</div>
+                    <a onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create a new passport</a>
+                }
+                @if(!Account.isPassportSelected()) {
+                    @if(MasterController.userHasPassport()) {
+                        <div class="btn-group" style="display: inline;">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                My Passports
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @for(p <- Account.getUserPassports()) {
+                                    <li><a href='./landing/passport/@p.passportName'>@p.passportName</a></li>
+                                }
+                            </ul>
+                        </div>
+
+                        <a onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create another passport</a>
                     }
+                    @if(!MasterController.userHasPassport()){
+                        <span>You don't yet have a passport.</span> <span onclick="$('#createPassport').toggle();" style="margin-left: 3em;" class="btn btn-success" data-toggle="modal">Create a passport</span>
+                    }
+                }
+            </div>
 
-                    <div class="alert alert-success">  <span style="margin-right: 3em;">Hello <b>@user.username</b>.</span>
-
-                        @if(Account.isPassportSelected()) {
-                            <span>Currently using passport: </span> <span style="margin-right: 2em; font-weight: bold;"> @Account.getSelectedPassportName() </span>
-
-                            <div class="btn-group" style="display: inline;">
-                                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                    Use a different passport
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    @for(p <- Account.getUserPassports()) {
-                                        <li><a href='/landing/passport/@p.passportName'>@p.passportName</a></li>
-                                    }
-                                </ul>
-                            </div>
-
-                            <a onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create a new passport</a>
-                        }
-                        @if(!Account.isPassportSelected()) {
-                            @if(MasterController.userHasPassport()) {
-                                <div class="btn-group" style="display: inline;">
-                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                        My Passports
-                                        <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        @for(p <- Account.getUserPassports()) {
-                                            <li><a href='./landing/passport/@p.passportName'>@p.passportName</a></li>
-                                        }
-                                    </ul>
-                                </div>
-
-                                <a onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create another passport</a>
-                            }
-                            @if(!MasterController.userHasPassport()){
-                                <span>You don't yet have a passport.</span> <span onclick="$('#createPassport').toggle();" style="margin-left: 3em;" role="button" class="btn" data-toggle="modal">Create a passport</span>
-                            }
-                        }
-                    </div>
-                </div>
+            <div class="alert alert-info">
+                Use this code word to receive a 'Game of Games' passport at the Iowa Children's Museum: <code style="font-size: 20px;"> @{MasterController.getCodeOfTheDay()}</code>
             </div>
 
             <div id='createPassport' class="well" style="display: none;">
@@ -139,10 +133,6 @@
 
             </div>
 
-            <div class="alert alert-info">
-                Use this code word to receive a 'Game of Games' passport at the Iowa Children's Museum: <code style="font-size: 20px;"> @{MasterController.getCodeOfTheDay()}</code>
-            </div>
-
             <a href="#myModal" id="surveyButton" style="display: none;" role="button" class="btn" data-toggle="modal"> </a>
 
             <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="position: fixed;top: 50%;left: 50%;">
@@ -163,7 +153,7 @@
                 <table class="table table-bordered table-striped responsive-utilities">
                     <tbody>
                     <tr>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/train.png")'>
+                        <td id='links1' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/train.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-29-03.png")' title="TrainRoom" data-gallery="gallery" rel='gallery'>TrainRoom</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-30-03.png")' title="TrainRoom" data-gallery="gallery" rel='gallery'> </a>
@@ -173,7 +163,7 @@
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-32-39.png")' title="TrainRoom" data-gallery="gallery" rel='gallery'> </a>
                             }
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/trail.png")'>
+                        <td id='links2' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/trail.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-21-03.png")' title="Bodies in Motion" data-gallery="gallery" rel='gallery'>Bodies in Motion</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-22-03.png")' title="Bodies in Motion" data-gallery="gallery" rel='gallery'></a>
@@ -183,7 +173,7 @@
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-24-39.png")' title="Bodies in Motion" data-gallery="gallery" rel='gallery'></a>
                             }
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/windMill.png")'>
+                        <td id='links3'  class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/windMill.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-59-03.png")' title="Wind Tunnel" data-gallery="gallery" rel='gallery'>Wind Tunnel</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-60-03.png")' title="Wind Tunnel" data-gallery="gallery" rel='gallery'></a>
@@ -193,7 +183,7 @@
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-58-39.png")' title="Wind Tunnel" data-gallery="gallery" rel='gallery'></a>
                             }
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/postOffice.png")'>
+                        <td id='links4' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/postOffice.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-53-03.png")' title="Post Office" data-gallery="gallery" rel='gallery'>Post Office</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-54-03.png")' title="Post Office" data-gallery="gallery" rel='gallery'></a>
@@ -205,7 +195,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/abcForest.png")'>
+                        <td id='links5' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/abcForest.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-05-03.png")' title="ABC Forest" data-gallery="gallery" rel='gallery'>ABC Forest</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-06-03.png")' title="ABC Forest" data-gallery="gallery" rel='gallery'>ABC Forest</a>
@@ -215,7 +205,7 @@
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-08-39.png")' title="ABC Forest" data-gallery="gallery" rel='gallery'>ABC Forest</a>
                             }
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/art.png")'>
+                        <td id='links6' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/art.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-13-03.png")' title="Art Room" data-gallery="gallery" rel='gallery'>Art Room</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-14-03.png")' title="Art Room" data-gallery="gallery" rel='gallery'>Art Room</a>
@@ -225,7 +215,7 @@
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-16-39.png")' title="Art Room" data-gallery="gallery" rel='gallery'>Art Room</a>
                             }
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/dollarCity.png")'>
+                        <td id='links7' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/dollarCity.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-33-03.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-34-03.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
@@ -235,7 +225,7 @@
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-36-39.png")' title="Bank" data-gallery="gallery" rel='gallery'>Bank</a>
                             }
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/theatre.png")'>
+                        <td id='links8' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/theatre.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-49-03.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-50-03.png")' title="Theatre" data-gallery="gallery" rel='gallery'>Theatre</a>
@@ -247,7 +237,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/groceryStore.png")'>
+                        <td id='links9' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/groceryStore.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-09-03.png")' title="Grocery Store" data-gallery="gallery" rel='gallery'>Grocery Store</a>
                                 <a class='overThree' style="display: none;" href='@routes.Assets.at("images/cards/Cards-10-03.png")' title="Grocery Store" data-gallery="gallery" rel='gallery'>Grocery Store</a>
@@ -257,7 +247,7 @@
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-12-39.png")' title="Grocery Store" data-gallery="gallery" rel='gallery'>Grocery Store</a>
                             }
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/hospital.png")'>
+                        <td id='links10' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/hospital.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-37-03.png")' title="Hospital" data-gallery="gallery" rel='gallery'>Hospital</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-38-03.png")' title="Hospital" data-gallery="gallery" rel='gallery'>Hospital</a>
@@ -267,7 +257,7 @@
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-40-39.png")' title="Hospital" data-gallery="gallery" rel='gallery'>Hospital</a>
                             }
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/imagineAcres.png")'>
+                        <td id='links11' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/imagineAcres.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-01-03.png")' title="Imagine Acres" data-gallery="gallery" rel='gallery'>Imagine Acres</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-02-03.png")' title="Imagine Acres" data-gallery="gallery" rel='gallery'>Imagine Acres</a>
@@ -277,7 +267,7 @@
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-04-39.png")' title="Imagine Acres" data-gallery="gallery" rel='gallery'>Imagine Acres</a>
                             }
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/takeFlight.png")'>
+                        <td id='links12' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/takeFlight.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-25-03.png")' title="Take Flight" data-gallery="gallery" rel='gallery'>Take Flight</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-26-03.png")' title="Take Flight" data-gallery="gallery" rel='gallery'>Take Flight</a>
@@ -289,7 +279,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/lego.png")'>
+                        <td id='links13' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/lego.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-41-03.png")' title="Lego Room" data-gallery="gallery" rel='gallery'>Lego Room</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-42-03.png")' title="Lego Room" data-gallery="gallery" rel='gallery'>Lego Room</a>
@@ -299,7 +289,7 @@
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-44-39.png")' title="Lego Room" data-gallery="gallery" rel='gallery'>Lego Room</a>
                             }
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/music.png")'>
+                        <td id='links14' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/music.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-45-03.png")' title="Music Room" data-gallery="gallery" rel='gallery'>Music Room</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-46-03.png")' title="Music Room" data-gallery="gallery" rel='gallery'>Music Room</a>
@@ -309,7 +299,7 @@
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-48-39.png")' title="Music Room" data-gallery="gallery" rel='gallery'>Music Room</a>
                             }
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/pizza.png")'>
+                        <td id='links15' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/icons/pizza.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-17-03.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-18-03.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
@@ -319,7 +309,7 @@
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-20-39.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>
                             }
                         </td>
-                        <td class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='40' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/gog1.png")'>
+                        <td id='links16' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='40' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/gog1.png")'>
                             @if(Account.isSelectedPassportUnder3()) {
                                 <a href='@routes.Assets.at("images/cards/Cards-63-03.png")' title="Coming soon" data-gallery="gallery" rel='gallery'>Game of Games</a>
                                 <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-64-03.png")' title="Coming soon" data-gallery="gallery" rel='gallery'>Game of Games</a>
@@ -342,19 +332,23 @@
             </script>
         }
 
-        <div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1" style="position: fixed; top: 50%; left: 50%;">
-            <div class="modal-header">
-                <a class="close" data-dismiss="modal">&times;</a>
-                <h3 class="modal-title"></h3>
-            </div>
-            <div class="modal-body">
-                <div class="modal-image"></div>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
-                <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
-                <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
-                <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
+        <div id="modal-gallery" class="modal fade">
+            <div class="modal-gallery">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a class="close" data-dismiss="modal">&times;</a>
+                        <h3 class="modal-title"></h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-image"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
+                        <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
+                        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
+                        <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -370,6 +364,16 @@
             </div>
         </div>
 
+        <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+            <div class="slides"></div>
+            <h3 class="title"></h3>
+            <a class="prev">‹</a>
+            <a class="next">›</a>
+            <a class="close">×</a>
+            <a class="play-pause"></a>
+            <ol class="indicator"></ol>
+        </div>
+        <script src='@routes.Assets.at("javascripts/blueimp-gallery.min.js")' type="text/javascript"></script>
     </body>
 </html>
 
@@ -381,6 +385,35 @@
         $("#home").addClass("active");
     else
         $("#"+path).addClass("active");
+
+</script>
+
+<script>
+    document.getElementById('links1').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links2').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links3').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links4').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links5').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links6').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links7').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links8').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links9').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links10').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links11').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links12').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links13').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links14').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links15').onclick = function (event) {doShow(event, this)};
+    document.getElementById('links16').onclick = function (event) {doShow(event, this)};
+
+    function doShow(event, obj) {
+        event = event || window.event;
+        var target = event.target || event.srcElement,
+        link = target.src ? target.parentNode : target,
+        options = {index: link, event: event},
+        links = obj.getElementsByTagName('a');
+        blueimp.Gallery(links, options);
+    }
 
 </script>
 
