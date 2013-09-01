@@ -22,15 +22,13 @@ public class DataUtil {
     public static DB getDB() {
 
         try {
-            mongoClient = new MongoClient("ds061787.mongolab.com", 61787);
-//            mongoClient = new MongoClient( );
-
-//            mongoClient.setReadPreference(ReadPreference.primary());
+//            mongoClient = new MongoClient("ds061787.mongolab.com", 61787);
+            mongoClient = new MongoClient( );
 //
-            DB dataBase = mongoClient.getDB("heroku_app15452455");
-//            DB dataBase = mongoClient.getDB("icm");
+//            DB dataBase = mongoClient.getDB("heroku_app15452455");
+            DB dataBase = mongoClient.getDB("icm");
 
-            dataBase.authenticate("heroku_app15452455", "73mi73eoolvr4s7v47ugutfru9".toCharArray());
+//            dataBase.authenticate("heroku_app15452455", "73mi73eoolvr4s7v47ugutfru9".toCharArray());
 
             return dataBase;
 
