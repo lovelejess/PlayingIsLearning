@@ -3,8 +3,8 @@ package utils;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
 import models.Survey;
-import net.vz.mongodb.jackson.DBCursor;
-import net.vz.mongodb.jackson.JacksonDBCollection;
+import com.mongodb.BasicDBList;
+import org.mongojack.JacksonDBCollection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class SurveyUtil {
 
-    public static BasicDBObject getAgesComplete(Survey survey) {
+    public static BasicDBList getAgesComplete(Survey survey) {
 
         if(survey.getAgesComplete() == null)
             return new BasicDBObject();

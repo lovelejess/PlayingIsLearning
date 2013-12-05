@@ -2,8 +2,6 @@ package utils;
 
 import models.Survey;
 import models.User;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.ObjectWriter;
 
 /**
  * User: Charles
@@ -39,20 +37,20 @@ public class StatisticUtil {
         return (totalChildren/totalSurveys);
     }
 
-    public static String getAllSurveyData() {
-        StringBuilder rawData = new StringBuilder();
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        try {
-            for (Survey survey : SurveyUtil.findAll()) {
-                String json = ow.writeValueAsString(survey);
-                rawData.append("------------------------------------Survey " + survey.getId() + "--------------------------------------------");
-                rawData.append(json);
-            }
-        } catch (Exception e) {
-            //
-        }
-        return rawData.toString();
-    }
+//    public static String getAllSurveyData() {
+//        StringBuilder rawData = new StringBuilder();
+//        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+//        try {
+//            for (Survey survey : SurveyUtil.findAll()) {
+//                String json = ow.writeValueAsString(survey);
+//                rawData.append("------------------------------------Survey " + survey.getId() + "--------------------------------------------");
+//                rawData.append(json);
+//            }
+//        } catch (Exception e) {
+//            //
+//        }
+//        return rawData.toString();
+//    }
 
     public static Integer getSurveysTakenToStage1() {
        Integer surveys = 0;

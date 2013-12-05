@@ -4,10 +4,8 @@ import com.mongodb.DB;
 import com.mongodb.MongoException;
 import com.mongodb.ReadPreference;
 import com.mongodb.MongoClient;
+import org.mongojack.JacksonDBCollection;
 import models.User;
-import net.vz.mongodb.jackson.DBCursor;
-import net.vz.mongodb.jackson.DBQuery;
-import net.vz.mongodb.jackson.JacksonDBCollection;
 
 import java.net.UnknownHostException;
 

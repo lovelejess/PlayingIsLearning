@@ -1,7 +1,5 @@
 package controllers;
 
-import net.vz.mongodb.jackson.JacksonDBCollection;
-import net.vz.mongodb.jackson.WriteResult;
 import play.mvc.*;
 import play.data.*;
 import views.html.*;

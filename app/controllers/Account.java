@@ -3,14 +3,11 @@ package controllers;
 import com.mongodb.MongoException;
 import enums.PassportTypeEnum;
 import models.Passport;
-import net.vz.mongodb.jackson.DBCursor;
-import net.vz.mongodb.jackson.DBQuery;
-import net.vz.mongodb.jackson.JacksonDBCollection;
-import net.vz.mongodb.jackson.WriteResult;
 import play.mvc.*;
 import play.data.*;
 import utils.DataUtil;
 import views.html.*;
+import org.mongojack.JacksonDBCollection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +59,7 @@ public class Account extends MasterController {
                 newPassport.setChildAge(childAgeInt);
             }
 
-            WriteResult<Passport, String> result = collection.insert(newPassport);
+            collection.insert(newPassport);
 
         } catch (Exception e) {
             flash("error", "Unexpected error: " + e.toString());

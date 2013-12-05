@@ -1,11 +1,9 @@
 package models;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.MongoException;
-import net.vz.mongodb.jackson.*;
-import org.codehaus.jackson.annotate.JsonProperty;
-import utils.DataUtil;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mongodb.BasicDBList;
+import org.mongojack.MongoCollection;
+import org.mongojack.ObjectId;
 import java.util.*;
 
 /**
@@ -44,7 +42,7 @@ public class Survey {
     public Integer age;
     public Integer zip;
     public Integer childrenInCare;
-    public BasicDBObject childAges;
+    public BasicDBList childAges;
     public String race;
     public String ethnicity;
     public String income;
@@ -53,12 +51,12 @@ public class Survey {
     public String primaryLanguage;
 
     public Boolean isStageThreeComplete;
-    public BasicDBObject agesComplete;
-    public BasicDBObject hoursPerDayPlaying;
-    public BasicDBObject topThreePlayTimeActivities;
-    public BasicDBObject whoPlayWithRanking;
-    public BasicDBObject howOftenReadToChild;
-    public BasicDBObject howOftenPlayGames;
+    public BasicDBList agesComplete;
+    public BasicDBList hoursPerDayPlaying;
+    public BasicDBList topThreePlayTimeActivities;
+    public BasicDBList whoPlayWithRanking;
+    public BasicDBList howOftenReadToChild;
+    public BasicDBList howOftenPlayGames;
 
     public Boolean isStageFourComplete;
     public String frequencyTakeChildrenToICM;
@@ -139,11 +137,11 @@ public class Survey {
         isStageFiveComplete = is;
     }
 
-    public BasicDBObject getChildAges() {
+    public BasicDBList getChildAges() {
         return childAges;
     }
 
-    public BasicDBObject getAgesComplete() {
+    public BasicDBList getAgesComplete() {
         return agesComplete;
     }
 }

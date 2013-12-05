@@ -1,11 +1,10 @@
 package models;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.MongoException;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mongodb.BasicDBList;
 import enums.PassportTypeEnum;
-import net.vz.mongodb.jackson.*;
-import org.codehaus.jackson.annotate.JsonProperty;
-import utils.DataUtil;
+import org.mongojack.MongoCollection;
+import org.mongojack.ObjectId;
 
 /**
  * User: Charles
@@ -37,7 +36,7 @@ public class Passport {
 
     public PassportTypeEnum type;
 
-    public BasicDBObject cardsComplete;
+    public BasicDBList cardsComplete;
 
     public Passport() {   }
 

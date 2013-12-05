@@ -1,8 +1,9 @@
 package models;
 
-import com.mongodb.MongoException;
-import net.vz.mongodb.jackson.*;
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mongodb.BasicDBList;
+import org.mongojack.MongoCollection;
+import org.mongojack.ObjectId;
 import utils.DataUtil;
 import utils.EncryptionUtil;
 

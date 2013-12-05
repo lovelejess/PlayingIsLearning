@@ -1,6 +1,8 @@
 package models;
 
-import net.vz.mongodb.jackson.MongoCollection;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.mongojack.MongoCollection;
+import org.mongojack.ObjectId;
 
 /**
  * User: Charles

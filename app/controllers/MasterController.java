@@ -7,6 +7,7 @@ import play.mvc.Controller;
 import play.mvc.Http;
 import utils.CodeGenerator;
 import utils.DataUtil;
+import org.mongojack.JacksonDBCollection;
 
 /**
  * User: Charles
@@ -35,6 +36,13 @@ public abstract class MasterController extends Controller {
 
     public static Boolean isAuthorized() {
         return (getLoggedInUser().username.equals("IowaAdministrator"));
+    }
+
+    public static JacksonDBCollection getCollection(String collection, Class clazz) {
+        if(collectionService == null)
+            collectionService = new CollectionService();
+
+        return collectionService.getCollection(collection, clazz);
     }
 
 }
