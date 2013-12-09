@@ -1,5 +1,7 @@
 package controllers;
 
+import org.mongojack.JacksonDBCollection;
+import org.mongojack.WriteResult;
 import play.mvc.*;
 import play.data.*;
 import views.html.*;

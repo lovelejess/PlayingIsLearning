@@ -2,9 +2,10 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mongodb.BasicDBList;
-import org.mongojack.MongoCollection;
-import org.mongojack.ObjectId;
-import java.util.*;
+import com.mongodb.BasicDBObject;
+import org.mongojack.*;
+import utils.DataUtil;
+
 
 /**
  * User: Charles
@@ -42,7 +43,7 @@ public class Survey {
     public Integer age;
     public Integer zip;
     public Integer childrenInCare;
-    public BasicDBList childAges;
+    public BasicDBObject childAges;
     public String race;
     public String ethnicity;
     public String income;
@@ -52,11 +53,11 @@ public class Survey {
 
     public Boolean isStageThreeComplete;
     public BasicDBList agesComplete;
-    public BasicDBList hoursPerDayPlaying;
-    public BasicDBList topThreePlayTimeActivities;
-    public BasicDBList whoPlayWithRanking;
-    public BasicDBList howOftenReadToChild;
-    public BasicDBList howOftenPlayGames;
+    public BasicDBObject hoursPerDayPlaying;
+    public BasicDBObject topThreePlayTimeActivities;
+    public BasicDBObject whoPlayWithRanking;
+    public BasicDBObject howOftenReadToChild;
+    public BasicDBObject howOftenPlayGames;
 
     public Boolean isStageFourComplete;
     public String frequencyTakeChildrenToICM;
@@ -79,7 +80,7 @@ public class Survey {
         this.howOftenReadToChild = new BasicDBObject();
         this.howOftenPlayGames = new BasicDBObject();
         this.childAges = new BasicDBObject();
-        this.agesComplete = new BasicDBObject();
+        this.agesComplete = new BasicDBList();
     }
 
     public static Survey findByUser(User user) {
@@ -137,7 +138,7 @@ public class Survey {
         isStageFiveComplete = is;
     }
 
-    public BasicDBList getChildAges() {
+    public BasicDBObject getChildAges() {
         return childAges;
     }
 

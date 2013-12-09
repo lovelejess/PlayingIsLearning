@@ -4,6 +4,8 @@ import com.mongodb.DB;
 import com.mongodb.MongoException;
 import com.mongodb.ReadPreference;
 import com.mongodb.MongoClient;
+import org.mongojack.DBCursor;
+import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;
 import models.User;
 

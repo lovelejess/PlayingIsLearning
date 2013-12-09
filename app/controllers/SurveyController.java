@@ -1,7 +1,9 @@
 package controllers;
 
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import models.*;
+import org.mongojack.JacksonDBCollection;
 import utils.DataUtil;
 import utils.SurveyUtil;
 import views.html.*;
@@ -155,7 +157,7 @@ public class SurveyController extends MasterController {
 
         //Some legacy accounts wont have this data structure initialized:
         if(userSurvey.getAgesComplete() == null) {
-            userSurvey.agesComplete = new BasicDBObject();
+            userSurvey.agesComplete = new BasicDBList();
         }
 
         userSurvey.getAgesComplete().put(childAge.toString(),childAge);

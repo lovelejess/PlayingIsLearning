@@ -3,6 +3,8 @@ package controllers;
 import com.mongodb.MongoException;
 import enums.PassportTypeEnum;
 import models.Passport;
+import org.mongojack.DBCursor;
+import org.mongojack.DBQuery;
 import play.mvc.*;
 import play.data.*;
 import utils.DataUtil;

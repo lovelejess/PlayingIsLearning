@@ -2,9 +2,10 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mongodb.BasicDBList;
+import com.mongodb.MongoException;
 import enums.PassportTypeEnum;
-import org.mongojack.MongoCollection;
-import org.mongojack.ObjectId;
+import org.mongojack.*;
+import utils.DataUtil;
 
 /**
  * User: Charles
