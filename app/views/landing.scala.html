@@ -11,7 +11,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
-        <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-responsive.css")'>
         <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
         <link rel="shortcut icon" type="image/gif" href='@routes.Assets.at("images/favicon.png")'>
         <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/blueimp-gallery.min.css")'>
@@ -135,19 +134,34 @@
 
             <a href="#myModal" id="surveyButton" style="display: none;" role="button" class="btn" data-toggle="modal"> </a>
 
-            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="position: fixed;top: 50%;left: 50%;">
+            <div  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel">Survey Questions</h3>
+
                 </div>
-                <div class="modal-body">
-                    <p>Looks like you still have some survey questions left. Would you like to complete a few now?</p>
-                </div>
+
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">No thanks</button>
-                    <button class="btn btn-primary" onclick="location.href='/survey'">Yes</button>
+
                 </div>
             </div>
+
+            <!--<div class="modal fade" id="myModal">-->
+                <!--<div class="modal-dialog">-->
+                    <!--<div class="modal-content">-->
+                        <!--<div class="modal-header">-->
+                            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                            <!--<h3 id="myModalLabel">Survey Questions</h3>-->
+                        <!--</div>-->
+                        <!--<div class="modal-body">-->
+                            <!--<p>We have a few survey questions for you. Would you like to complete a few now?</p>-->
+                        <!--</div>-->
+                        <!--<div class="modal-footer">-->
+                            <!--<button type="button" class="btn btn-default" data-dismiss="modal">No thanks</button>-->
+                            <!--<button type="button" class="btn btn-primary" onclick="location.href='/survey'">Yes</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
 
             <div class="row-fluid">
                 <table class="table table-bordered table-striped responsive-utilities">

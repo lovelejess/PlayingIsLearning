@@ -28,9 +28,6 @@ public class Entrance extends MasterController {
             flash("error", "Our database is currently down. Please contact a system administrator.");
             return ok( index.render(loginForm, registerForm));
         }
-        if(getLoggedInUser() != null) {
-            return redirect("/landing");
-        }
 
         return ok( index.render(loginForm, registerForm));
     }
