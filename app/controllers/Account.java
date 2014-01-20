@@ -3,7 +3,6 @@ package controllers;
 import com.mongodb.MongoException;
 import enums.PassportTypeEnum;
 import models.Passport;
-import org.mongojack.DBCursor;
 import org.mongojack.DBQuery;
 import play.mvc.*;
 import play.data.*;
@@ -74,18 +73,9 @@ public class Account extends MasterController {
     public static List<Passport> getUserPassports() {
         List<Passport> userPassports = new ArrayList<Passport>();
         try {
-            JacksonDBCollection<Passport, String> collection = DataUtil.getCollection("passports", Passport.class);
-
-            DBCursor cursorDoc = collection.find(DBQuery.is("userId", MasterController.getLoggedInUser().getId()));
-
-            while(cursorDoc.hasNext()) {
-                userPassports.add((Passport)cursorDoc.next());
-            }
-
-            return userPassports;
+            return DataUtil.getCollection("passports", Passport.class).find(DBQuery.is("userId", MasterController.getLoggedInUser().getId())).toArray();
 
         } catch (MongoException e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -103,19 +93,14 @@ public class Account extends MasterController {
 
     public static Boolean isPassportSelected() {
         String passport = Http.Context.current().session().get("passport");
-        if(passport == null || passport.isEmpty()) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return (passport != null && !passport.isEmpty());
     }
 
     public static String getSelectedPassportName() {
         String passport = Http.Context.current().session().get("passport");
-        if(passport != null && !passport.isEmpty()) {
+        if(passport != null && !passport.isEmpty())
             return passport;
-        }
+
         return null;
     }
 

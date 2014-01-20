@@ -2,7 +2,6 @@ package utils;
 
 import com.mongodb.DB;
 import com.mongodb.MongoException;
-import com.mongodb.ReadPreference;
 import com.mongodb.MongoClient;
 import org.mongojack.DBCursor;
 import org.mongojack.DBQuery;
@@ -17,12 +16,10 @@ import java.net.UnknownHostException;
  */
 public class DataUtil {
 
-    private static MongoClient mongoClient;
-
     public static DB getDB() {
 
         try {
-            mongoClient = new MongoClient("ds061787.mongolab.com", 61787);
+            MongoClient mongoClient = new MongoClient("ds061787.mongolab.com", 61787);
 //            mongoClient = new MongoClient( );
 
 //            mongoClient.setReadPreference(ReadPreference.primary());
@@ -30,6 +27,7 @@ public class DataUtil {
             DB dataBase = mongoClient.getDB("heroku_app15452455");
 //            DB dataBase = mongoClient.getDB("icm");
 
+            //todo this needs to go in an ignored config file
             dataBase.authenticate("heroku_app15452455", "73mi73eoolvr4s7v47ugutfru9".toCharArray());
 
             return dataBase;
@@ -42,13 +40,11 @@ public class DataUtil {
     public static JacksonDBCollection getCollection(String collection, Class clazz) {
 
         try {
-
-            return JacksonDBCollection.wrap(getDB().getCollection(collection), clazz, String.class);
+            return JacksonDBCollection.wrap(getDB().getCollection(collection), clazz);
 
         } catch (Exception e) {
             return null;
         }
-
     }
 
     public static Object getEntityById(String collection, Class clazz, String id) {

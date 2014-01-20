@@ -46,7 +46,9 @@ public class RecoverPassword extends MasterController {
         String answerThree = filledForm.data().get("securityAnswerThree");
 
         try {
-            if (answerOne.toLowerCase().equals(user.securityAnswerOne.toLowerCase()) && answerTwo.toLowerCase().equals(user.securityAnswerTwo.toLowerCase()) && answerThree.toLowerCase().equals(user.securityAnswerThree.toLowerCase())) {
+            if (answerOne.toLowerCase().equals(user.securityAnswerOne.toLowerCase()) &&
+                    answerTwo.toLowerCase().equals(user.securityAnswerTwo.toLowerCase()) &&
+                    answerThree.toLowerCase().equals(user.securityAnswerThree.toLowerCase())) {
 
                 String passwordToReturn = new EncryptionUtil().decrypt(user.password);
 

@@ -1,9 +1,5 @@
 package enums;
 
-/**
- * User: Charles
- * Date: 5/4/13
- */
 public enum PassportTypeEnum {
 
     INDIVIDUAL ("Individual"),

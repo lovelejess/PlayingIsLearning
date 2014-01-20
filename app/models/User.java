@@ -81,23 +81,15 @@ public class User {
 
     public static List<User> findAll() {
         try {
-            JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
-
-            DBCursor cursorDoc = collection.find();
-
-            return ((List<User>)cursorDoc.toArray());
+            return DataUtil.getCollection("users", User.class).find().toArray();
         } catch (MongoException e) {
-            e.printStackTrace();
             return null;
         }
     }
 
     public static String getDecryptedPasswordForUser(String username) {
-        JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
+        User user = (User) DataUtil.getCollection("users", User.class).find(DBQuery.is("username", username)).getCollection().findOne();
 
-        DBCursor cursorDoc = collection.find(DBQuery.is("username", username));
-
-        User user = (User) cursorDoc.next();
         EncryptionUtil decryptor;
 
         try {

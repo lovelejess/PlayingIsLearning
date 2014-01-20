@@ -47,32 +47,12 @@ public class Passport {
         this.type = type;
     }
 
-    public String getPassportName() {
-        return passportName;
-    }
-
-    public void setPassportName(String passportName) {
-        this.passportName = passportName;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     public PassportTypeEnum getType() {
         return type;
     }
 
     public void setType(PassportTypeEnum type) {
         this.type = type;
-    }
-
-    public Integer getChildAge() {
-        return childAge;
     }
 
     public void setChildAge(Integer childAge) {

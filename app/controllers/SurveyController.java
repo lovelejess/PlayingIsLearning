@@ -1,7 +1,7 @@
 package controllers;
 
 import com.mongodb.BasicDBList;
-import com.mongodb.BasicDBObject;
+import enums.SurveyStageEnum;
 import models.*;
 import org.mongojack.JacksonDBCollection;
 import utils.DataUtil;
@@ -9,7 +9,6 @@ import utils.SurveyUtil;
 import views.html.*;
 import play.mvc.*;
 import play.data.*;
-import views.html.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -218,22 +217,22 @@ public class SurveyController extends MasterController {
 
     private static String getStage(Survey userSurvey) {
         if(userSurvey.getIsStageOneComplete() == null || !userSurvey.getIsStageOneComplete())
-            return "one";
+            return SurveyStageEnum.STAGE_ONE.label;
         if(userSurvey.getIsStageTwoComplete() == null || !userSurvey.getIsStageTwoComplete())
-            return "two";
+            return SurveyStageEnum.STAGE_TWO.label;
         if(userSurvey.getIsStageThreeComplete() == null || !userSurvey.getIsStageThreeComplete())
-            return "three";
+            return SurveyStageEnum.STAGE_THREE.label;
         if(userSurvey.getIsStageFourComplete() == null || !userSurvey.getIsStageFourComplete())
-            return "four";
+            return SurveyStageEnum.STAGE_FOUR.label;
         if(userSurvey.getIsStageFiveComplete() == null || !userSurvey.getIsStageFiveComplete())
-            return "five";
-        return "done";
+            return SurveyStageEnum.STAGE_FIVE.label;
+        return SurveyStageEnum.DONE.label;
     }
 
     public static String getStageForLoggedInUser() {
         String isPrompted = Http.Context.current().session().get("surveyPrompt");
         if(isPrompted != null && isPrompted.equals("true")) {
-            return "done";
+            return SurveyStageEnum.DONE.label;
         }
 
         Survey userSurvey = Survey.findByUser(getLoggedInUser());
@@ -242,17 +241,17 @@ public class SurveyController extends MasterController {
         if(userSurvey == null)
             return null;
         if(userSurvey.getIsStageOneComplete() == null || !userSurvey.getIsStageOneComplete())
-            return "one";
+            return SurveyStageEnum.STAGE_ONE.label;
         if(userSurvey.getIsStageTwoComplete() == null || !userSurvey.getIsStageTwoComplete())
-            return "two";
+            return SurveyStageEnum.STAGE_TWO.label;
         if(userSurvey.getIsStageThreeComplete() == null || !userSurvey.getIsStageThreeComplete())
-            return "three";
+            return SurveyStageEnum.STAGE_THREE.label;
         if(userSurvey.getIsStageFourComplete() == null || !userSurvey.getIsStageFourComplete())
-            return "four";
+            return SurveyStageEnum.STAGE_FOUR.label;
         if(userSurvey.getIsStageFiveComplete() == null || !userSurvey.getIsStageFiveComplete())
-            return "five";
+            return SurveyStageEnum.STAGE_FIVE.label;
 
-        return "done";
+        return SurveyStageEnum.DONE.label;
     }
 
     private static void saveUserSurvey(Survey userSurvey) {
