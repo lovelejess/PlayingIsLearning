@@ -8,20 +8,20 @@
 @form(routes.Entrance.register) {
 
     @inputText(
-        registerForm("username"),
+        registerForm("username"), 'class -> "form-control",
         '_label -> "Username",
         '_help -> "Please choose a valid username.",
         '_error -> registerForm.globalError
     )
 
     @inputPassword(
-        registerForm("password"),
+        registerForm("password"), 'class -> "form-control",
         '_label -> "Password",
         '_help -> "A password must be at least 6 characters. "
     )
 
     @inputPassword(
-        registerForm("repeatPassword"),
+        registerForm("repeatPassword"), 'class -> "form-control",
         '_label -> "Repeat password",
         '_help -> "Please repeat your password again.",
         '_error -> registerForm.error("password")

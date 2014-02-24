@@ -22,8 +22,8 @@
 
     <body>
 
-        <div class="navbar navbar-fixed-top">
-            <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
                 <ul class="nav navbar-nav">
                     <li id='home'><a href="/index">Home</a></li>
                     <li id='playing'><a href="/playing">Playing is Learning</a></li>
@@ -39,7 +39,7 @@
                     src='@routes.Assets.at("images/goIconBlue.png")'/></li>
                 </ul>
             </div>
-        </div>
+    </nav>
         <br><br><br>
         <div id="slideout">
             <div class="feedback"> ! </div>
@@ -58,10 +58,6 @@
             <div>
                 @message()
             </div>
-
-            @if(!Account.isPassportSelected()) {
-                <div class="alert">Select or create a passport to see cards for your child's age</div>
-            }
 
             <div class="alert alert-success">  <span style="margin-right: 3em;">Hello <b>@user.username</b>.</span>
 
@@ -112,16 +108,16 @@
 
                 @form(routes.Account.createPassport) {
 
-                    <fieldset>
+                    <fieldset class="form-group">
                         @inputText(
-                            passportForm("passportName"),
+                            passportForm("passportName"), 'class -> "form-control",
                             '_label -> "PassportName",
                             '_error -> passportForm.globalError
                         )
 
-                        @select(passportForm("type"), options(PassportTypeEnum.values().toList.map(_.toString)), '_label -> "Select a passport type")
+                        <div class="passportForm">@select(passportForm("type"), options(PassportTypeEnum.values().toList.map(_.toString)),'class -> "form-control", '_label -> "Select a passport type")</div>
 
-                        @select(field = passportForm("childAge"), options = options(SurveyController.getChildAgesList().toList.map(_.toString)), '_label-> "Choose child age:")
+                        <div class="passportForm">@select(field = passportForm("childAge"), options = options(SurveyController.getChildAgesList().toList.map(_.toString)),'class -> "form-control", '_label-> "Choose child age:")</div>
                     </fieldset>
 
                     <div class="actions">

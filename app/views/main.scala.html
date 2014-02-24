@@ -23,21 +23,21 @@
 
     <body>
         <div class="supertron">
-                <div class="navbar navbar-fixed-top">
-                    <div class="container">
-                        <ul class="nav navbar-nav">
-                            <li id='home'><a href="/index">Home</a></li>
-                            <li id='playing'><a href="/playing">Playing is Learning</a></li>
-                            <li id='gog'><a href="/gog">Game of Games</a></li>
-                            <li id='resources'><a href="/resources">Resources</a></li>
-                        </ul>
-                        <ul class="nav pull-right">
-                            <li><img height='40' width='40' style="display:block;max-height: 40px;max-width: 40px;"
-                                 src='@routes.Assets.at("images/goIconBlue.png")'/>
-                            </li>
-                        </ul>
-                    </div>
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <ul class="nav navbar-nav">
+                        <li id='home'><a href="/index">Home</a></li>
+                        <li id='playing'><a href="/playing">Playing is Learning</a></li>
+                        <li id='gog'><a href="/gog">Game of Games</a></li>
+                        <li id='resources'><a href="/resources">Resources</a></li>
+                    </ul>
+                    <ul class="nav pull-right">
+                        <li><img height='40' width='40' style="display:block;max-height: 40px;max-width: 40px;"
+                             src='@routes.Assets.at("images/goIconBlue.png")'/>
+                        </li>
+                    </ul>
                 </div>
+            </nav>
             <br> <br> <br>
 
             @content
