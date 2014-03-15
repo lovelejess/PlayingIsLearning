@@ -4,9 +4,37 @@
 
 @main() {
 
-    <div class="container">
+    <div id="playIsLearning">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-4 centered">
+                    <div class="col-lg-5 centered">
+                        <img class="img-responsive img-full center" id="PIL" src="@routes.Assets.at("/images/PlayIsLearn.png")">
+                    </div><!--col-lg-5  -->
+                </div><!-- /col-lg-8 -->
+            </div><!-- /row -->
+            <div>
+                <h2>An Iowa Children's Museum Project</h2>
+            </div>
+        </div> <!-- /container -->
+    </div><!-- /playingIsLearning -->
+    
+    <div id="green">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 ">
+                    <img src="@routes.Assets.at("/images/child-play.JPG")" alt=""> 
+                </div>
+                
+                <div class="col-lg-7 ">
+                    <h3>Playing Is Learning!</h3>
+                    <p>To give children a head start on academic success, more children are spending more time in instructional settings and less time playing. Is play simply a purposeless, fun, freeing experience? <b>Yes! </b> And research shows that the openness of play— where the process is more important than the product—provides a terrific framework for learning.</p>
+                </div>
+            </div>
+        </div>
+    </div>    
 
-        <div>
+        <!--<div>
             @message()
         </div>
 
@@ -22,9 +50,9 @@
         <div id="terms" style="display: none;">
             @terms()
         </div>
-        <div id="register" style="display: none;">
+        <!--<div id="register" style="display: none;">
             @register(registerForm)
-        </div>
+        </div> -->
 
-    </div>
+    
 }
