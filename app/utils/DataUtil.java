@@ -60,7 +60,7 @@ public class DataUtil {
 
     }
 
-    public static Boolean isDatabase() {
+/*    public static Boolean isDatabase() {
 
         try {
             JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
@@ -75,6 +75,6 @@ public class DataUtil {
             e.printStackTrace();
             return false;
         }
-    }
+    }*/
 
 }

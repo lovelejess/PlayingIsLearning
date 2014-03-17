@@ -132,40 +132,45 @@ a:after {
   margin: 0 auto;
 }
 
-/* Green */
-#green {
-	background-color: #74cfae;
+/* What Is Playing is Learning? */
+#whatIsPIL {
+	background-color: #50C1C1;
 	padding-top: 50px;
 	margin-bottom: 0px;
+  padding-bottom: 50px;
 }
 
-#green h3 {
+#whatIsPIL h3 {
   font-family: "Lato";
 	color: white;
 	font-weight: 400;
 	margin-bottom: 35px;
 }
-
-#green p {
+#whatIsPIL ul{
+  text-decoration: square;
+}
+#whatIsPIL p, li{
   font-family: "Raleway";
 	color: white;
 	font-weight: 400;
 	font-size: 20px;
 }
 
-/* Skills */
-#skills {
+
+/* stuartBrown Quote */
+#stuartBrown {
+  font-family: "Raleway";
 	background-color: #4e4e4e;
-	padding-top: 50px;
-	padding-bottom: 50px;
-	margin-top: 50px;
+	padding-top: 70px;
+	padding-bottom: 70px;
+	margin-top: 0px;
 }
 
-#skills h3 {
+#stuartBrown h3 {
 	color: white;
 }
 
-#skills p {
+#stuartBrown p {
 	color: white;
 	font-weight: 400;
 }
