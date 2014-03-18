@@ -3,21 +3,20 @@
 # ~~~~
 
 # Home page
-GET    /                     controllers.Entrance.index()
-GET    /index                controllers.Entrance.index()
-#GET    /playing              controllers.Entrance.playing()
-GET    /gog                  controllers.Entrance.gog()
-GET    /resources            controllers.Entrance.resources()
+GET    /                     controllers.Account.index()
+GET    /index                controllers.Account.index()
+GET    /gog                  controllers.Account.gog()
+GET    /resources            controllers.Account.resources()
 
 #Login-Logout
-POST   /                     controllers.Entrance.login()
-GET    /logout               controllers.Entrance.logout()
+POST   /                     controllers.Account.login()
+GET    /logout               controllers.Account.logout()
 
 #Register
-POST   /register             controllers.Entrance.register()
+POST   /register             controllers.Account.register()
 
 #Security questions
-POST   /security             controllers.Entrance.security()
+POST   /security             controllers.Account.security()
 
 #Recover Password
 GET    /recoverPassword      controllers.RecoverPassword.index()
@@ -36,10 +35,6 @@ POST   /stageFive            controllers.SurveyController.stageFive()
 GET    /admin                controllers.Admin.index()
 POST   /stageFive            controllers.Admin.index()
 
-#Account
-GET    /landing                      controllers.Account.index()
-POST   /landing/createPassport       controllers.Account.createPassport()
-GET    /landing/passport/:name       controllers.Account.usePassport(name: String)
 
 # Import Secure routes
 #*     /                     module:secure

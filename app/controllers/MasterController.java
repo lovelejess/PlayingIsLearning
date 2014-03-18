@@ -1,6 +1,5 @@
 package controllers;
 
-import models.Passport;
 import models.User;
 import org.mongojack.WriteResult;
 import play.mvc.Controller;
@@ -20,6 +19,9 @@ public abstract class MasterController extends Controller {
 
     private static DataUtil dataUtil;
 
+    public static Boolean isLoggedIn() {
+        return (getLoggedInUser() != null);
+    }
     public static User getLoggedInUser() {
         String userID = Http.Context.current().session().get("user");
         if(userID == null) {
@@ -52,10 +54,6 @@ public abstract class MasterController extends Controller {
 
     public static String getCodeOfTheDay() {
         return CodeGenerator.getCodeOfTheDay();
-    }
-
-    public static Boolean userHasPassport() {
-        return Passport.isPassportForUser(getLoggedInUser().getId());
     }
 
     public static Boolean isAuthorized() {
