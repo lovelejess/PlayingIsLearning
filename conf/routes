@@ -5,7 +5,7 @@
 # Home page
 GET    /                     controllers.Entrance.index()
 GET    /index                controllers.Entrance.index()
-GET    /playing              controllers.Entrance.playing()
+#GET    /playing              controllers.Entrance.playing()
 GET    /gog                  controllers.Entrance.gog()
 GET    /resources            controllers.Entrance.resources()
 

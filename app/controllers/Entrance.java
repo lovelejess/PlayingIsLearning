@@ -24,16 +24,12 @@ public class Entrance extends MasterController {
     final static Form<User> securityForm = form(User.class);
 
     public static Result index() {
-      /*  if(!DataUtil.isDatabase()) {
+        if(!DataUtil.isDatabase()) {
             flash("error", "Our database is currently down. Please contact a system administrator.");
             return ok( index.render(loginForm, registerForm));
-        }*/
+        }
 
         return ok( index.render(loginForm, registerForm));
-    }
-
-    public static Result playing() {
-        return ok( playing.render());
     }
 
     public static Result gog() {
@@ -45,10 +41,10 @@ public class Entrance extends MasterController {
     }
 
     public static Result login() {
-        /*if(!DataUtil.isDatabase()) {
+        if(!DataUtil.isDatabase()) {
             flash("error", "Our database is currently down. Please contact a system administrator.");
             return ok( index.render(loginForm, registerForm));
-        }*/
+        }
         Form<User> filledForm = loginForm.bindFromRequest();
         String userName = filledForm.data().get("username");
 
@@ -76,10 +72,10 @@ public class Entrance extends MasterController {
     }
 
     public static Result register() {
-        /*if(!DataUtil.isDatabase()) {
+        if(!DataUtil.isDatabase()) {
             flash("error", "Our database is currently down. Please contact a system administrator.");
             return ok( index.render(loginForm, registerForm));
-        }*/
+        }
         Form<User> filledForm = registerForm.bindFromRequest();
         User newUser;
 

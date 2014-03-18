@@ -10,7 +10,7 @@ import utils.DataUtil;
 import org.mongojack.JacksonDBCollection;
 import utils.EncryptionUtil;
 import views.html.index;
-
+import views.html.main;
 /**
  * User: Charles
  * Date: 5/1/13

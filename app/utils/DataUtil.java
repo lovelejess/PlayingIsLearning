@@ -19,13 +19,16 @@ public class DataUtil {
     public static DB getDB() {
 
         try {
-            MongoClient mongoClient = new MongoClient("ds061787.mongolab.com", 61787);
-//            mongoClient = new MongoClient( );
+//            MongoClient mongoClient = new MongoClient("ds061787.mongolab.com", 61787);
+            
 
 //            mongoClient.setReadPreference(ReadPreference.primary());
 //
-            DB dataBase = mongoClient.getDB("heroku_app15452455");
-//            DB dataBase = mongoClient.getDB("icm");
+//            DB dataBase = mongoClient.getDB("heroku_app15452455");
+
+            /*TEST DB*/
+            MongoClient mongoClient = new MongoClient( );
+            DB dataBase = mongoClient.getDB("icm");
 
             //todo this needs to go in an ignored config file
             dataBase.authenticate("heroku_app15452455", "73mi73eoolvr4s7v47ugutfru9".toCharArray());
@@ -60,7 +63,7 @@ public class DataUtil {
 
     }
 
-/*    public static Boolean isDatabase() {
+    public static Boolean isDatabase() {
 
         try {
             JacksonDBCollection<User, String> collection = DataUtil.getCollection("users", User.class);
@@ -75,6 +78,6 @@ public class DataUtil {
             e.printStackTrace();
             return false;
         }
-    }*/
+    }
 
 }

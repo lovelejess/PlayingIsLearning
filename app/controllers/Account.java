@@ -28,10 +28,10 @@ public class Account extends MasterController {
     }
 
     public static Result createPassport() {
-      /*  if(!DataUtil.isDatabase()) {
+        if(!DataUtil.isDatabase()) {
             flash("error", "Our database is currently down. Please contact a system administrator.");
             return ok(landing.render(getLoggedInUser(),passportForm));
-        }*/
+        }
         Form<Passport> filledForm = passportForm.bindFromRequest();
         String passportName = filledForm.data().get("passportName");
         PassportTypeEnum passportType = PassportTypeEnum.valueOf(filledForm.data().get("type"));
@@ -81,10 +81,10 @@ public class Account extends MasterController {
     }
 
     public static Result usePassport(String passportName) {
-       /* if(!DataUtil.isDatabase()) {
+       if(!DataUtil.isDatabase()) {
             flash("error", "Our database is currently down. Please contact a system administrator.");
             return ok(landing.render(getLoggedInUser(),passportForm));
-        }*/
+        }
 
         Http.Context.current().session().put("passport", passportName);
 
