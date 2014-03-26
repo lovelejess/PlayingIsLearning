@@ -19,16 +19,16 @@ public class DataUtil {
     public static DB getDB() {
 
         try {
-//            MongoClient mongoClient = new MongoClient("ds061787.mongolab.com", 61787);
+            MongoClient mongoClient = new MongoClient("ds061787.mongolab.com", 61787);
             
 
-//            mongoClient.setReadPreference(ReadPreference.primary());
+            mongoClient.setReadPreference(ReadPreference.primary());
 //
-//            DB dataBase = mongoClient.getDB("heroku_app15452455");
+            DB dataBase = mongoClient.getDB("heroku_app15452455");
 
             /*TEST DB*/
-            MongoClient mongoClient = new MongoClient( );
-            DB dataBase = mongoClient.getDB("icm");
+//            MongoClient mongoClient = new MongoClient( );
+ //           DB dataBase = mongoClient.getDB("icm");
 
             //todo this needs to go in an ignored config file
             dataBase.authenticate("heroku_app15452455", "73mi73eoolvr4s7v47ugutfru9".toCharArray());
