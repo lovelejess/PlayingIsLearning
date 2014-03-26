@@ -109,18 +109,24 @@ a:after {
     padding-bottom: 50px;
 }
 
-#whatIsGOG h2, h3 {
+#whatIsGOG #title {
+    text-align: center;
+    color: white;
+    font-family: "Raleway";
+}
+
+#whatIsGOG h2{
   font-family: "Lato";
     color: white;
     font-weight: 400;
     margin-bottom: 35px;
 }
 
-#whatIsGOG h4 {
+#whatIsGOG h3 {
   font-family: "Raleway";
-    color: white;
+    color: black;
     font-weight: 400;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 #whatIsGOG ul{
   text-decoration: square;
@@ -129,9 +135,38 @@ a:after {
   font-family: "Raleway";
     color: white;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px;
 }
 
+
+/* readySetPLAY Quote */
+#readySetPLAY {
+    font-family: "Raleway";
+    background-color: #4e4e4e;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    margin-top: 0px;
+}
+
+#readySetPLAY h1,h2,h3,h4 {
+    color: white;
+    font-family: "Lato";
+}
+
+#readySetPLAY #instruct {
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+
+}
+
+#readySetPLAY #title {
+    text-align: center;
+    color: white;
+    font-family: "Raleway";
+
+ }
 
 /* Footer */
 #footer {
