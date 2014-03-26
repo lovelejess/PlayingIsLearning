@@ -36,7 +36,7 @@
 
     <body>        
     <!-- Fixed navbar -->
-    <div class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -54,29 +54,27 @@
                         <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">User: 
                             <b>@{MasterController.getLoggedInUser().username}</b> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/logout">Logout </a></li>
+                            <li><a href="#login">Logout </a></li>
                             <li><a href="#">Settings </a></li>
                         </ul> 
                         </a></li>
                     </li>
                     
                 } else{
-                    <li><a href="#">Login</a></li>
+                    <li><a href="#login" data-toggle="modal">Login</a></li>
                 }
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="/index">Home</a></li>
-                    <li class="active"><a href="#imagine">Imagine</a></li>
-                    <li class="active"><a href="#create">Create</a></li>
-                    <li class="active"><a href="/gog">Discover</a></li>
+                    <li class="active"><a href="/gog">Games</a></li>
+                    <li class="active"><a href="/cards">Cards</a></li>
                     <li class="active"><a href="/resources">Explore</a></li>
                 </ul>
             </div>
         </div>
-    </div>
-
-            @content
+    </nav>
+    @content
 
 
     

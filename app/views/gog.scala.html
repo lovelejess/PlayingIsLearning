@@ -1,25 +1,55 @@
 @()
 @main() {
-    <div class="container" style="color: #212121;font-weight: bold;text-shadow: none;">
+<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/gog.css")'>
+<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
+<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-image-gallery.min.css")'>
+    <div id="gog">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="col-lg-8 col-lg-offset-4 centered">
+                    <div class="col-lg-5 centered">
+                        <br> 
+                        <br>
+                        <img class="img-responsive img-full center" id="PIL" height="800" width="1169"src="@routes.Assets.at("/images/gog1.png")">
+                    </div><!--col-lg-5  -->
+                </div><!-- /col-lg-8 -->
+            </div><!-- /row -->
+        </div> <!-- /container -->
+    </div><!-- /gog -->
 
-        <img height='200' width='170' style="display:block;max-height: 200px;max-width: 170px;margin-left: auto;margin-right: auto;" src='@routes.Assets.at("images/gog1.png")'/>
-        <br>   <br>
-        <p style="margin-top: -20px;">Welcome to the ‘Game of Games.’ Get ready to play…and learn!</p>
-
-        <p>The ‘Game of Games’ is a card game designed to bring the ‘Playing is Learning’ initiative home with you. </p>
-
-        <p>(1) Did you know? communicates general concepts about play.      </p>
-
-        <p>(2) Try this at home describes games you can play at home whenever you and your child have a few minutes.  </p>
-
-        <p>Collect the Game of Games cards at participating sites.
-        When you and your child are ready to play, shuffle the Game of Games deck.
-        Randomly pick a card and play the game on the card for about 5 minutes.
-        Repeat as many times as time allows.     </p>
-
-        <p>To get started, go to our <a href="./index" style="color:blue;">registration page</a>. This will give you access to a set of on-line cards. You will also
-        receive a code. Bring this code to the main desk at a participating site to pick up your Passport to Play. Once
-        you have your passport, collect the cards and stamp your passport to get a special introductory gift! </p>
-        <br>
-    </div>
+    <div id="whatIsGOG">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <h2> Welcome to the 'Games of Games!'</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3> What? </h3>
+                    <p> The 'Games of Games' is a card game designed to bring the ‘Playing is Learning’ initiative home with you.</p>
+                    <p> It is comprised of two parts: </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3> (1) Did You Know? </h3>
+                    <p> Which communicates general concepts about play. </p>
+                </div>
+                <div class="col-md-6">
+                    <h3> (2) Try At Home </h3>
+                    <p>Which describes games you can play at home whenever you and your child have a few minutes. </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3> Collect </h3>
+                    <p>Collect cards at participating sites.
+                    When you and your child are ready to play, shuffle the card deck.
+                    Randomly pick a card and play the game on the card for about 5 minutes.
+                    Repeat as many times as time allows.</p>
+                </div>
+            </div>
+        </div>
+    </div> 
 }

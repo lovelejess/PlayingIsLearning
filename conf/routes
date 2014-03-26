@@ -7,9 +7,10 @@ GET    /                     controllers.Account.index()
 GET    /index                controllers.Account.index()
 GET    /gog                  controllers.Account.gog()
 GET    /resources            controllers.Account.resources()
+GET	   /cards				 controllers.Account.cards()
 
 #Login-Logout
-POST   /                     controllers.Account.login()
+POST   /login                controllers.Account.login()
 GET    /logout               controllers.Account.logout()
 
 #Register

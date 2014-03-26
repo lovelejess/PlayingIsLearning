@@ -1,18 +1,11 @@
-/*
- * Author: Carlos Alvarez
- * URL: http://alvarez.is
- *
- * Project Name: Bolt - Free Bootstrap 3 Theme
- * Version: 1.0
- * URL: http://blacktie.co
- */
+
  
 /* FONTS */
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300,700,900);
 @import url(http://fonts.googleapis.com/css?family=Finger+Paint);
 
-/* OVERALL ASPECT */
+/* BODY */
 
 body {
   background-color: #f2f2f2;
@@ -27,7 +20,7 @@ body {
     margin-top: 70px;
 }
 
-/* Titles */
+/* Headings */
 h1, h2, h3, h4, h5, h6 {
     font-family: "Raleway";
     font-weight: 300;
@@ -77,7 +70,7 @@ a:after {
     transition: color 0.1s ease-in, background 0.1s ease-in;
 }
 
-/* Bootstrap Modifications */
+/* BOOTSTRAP MODIFICATIONS */
  hr {
     display: block;
     height: 1px;
@@ -93,19 +86,16 @@ a:after {
 	font-size: 14px;
 	padding-top: 15px;
 	padding-bottom: 15px;
-	background-color: green;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
 	color: #74cfae;
-	background-color: green;
 }
 .navbar a {
   font-family: 'Finger Paint', cursive;
 }
 
-
-/* WRAP SECTIONS */
+/*************************************/
 
 /* playIsLearning */
 #playIsLearning {
@@ -132,7 +122,7 @@ a:after {
   margin: 0 auto;
 }
 
-/* What Is Playing is Learning? */
+/* WHAT IS Playing is Learning? */
 #whatIsPIL {
 	background-color: #50C1C1;
 	padding-top: 50px;
@@ -175,7 +165,7 @@ a:after {
 	font-weight: 400;
 }
 
-/* Social Links */
+/* Social Media */
 #social {
 	width: 100%;
 	padding-top: 200px;
@@ -195,7 +185,7 @@ a:after {
 	padding:30px;
 }
 
-/* Footer */
+/* FOOTER */
 #footer {
 	padding-top: 20px;
 	font-family: "Raleway";
@@ -211,7 +201,8 @@ a:after {
 #footer a {
   color: #4e4e4e;
 }
-/* Image Opacity */
+
+/* IMAGE OPACITY */
 .grid img {
     opacity: .7;
 }
@@ -223,3 +214,4 @@ a:after {
   src: url('../fonts/glyphicons-halflings-regular.eot');
   src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
+

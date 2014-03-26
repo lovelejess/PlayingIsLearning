@@ -40,6 +40,10 @@ public class Account extends MasterController {
         return ok( resources.render());
     }
 
+    public static Result cards(){
+        return ok( cards.render());
+    }
+
     public static Result login() {
         if(!DataUtil.isDatabase()) {
             flash("error", "Our database is currently down. Please contact a system administrator.");
@@ -57,7 +61,7 @@ public class Account extends MasterController {
             if (User.getDecryptedPasswordForUser(userName).equals(filledForm.data().get("password"))) {
                 User user = User.findUserByName(userName);
                 Http.Context.current().session().put("user", user.getId());
-                return redirect("/landing");
+                return redirect("/");
             }
         }
         flash("error", "Your username or password is incorrect");
