@@ -139,34 +139,6 @@ a:after {
 }
 
 
-/* readySetPLAY Quote */
-#readySetPLAY {
-    font-family: "Raleway";
-    background-color: #4e4e4e;
-    padding-top: 70px;
-    padding-bottom: 70px;
-    margin-top: 0px;
-}
-
-#readySetPLAY h1,h2,h3,h4 {
-    color: white;
-    font-family: "Lato";
-}
-
-#readySetPLAY #instruct {
-    color: white;
-    font-weight: 400;
-    font-size: 16px;
-    text-align: center;
-
-}
-
-#readySetPLAY #title {
-    text-align: center;
-    color: white;
-    font-family: "Raleway";
-
- }
 
 /* Footer */
 #footer {
