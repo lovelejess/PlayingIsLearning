@@ -38,3 +38,8 @@
 .table-striped>tbody>tr:nth-child(even)>th {
    background-color: #E8E8E8 ;
  }
+
+
+#selectedDeck, #selectedAge{
+    color: #50C1C1;
+}

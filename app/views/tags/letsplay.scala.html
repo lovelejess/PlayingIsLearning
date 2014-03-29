@@ -1,3 +1,17 @@
+<script type="text/javascript">
+function deckSelected(){
+    var deck = document.getElementById('deck').value;
+    document.getElementById('selectedDeck').innerHTML = deck;
+ }
+ function ageSelected(){
+    var deck = document.getElementById('age').value;
+    document.getElementById('selectedAge').innerHTML = deck;
+ }
+ function sortDecks(){
+    
+ }
+</script>
+
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/letsplay.css")'>
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-image-gallery.min.css")'>
@@ -34,7 +48,7 @@
                 </div>
             </div> 
             <div class="col-md-.5">
-                <a class="btn btn-lg btn-default" ng-click="doSearch();search=!search">Play!</a>
+                <a class="btn btn-lg btn-default" onclick="deckSelected();ageSelected();">Play!</a>
             </div>
 
         </div> <!-- /row -->               
@@ -43,7 +57,7 @@
     <br>
 
     <div id="deckSelection">
-        <h4> You are playing with the <b> --- </b> deck </h4>
+        <h4> You are playing with the <b id="selectedDeck"> -deck-  </b> deck for ages <b id="selectedAge"> -age-</b></h4>
         <br>
     </div>
     <div class="deckOfCards">
@@ -132,7 +146,7 @@
                             <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-18-03.png")' title="Pizzeria" data-gallery="gallery" rel='gallery'>Pizzeria</a>    
                             </td>
 
-                            <td id='links16' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='40' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/gog1.png")'>
+                            <td id='links16' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery"><img height='50' width='40' style="max-height: 50px;max-width: 50px;" src='@routes.Assets.at("images/logos/gameOfGames.png")'>
                             <a href='@routes.Assets.at("images/cards/Cards-63-03.png")' title="Coming soon" data-gallery="gallery" rel='gallery'>Game of Games</a>
                             <a style="display: none;" href='@routes.Assets.at("images/cards/Cards-64-03.png")' title="Coming soon" data-gallery="gallery" rel='gallery'>Game of Games</a>    
                             </td>
@@ -143,3 +157,5 @@
         </div> <!-- /container -->
     </div> <!-- /deckOfCards -->
 </div> <!-- /readSetPLAY -->
+
+
