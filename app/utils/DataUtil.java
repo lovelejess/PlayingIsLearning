@@ -19,6 +19,7 @@ public class DataUtil {
       public static DB getDB() {
 
         try {
+              
             /*PROD*/
             MongoClient prodMongoInstance = new MongoClient("ds061787.mongolab.com", 61787); //PROD
             DB prodDB = prodMongoInstance.getDB("heroku_app15452455");
@@ -41,6 +42,7 @@ public class DataUtil {
             return null;
         }
     }
+    
     public static JacksonDBCollection getCollection(String collection, Class clazz) {
 
         try {
