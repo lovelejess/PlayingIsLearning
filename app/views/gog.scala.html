@@ -2,11 +2,10 @@
 @import tags._
 @main() {
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/gog.css")'>
-<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
-<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-image-gallery.min.css")'>
+
     <div id="gog">
         <div class="container">
-            <div class="row-fluid">
+            <div class="row">
                 <div class="col-lg-8 col-lg-offset-4 centered">
                     <div class="col-lg-5 centered">
                         <br> 
@@ -51,9 +50,18 @@
                     Repeat as many times as time allows.</p>
                 </div>
             </div>
-        </div>
-    </div> <!-- /whatIsGOG -->
+        </div><!-- /container -->
 
+        <br>
+        <div class="row">
+                <div class="span6">
+                    <div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
+                    <iframe allowfullscreen="" src="http://player.vimeo.com/video/90156700" frameborder="0" width="500" height="281"></iframe>
+                    </div> 
+                </div><!-- /span6 -->
+        </div><!-- /row -->    
+    </div> <!-- /whatIsGOG -->
     @letsplay()
+
 
 }

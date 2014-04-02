@@ -16,30 +16,33 @@ import java.net.UnknownHostException;
  */
 public class DataUtil {
 
-    public static DB getDB() {
+      public static DB getDB() {
 
         try {
-            MongoClient mongoClient = new MongoClient("ds061787.mongolab.com", 61787);
-            
+              
+            /*PROD*/
+            // MongoClient prodMongoInstance = new MongoClient("ds061787.mongolab.com", 61787); //PROD
+            // DB prodDB = prodMongoInstance.getDB("heroku_app15452455");
+            // prodDB.authenticate("icm_prod", "V3rify99".toCharArray()); //todo this needs to go in an ignored config file
+            // return prodDB;
 
-//          mongoClient.setReadPreference(ReadPreference.primary());
-//
-            DB dataBase = mongoClient.getDB("heroku_app15452455");
+            /*DEV*/
+//            MongoClient devMongoInstance = new MongoClient("ds035897.mongolab.com", 35897); //DEV
+//            DB devDB = prodMongoInstance.getDB("heroku_app23461665");
+//            devDB.authenticate("icm_dev", "V3rify99".toCharArray()); //todo this needs to go in an ignored config file
+//            return devDB;
 
-            /*TEST DB*/
-//            MongoClient mongoClient = new MongoClient( );
-//            DB dataBase = mongoClient.getDB("icm");
+            /*LOCAL*/
+           MongoClient mongoClient = new MongoClient( );
+           DB localDB = mongoClient.getDB("icm");
+           return localDB;
 
-            //todo this needs to go in an ignored config file
-            dataBase.authenticate("heroku_app15452455", "73mi73eoolvr4s7v47ugutfru9".toCharArray());
-
-            return dataBase;
 
         } catch (UnknownHostException e) {
             return null;
         }
     }
-
+    
     public static JacksonDBCollection getCollection(String collection, Class clazz) {
 
         try {

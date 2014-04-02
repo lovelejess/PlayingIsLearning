@@ -1,11 +1,10 @@
 
-/* readySetPLAY Quote */
+/* readySetPLAY */
 #readySetPLAY {
     font-family: "Raleway";
     background-color: #4e4e4e;
     padding-top: 70px;
     padding-bottom: 70px;
-    margin-top: 0px;
 }
 
 #readySetPLAY h1,h2,h3,h4 {
@@ -34,11 +33,16 @@
 
 }
 
+#selection{
+    overflow-x: hidden;
+}
+
 #readySetPLAY .table-striped>tbody>tr:nth-child(even)>td, 
 .table-striped>tbody>tr:nth-child(even)>th {
    background-color: #E8E8E8 ;
  }
 
+/* CARDS */
 
 #selectedDeck, #selectedAge{
     color: #50C1C1;
