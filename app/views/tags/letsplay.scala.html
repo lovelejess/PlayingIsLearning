@@ -1,5 +1,6 @@
 
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/letsplay.css")'>
+<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/blueimp-gallery.min.css")'>
 
 <div id="readySetPLAY">
     <div id="title">
@@ -48,9 +49,12 @@
     <div  id="deckSelection" ng:app="ShuffleModule">
     <div ng-controller="ShuffleController">
         <a class="btn btn-lg btn-default" ng-click="useDeck()"><b>Shuffle!</b></a>
-            <div ng-repeat="(card, age) in array | shuffle | limitTo:1">
+            <div ng-repeat=" card in array | shuffle | limitTo:1">
                 <br>
-                <a href={{age.small}} title={{card}} data-gallery="gallery" rel='gallery'>{{card}}</a>
+                <div id='links1' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery">
+                    <a href={{card.small}} title={{card.name}} data-gallery="gallery" rel='gallery'>{{card.name}}</a>
+                    <a style="display: none;" href={{card.small}} title={{card.name}}data-gallery="gallery" rel='gallery'> </a>
+                </div>
             </div>
     </div>
 </div>
@@ -79,34 +83,34 @@
 var shufflemodule = angular.module('ShuffleModule', []);
 
 shufflemodule.filter('shuffle', function() {
-    return function(k,v) {
-        for(var curr, knew, keys = k, len = o.length; i = len; 
-            curr = parseInt(Math.random() * len), 
-            knew = o[--len], o[len] = o[curr], o[curr] = knew);
-        return (k,v);
+    return function(k) {
+        for(var j, x, i = k.length; i; j = parseInt(Math.random() * i), x = k[--i], k[i] = k[j], k[j] = x);
+        
+        return k;
     };
 });
 
 function ShuffleController($scope) {
-    var icmDeck = {
-        'Train Room': 
-            {'small':'@routes.Assets.at("images/cards/Cards-29-03.png")'}, 
-        'Bodies In Motion': 
-            {'small':'@routes.Assets.at("images/cards/Cards-21-03.png")'}, 
-        'Wind Tunnel': 
-            {'small':'@routes.Assets.at("images/cards/Cards-59-03.png")'}, 
-        'Post Office' : 
-            {'small':'@routes.Assets.at("images/cards/Cards-53-03.png")'},
-        'ABC Forest' :
-            {'small':'@routes.Assets.at("images/cards/Cards-05-03.png")'},
-        'Art Room' : 
-            {'small':'@routes.Assets.at("images/cards/Cards-13-03.png")'},
-        'Bank' : 
-            {'small':'@routes.Assets.at("images/cards/Cards-33-03.png")'},
-        'Theatre' :
-            {'small':'@routes.Assets.at("images/cards/Cards-49-03.png")'} 
-    };
-    
+    var icmDeck = [
+        { name: 'Train Room',
+                small:'@routes.Assets.at("images/cards/Cards-29-03.png")'}, 
+        { name: 'Bodies In Motion', 
+                small:'@routes.Assets.at("images/cards/Cards-21-03.png")'}, 
+        { name: 'Wind Tunnel', 
+                small:'@routes.Assets.at("images/cards/Cards-59-03.png")'}, 
+        { name: 'Post Office',
+                small:'@routes.Assets.at("images/cards/Cards-53-03.png")'},
+        { name: 'ABC Forest',
+                small:'@routes.Assets.at("images/cards/Cards-05-03.png")'},
+        { name: 'Art Room', 
+                small:'@routes.Assets.at("images/cards/Cards-13-03.png")'},
+        { name: 'Bank',
+                small:'@routes.Assets.at("images/cards/Cards-33-03.png")'},
+        { name: 'Theatre',
+                small:'@routes.Assets.at("images/cards/Cards-49-03.png")'} 
+    ];
+    var icmKeys = ['Train Room','Bodies In Motion','Wind Tunnel','Post Office','ABC Forest','Art Room','Bank','Theatre']
+
     $scope.array = icmDeck;
     
     $scope.useDeck = function() { $scope.array = icmDeck; };
