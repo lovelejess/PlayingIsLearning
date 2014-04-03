@@ -51,16 +51,47 @@
         <a class="btn btn-lg btn-default" ng-click="useDeck()"><b>Shuffle!</b></a>
             <div ng-repeat=" card in array | shuffle | limitTo:1">
                 <br>
-                <div id='links1' class="is-visible" data-toggle="modal-gallery" data-target="#modal-gallery">
-                    <a href={{card.small}} title={{card.name}} data-gallery="gallery" rel='gallery'>{{card.name}}</a>
-                    <a style="display: none;" href={{card.small}} title={{card.name}}data-gallery="gallery" rel='gallery'> </a>
+                 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+                <div id="blueimp-gallery" class="blueimp-gallery">
+                    <!-- The container for the modal slides -->
+                    <div class="slides"></div>
+                    <!-- Controls for the borderless lightbox -->
+                    <h3 class="title"></h3>
+                    <a class="prev">‹</a>
+                    <a class="next">›</a>
+                    <a class="close">×</a>
+                    <a class="play-pause"></a>
+                    <ol class="indicator"></ol>
+                    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+                    <div class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title"></h4>
+                                </div>
+                                <div class="modal-body next"></div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left prev">
+                                        <i class="glyphicon glyphicon-chevron-left"></i>
+                                        Previous
+                                    </button>
+                                    <button type="button" class="btn btn-primary next">
+                                        Next
+                                        <i class="glyphicon glyphicon-chevron-right"></i>
+                                    </button>
+                                </div> <!--modal-header -->
+                            </div> <!--modal-content -->
+                        </div> <!--modal-dialog -->
+                    </div> <!-- modal fade --> 
+                </div>  <!-- /blueimp-gallery-->
+                <div id='links'>
+                    <a href={{card.youngOne}} title={{card.name}} data-gallery="gallery" rel='gallery'><img style="max-height: 500px;max-width: 300px;" src='@routes.Assets.at("images/cards/Cards-29-03.png")'</a>
+                    <a style="display:none" href={{card.youngTwo}} title={{card.name}} data-gallery="gallery" rel='gallery'>{{card.name}}</a>
                 </div>
             </div>
+        </div>
     </div>
-</div>
-
-
-    
 </div> <!-- /readSetPLAY -->
 
 
@@ -93,21 +124,29 @@ shufflemodule.filter('shuffle', function() {
 function ShuffleController($scope) {
     var icmDeck = [
         { name: 'Train Room',
-                small:'@routes.Assets.at("images/cards/Cards-29-03.png")'}, 
+                youngOne:'@routes.Assets.at("images/cards/Cards-29-03.png")',
+                youngTwo:'@routes.Assets.at("images/cards/Cards-30-03.png")'}, 
         { name: 'Bodies In Motion', 
-                small:'@routes.Assets.at("images/cards/Cards-21-03.png")'}, 
+                youngOne:'@routes.Assets.at("images/cards/Cards-21-03.png")',
+                youngTwo:'@routes.Assets.at("images/cards/Cards-22-03.png")'}, 
         { name: 'Wind Tunnel', 
-                small:'@routes.Assets.at("images/cards/Cards-59-03.png")'}, 
+                youngOne:'@routes.Assets.at("images/cards/Cards-59-03.png")',
+                youngTwo:'@routes.Assets.at("images/cards/Cards-60-03.png")'}, 
         { name: 'Post Office',
-                small:'@routes.Assets.at("images/cards/Cards-53-03.png")'},
+                youngOne:'@routes.Assets.at("images/cards/Cards-53-03.png")',
+                youngTwo:'@routes.Assets.at("images/cards/Cards-54-03.png")'},
         { name: 'ABC Forest',
-                small:'@routes.Assets.at("images/cards/Cards-05-03.png")'},
+                youngOne:'@routes.Assets.at("images/cards/Cards-05-03.png")',
+                youngTwo:'@routes.Assets.at("images/cards/Cards-06-03.png")'},
         { name: 'Art Room', 
-                small:'@routes.Assets.at("images/cards/Cards-13-03.png")'},
+                youngOne:'@routes.Assets.at("images/cards/Cards-13-03.png")',
+                youngTwo:'@routes.Assets.at("images/cards/Cards-14-03.png")'},
         { name: 'Bank',
-                small:'@routes.Assets.at("images/cards/Cards-33-03.png")'},
+                youngOne:'@routes.Assets.at("images/cards/Cards-33-03.png")',
+                youngTwo:'@routes.Assets.at("images/cards/Cards-34-03.png")'},
         { name: 'Theatre',
-                small:'@routes.Assets.at("images/cards/Cards-49-03.png")'} 
+                youngOne:'@routes.Assets.at("images/cards/Cards-49-03.png")',
+                youngTwo:'@routes.Assets.at("images/cards/Cards-50-03.png")'} 
     ];
     var icmKeys = ['Train Room','Bodies In Motion','Wind Tunnel','Post Office','ABC Forest','Art Room','Bank','Theatre']
 
@@ -117,3 +156,6 @@ function ShuffleController($scope) {
 }
 
 </script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<script src="js/bootstrap-image-gallery.min.js"></script>
