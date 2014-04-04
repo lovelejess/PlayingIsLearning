@@ -89,7 +89,7 @@
                     <a href={{card.youngOne}} title={{card.name}} data-gallery="gallery" rel='gallery'><img src={{card.logo}} </a> 
                     <br><div id="cardDisplayName"> {{card.name}} </div>
                     <a style="display:none" href={{card.youngTwo}} title={{card.name}} data-gallery="gallery" rel='gallery'>{{card.name}}</a>
-                </div>
+                </div><!-- /links -->
             </div>
         </div>
     </div>
@@ -104,8 +104,8 @@
      }
 
      function ageSelected(){
-        var deck = document.getElementById('age').value;
-        document.getElementById('selectedAge').innerHTML = deck;
+        var age = document.getElementById('age').value;
+        document.getElementById('selectedAge').innerHTML = age;
      }
 
 /* Fisher Yates Shuffle Algorithm 
@@ -173,8 +173,7 @@ function ShuffleController($scope) {
                 oldOne:'@routes.Assets.at("images/cards/Cards-51-39.png")',
                 oldTwo:'@routes.Assets.at("images/cards/Cards-52-39.png")'} 
     ];
-    var icmKeys = ['Train Room','Bodies In Motion','Wind Tunnel','Post Office','ABC Forest','Art Room','Bank','Theatre']
-
+    
     $scope.array = icmDeck;
     
     $scope.useDeck = function() { $scope.array = icmDeck; };
