@@ -47,3 +47,11 @@
 #selectedDeck, #selectedAge{
     color: #50C1C1;
 }
+
+#readySetPLAY #links #cardDisplayName{
+    padding-top:5px;
+    color: #50C1C1;
+    font-family: "Raleway";
+    font-size: 16px;
+    font-weight: 400;
+}
