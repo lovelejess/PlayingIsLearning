@@ -33,9 +33,9 @@ public class DataUtil {
 //            return devDB;
 
             /*LOCAL*/
-           MongoClient mongoClient = new MongoClient( );
-           DB localDB = mongoClient.getDB("icm");
-           return localDB;
+           // MongoClient mongoClient = new MongoClient( );
+           // DB localDB = mongoClient.getDB("icm");
+           // return localDB;
 
 
         } catch (UnknownHostException e) {
