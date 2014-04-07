@@ -40,8 +40,8 @@ public class Account extends MasterController {
         return ok( resources.render());
     }
 
-    public static Result cards(){
-        return ok( cards.render());
+    public static Result playGog(){
+        return ok( playGog.render());
     }
 
     public static Result builds(){

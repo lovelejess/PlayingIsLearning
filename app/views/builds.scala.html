@@ -2,13 +2,52 @@
 @import tags._
 @main() {
 
-<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/build.css")'>
+<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/builds.css")'>
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-image-gallery.min.css")'>
 
-<div class="builds">
-	
-</div>
-
+<div id="builds">
+    <div class="container">
+        <div class="row centered mt grid">
+			<h3>Play Builds...</h3>
+			<div class="mt"></div>
+			<div class="col-lg-3">
+				<a href="#Creativity"><img src="@routes.Assets.at("images/icons/art.png")"></a>
+				<h4>Creativity</h4>
+			</div>
+			<div class="col-lg-3">
+				<a href="#Self-Regulation"><img src="@routes.Assets.at("images/icons/groceryStore.png")"></a>
+				<h4>Self-Regulation</h4>
+			</div>
+			<div class="col-lg-3">
+				<a href="#Spatial Awareness"><img src="@routes.Assets.at("images/icons/imagineAcres.png")"></a>
+				<h4>Spatial Awareness</h4>
+			</div>
+			<div class="col-lg-3">
+				<a href="#Language"><img src="@routes.Assets.at("images/icons/reading.png")"></a>
+				<h4>Language</h4>
+			</div>
+		</div>
+		<div class="row centered mt grid">
+			<div class="mt"></div>
+			<div class="col-lg-3">
+				<a href="#Healthy Bodies"><img src="@routes.Assets.at("images/icons/hospital.png")"></a>
+				<h4>Healthy Bodies</h4>
+			</div>
+			<div class="col-lg-3">
+				<a href="#Number Knowledge"><img src="@routes.Assets.at("images/icons/dollarCity.png")"></a>
+				<h4>Number Knowledge</h4>
+			</div>
+			<div class="col-lg-3">
+				<a href="#Social Skills"><img src="@routes.Assets.at("images/icons/theatre.png")"></a>
+				<h4>Social Skills</h4>
+			</div>
+			<div class="col-lg-3">
+				<a href="#Conceptual Thinking"><img src="@routes.Assets.at("images/icons/lego.png")"></a>
+				<h4>Conceptual Thinking</h4>
+			</div>
+		</div>
+    </div> <!-- /container -->
+</div><!-- /gog -->
 
 }

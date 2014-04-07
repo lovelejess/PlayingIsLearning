@@ -7,7 +7,7 @@ GET    /                     controllers.Account.index()
 GET    /index                controllers.Account.index()
 GET    /gog                  controllers.Account.gog()
 GET    /resources            controllers.Account.resources()
-GET	   /cards				 controllers.Account.cards()
+GET	   /playGog				 controllers.Account.playGog()
 GET    /builds				 controllers.Account.builds()
 
 #Login-Logout

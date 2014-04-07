@@ -113,23 +113,23 @@ ul, li {
 	font-weight: 400;
 }
 
-/* Social Media */
-#social {
+/* Sponsors Media */
+#sponsors {
 	width: 100%;
-	padding-top: 200px;
-	padding-bottom: 200px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 
-#social i {
+#sponsors i {
 	font-size: 50px;
 	color: #74cfae;
 }
 
-#social .col-md-3:hover {
+#sponsors .col-md-3:hover {
 	background-color: #f5f5f5;
 }
 
-#social .col-md-3 {
+#sponsors .col-md-3 {
 	padding:30px;
 }
 

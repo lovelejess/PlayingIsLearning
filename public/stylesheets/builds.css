@@ -1,28 +1,19 @@
 /* BUILDS */
 #builds {
-    width: 100%;
-    padding-top: 100px;
-    padding-bottom: 10px;
+    padding-top: 50px;
+    padding-bottom: 30px;
 }
-
-/* Footer */
-#footer {
-	position: fixed;
-	width:100%;
-	left: 0px;
-	bottom: 0px;
-	height: 5%;
-	padding: 10 0px 10 0px;
+#builds h3,h4{
 	font-family: "Raleway";
-  	background-color: #50C1C1;
+}
+.centered {
+    text-align: center;
 }
 
-#footer p {
-	color: white;
-	text-align: right;
-	font-weight: 400;
+.mt {
+	margin-top: 100px;
 }
 
-#footer a {
-  color: #4e4e4e;
+#footer{
+	margin-top: 170px;
 }
