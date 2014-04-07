@@ -1,49 +1,51 @@
-
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/letsplay.css")'>
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/blueimp-gallery.min.css")'>
 
-<div id="readySetPLAY">
+<div id="readySetPLAY" ng-controller="letsplayCTRL">
     <div id="title">
         <h2> Ready, Set, PLAY! </h2>
     </div>
     <div id="instruct">
         <p> To start playing, select the age group and deck you would like to play with.</p>
     </div>
-    <div id="selection">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="deck"></label>
-                    <select id="deck" name="deck" class="form-control">
-                     <option class="blank" value=""> Select Deck </option>
-                        <option> ICM Museum Deck 1 </option>
-                        <option> ICM Museum Deck 2 </option>
-                    </select>  
+
+    <fieldset>
+        <div id="selection">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="deck"></label>
+                        <select id="deck" name="deck" class="form-control">
+                         <option class="blank" value=""> Select Deck </option>
+                            <option> ICM Museum Deck 1 </option>
+                            <option> ICM Museum Deck 2 </option>
+                        </select>  
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="age"></label>
-                    <select id="age" name="age" class="form-control">
-                     <option class="blank" value=""> Select Age Group </option>
-                        <option> 0-3 </option>
-                        <option> 3+</option>
-                    </select>  
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="age"></label>
+                        <select id="age" name="age" class="form-control">
+                         <option class="blank" value=""> Select Age Group </option>
+                            <option> 0-3 </option>
+                            <option> 3+</option>
+                        </select>  
+                    </div>
+                </div> 
+                <div class="col-md-1">
+                    <a class="btn btn-lg btn-default" ng-click="deckAgeSelected()">Play!</a>
                 </div>
-            </div> 
-            <div class="col-md-2">
-                <a class="btn btn-lg btn-default" onclick="deckSelected();ageSelected();">Play!</a>
-            </div>
-            <div class="col-md-2"></div>
-        </div> <!-- /row -->               
-    </div> <!-- /container -->
+                <div class="col-md-3"></div>
+            </div> <!-- /row -->               
+        </div> <!-- /selection -->
+    </fieldset>
 
     <br>
 
     <div id="deckSelection">
-        <h4> You are playing with the <b id="selectedDeck"> -deck-  </b> deck for ages <b id="selectedAge"> -age-</b></h4>
+        <h4> You are playing with the  {{deck}}  deck for ages <b id="selectedAge"> {{age}}</b></h4>
         <br>
     </div>
     <div  id="deckSelection" ng:app="ShuffleModule">
@@ -97,16 +99,6 @@
 
 
 <script type="text/javascript">
-
-    function deckSelected(){
-        var deck = document.getElementById('deck').value;
-        document.getElementById('selectedDeck').innerHTML = deck;
-     }
-
-     function ageSelected(){
-        var age = document.getElementById('age').value;
-        document.getElementById('selectedAge').innerHTML = age;
-     }
 
 /* Fisher Yates Shuffle Algorithm 
    http://bost.ocks.org/mike/shuffle/
@@ -180,6 +172,7 @@ function ShuffleController($scope) {
 }
 
 </script>
+<script src='@routes.Assets.at("javascripts/letsplay.js")'></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <script src="js/bootstrap-image-gallery.min.js"></script>

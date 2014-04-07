@@ -12,6 +12,10 @@
     font-family: "Lato";
 }
 
+#readySetPLAY p {
+    font-size: 20px;
+}
+
 #readySetPLAY #instruct {
     color: white;
     font-weight: 400;
@@ -22,20 +26,22 @@
 #readySetPLAY #title {
     text-align: center;
     color: white;
-    font-family: "Raleway";
 
  }
 
 #readySetPlay #deckSelection {
     text-align: center;
     color: white;
-    font-family: "Raleway";
 
 }
-
 #selection{
     overflow-x: hidden;
+    padding-top:5px;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
 }
+
 
 #readySetPLAY .table-striped>tbody>tr:nth-child(even)>td, 
 .table-striped>tbody>tr:nth-child(even)>th {
@@ -51,7 +57,6 @@
 #readySetPLAY #links #cardDisplayName{
     padding-top:5px;
     color: #50C1C1;
-    font-family: "Raleway";
     font-size: 16px;
     font-weight: 400;
 }

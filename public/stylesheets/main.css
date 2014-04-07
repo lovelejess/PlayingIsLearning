@@ -6,21 +6,10 @@
 @import url(http://fonts.googleapis.com/css?family=Finger+Paint);
 
 /* BODY */
-
-body {
-  background-color: #f2f2f2;
-    font-family: "Lato";
-    font-weight: 300;
-    font-size: 16px;
-    color: #555;
-
-    -webkit-font-smoothing: antialiased;
-    -webkit-overflow-scrolling: touch;
-    
-    margin-top: 70px;
+body{
+	height: 100%
 }
-
-/* Headings */
+/* Titles */
 h1, h2, h3, h4, h5, h6 {
     font-family: "Raleway";
     font-weight: 300;
@@ -30,8 +19,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Paragraph & Typographic */
 p {
+    font-family: "Raleway";
     line-height: 28px;
     margin-bottom: 25px;
+}
+
+ul, li {
+  font-family: "Raleway";
 }
 
 .centered {
@@ -39,69 +33,25 @@ p {
 }
 
 .mt {
-	margin-top: 40px;
+  margin-top: 40px;
 }
 
-/* Links */
-a {
-    color: #f85c37;
-    word-wrap: break-word;
+/* BOOTSTRAP MOD */
 
-    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
-    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
-    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
-    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
-    transition: color 0.1s ease-in, background 0.1s ease-in;
-}
-
-a:hover,
-a:focus {
-    color: #7b7b7b;
-    text-decoration: none;
-    outline: 0;
-}
-
-a:before,
-a:after {
-    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
-    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
-    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
-    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
-    transition: color 0.1s ease-in, background 0.1s ease-in;
-}
-
-/* BOOTSTRAP MODIFICATIONS */
- hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-}
+.navbar-default ul li{
+  font-size: 20px;
+  font-family: "Lato";
+ }
 
 
-.navbar {
-	font-weight: 800;
-	font-size: 14px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
-
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	color: #74cfae;
-}
-.navbar a {
-  font-family: 'Finger Paint', cursive;
-}
 
 /*************************************/
 
 /* playIsLearning */
 #playIsLearning {
 	width: 100%;
-	padding-top: 250px;
-	padding-bottom: 250px;
+	padding-top: 200px;
+	padding-bottom: 200px;
 }
 
 #playIsLearning h1 {
@@ -112,10 +62,10 @@ a:after {
 }
 
 #playIsLearning h2 {
-  font-family: 'Finger Paint', cursive;
 	color: black;
 	font-weight: 400;
-  text-align: center;
+  	text-align: center;
+  	font-family: "Lato"
 }
 
 #PIL #playIsLearning{
@@ -127,12 +77,12 @@ a:after {
 	background-color: #50C1C1;
 	padding-top: 50px;
 	margin-bottom: 0px;
-  padding-bottom: 50px;
+  	padding-bottom: 50px;
 }
 
 #whatIsPIL h3 {
   font-family: "Lato";
-	color: white;
+	color: black;
 	font-weight: 400;
 	margin-bottom: 35px;
 }
@@ -141,16 +91,13 @@ a:after {
   text-decoration: square;
 }
 #whatIsPIL p, li{
-  font-family: "Raleway";
 	color: white;
-	font-weight: 400;
 	font-size: 20px;
 }
 
 
 /* stuartBrown Quote */
 #stuartBrown {
-  font-family: "Raleway";
 	background-color: #4e4e4e;
 	padding-top: 70px;
 	padding-bottom: 70px;
@@ -203,16 +150,5 @@ a:after {
   color: #4e4e4e;
 }
 
-/* IMAGE OPACITY */
-.grid img {
-    opacity: .7;
-}
-.grid img:hover {
-    opacity: 1;
-}
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
-}
+
 

@@ -5,7 +5,7 @@
 @import helper.twitterBootstrap._
 @import tags._
 
-<html lang ="en" ng-app>
+<html lang ="en">
     <head>
         <title>ICM | Playing is Learning!</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,6 +27,7 @@
         <script src='@routes.Assets.at("javascripts/backbone-min.js")' type="text/javascript"></script>
         <script src='@routes.Assets.at("javascripts/router.js")' type="text/javascript"></script>
         <script src='@routes.Assets.at("javascripts/angular.min.js")' type="text/javascript"></script>
+        <script src='@routes.Assets.at("javascripts/pil.js")' type="text/javascript"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -35,7 +36,7 @@
     <![endif]-->
     </head>
 
-    <body>        
+    <body ng-app="pil">       
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -67,22 +68,22 @@
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="/index">Home</a></li>
-                    <li class="active"><a href="/gog">Games</a></li>
-                    <li class="active"><a href="/cards">Play</a></li>
-                    <li class="active"><a href="/resources">Explore</a></li>
+                    <li><a href="/index">Home</a></li>
+                    <li><a href="/gog">Game of Games</a></li>
+                    <li><a href="/cards">Play!</a></li>
+                    <li><a href="/builds">Play Builds</a></li>
+                    <li><a href="/resources">Explore</a></li>
                 </ul>
             </div>
-        </div>
-    </nav>
+        </div><!--/container -->
+    </nav><!-- /nav -->
     
     @content
-
     <div id="footer">
         <div class="container">
-            <p>A <a href="http://www.cornfluence.com/">Cornfluence</a> & <a href="http://www.lovelejess.com">lovel&#234;jess</a> design collaboration | 2014 </p>
-        </div>
-    </div>
+            <p> A <a href="http://www.cornfluence.com/"><b>Cornfluence</a></b> & <a href="http://www.lovelejess.com"><b> lovel&#234;jess</a> </b>design collaboration | 2014 </p>
+        </div> <!--/footer-->
+    </div><!--/footer -->
     </body>
     
 </html>

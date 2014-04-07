@@ -1,4 +1,4 @@
-@()
+
 @import tags._
 @main() {
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/gog.css")'>
@@ -53,13 +53,15 @@
         </div><!-- /container -->
 
         <br>
-        <div class="row">
-                <div class="span6">
-                    <div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
-                    <iframe allowfullscreen="" src="http://player.vimeo.com/video/90156700" frameborder="0" width="500" height="281"></iframe>
-                    </div> 
-                </div><!-- /span6 -->
-        </div><!-- /row -->    
+        <div class="container">
+            <div class="row">
+                    <div class="span6">
+                        <div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
+                            <iframe allowfullscreen="" src="http://player.vimeo.com/video/90156700" frameborder="0" width="500" height="281"></iframe>
+                        </div> 
+                    </div><!-- /span6 -->
+            </div><!-- /row -->
+        </div> <!--/container-->    
     </div> <!-- /whatIsGOG -->
     @letsplay()
 }

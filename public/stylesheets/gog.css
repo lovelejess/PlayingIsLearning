@@ -45,38 +45,26 @@
   font-family: "Raleway";
     color: white;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 /* Footer */
 #footer {
-	width:100%;
-	left: 0px;
-	bottom: 0px;
-	height: 5%;
-	padding: 10 0px 10 0px;
-	font-family: "Raleway";
-  	background-color: #50C1C1;
+  width:100%;
+  left: 0px;
+  bottom: 0px;
+  height: 5%;
+  padding: 10 0px 10 0px;
+  font-family: "Raleway";
+    background-color: #50C1C1;
 }
 
 #footer p {
-	color: white;
-	text-align: right;
-	font-weight: 400;
+  color: white;
+  text-align: right;
+  font-weight: 400;
 }
 
 #footer a {
   color: #4e4e4e;
-}
-/* Image Opacity */
-.grid img {
-    opacity: .7;
-}
-.grid img:hover {
-    opacity: 1;
-}
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }

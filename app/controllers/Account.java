@@ -44,6 +44,10 @@ public class Account extends MasterController {
         return ok( cards.render());
     }
 
+    public static Result builds(){
+        return ok( builds.render());
+    }
+
     public static Result login() {
         if(!DataUtil.isDatabase()) {
             flash("error", "Our database is currently down. Please contact a system administrator.");
