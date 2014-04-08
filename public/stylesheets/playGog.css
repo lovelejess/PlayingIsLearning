@@ -15,24 +15,3 @@
 
 }
 
-/* Footer */
-#footer {
-	position: fixed;
-	width:100%;
-	left: 0px;
-	bottom: 0px;
-	height: 5%;
-	padding: 10 0px 10 0px;
-	font-family: "Raleway";
-  	background-color: #50C1C1;
-}
-
-#footer p {
-	color: white;
-	text-align: right;
-	font-weight: 400;
-}
-
-#footer a {
-  color: #4e4e4e;
-}

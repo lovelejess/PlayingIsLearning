@@ -1,10 +1,11 @@
 /* BUILDS */
 #builds {
-    padding-top: 50px;
-    padding-bottom: 30px;
+    padding-bottom: 120px;
+    background-color: #4e4e4e;
 }
 #builds h3,h4{
 	font-family: "Raleway";
+	font-color: white;
 }
 .centered {
     text-align: center;
@@ -15,5 +16,5 @@
 }
 
 #footer{
-	margin-top: 170px;
+	margin-top: 10px;
 }
