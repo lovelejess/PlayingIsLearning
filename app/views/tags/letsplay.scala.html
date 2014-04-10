@@ -1,7 +1,7 @@
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/letsplay.css")'>
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/blueimp-gallery.min.css")'>
 
-<div id="readySetPLAY" ng-app="letsPlay" ng-controller="selectCTRL">
+<div id="readySetPLAY" ng:app="letsPlay" ng-controller="selectCTRL">
     <div id="title">
         <h2> Ready, Set, PLAY! </h2>
     </div>
@@ -28,10 +28,10 @@
     <br>
 
     <div id="deckSelection">
-        <h4> You are playing with the <b id="selectedAge">{{selectedDeck}} </b>deck for ages <b id="selectedAge"> {{selectedAge}}</b></h4>
+        <h4> You are playing with the <b id="selectedDeck">{{selectedDeck}} </b>deck for ages <b id="selectedAge"> {{selectedAge}}</b></h4>
         <br>
     </div>
-    <div  id="deckSelection" >
+    <div  class="centered" >
             <a class="btn btn-lg btn-default" ng-click="useDeck()"><b>Shuffle!</b></a>
             <div ng-repeat=" card in array | shuffle | limitTo:1">
                 <br>
@@ -70,14 +70,12 @@
                     </div> <!-- modal fade --> 
                 </div>  <!-- /blueimp-gallery-->
                 <div id='links'>
-                    <a href="{{card.youngOne}}" title="{{card.name}}" data-gallery="gallery" rel='gallery'><img src="{{card.logo}}"</a> 
-                    <br>
-                    <div id="cardDisplayName"> {{card.name}} {{card.youngOne}} 
-                    </div>
+                    <a href= {{card.youngOne}} title={{card.name}} data-gallery="gallery" rel='gallery'><img src={{card.logo}}</img></a> 
+                    <br><div id="cardDisplayName"> {{card.name}} </div>
                     <a style="display:none" href={{card.youngTwo}} title={{card.name}} data-gallery="gallery" rel='gallery'>{{card.name}}</a>
                 </div><!-- /links -->
             </div> <!--/ng-repeat=" card in array -->
-    </div><!-- id="deckSelection" -->
+    </div><!-- centered -->
 </div> <!-- /readSetPLAY -->
 
 

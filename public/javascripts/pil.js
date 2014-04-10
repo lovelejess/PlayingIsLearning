@@ -62,7 +62,6 @@ selectModule.controller("selectCTRL", function($scope){
                 oldOne:'@routes.Assets.at("images/cards/Cards-51-39.png")',
                 oldTwo:'@routes.Assets.at("images/cards/Cards-52-39.png")'} 
     ];
-    
     $scope.array = icmDeck;
     
     $scope.useDeck = function() { $scope.array = icmDeck; };
