@@ -70,8 +70,15 @@
                     </div> <!-- modal fade --> 
                 </div>  <!-- /blueimp-gallery-->
                 <div id='links'>
+
                     <a href= {{card.youngOne}} title={{card.name}} data-gallery="gallery" rel='gallery'><img src={{card.logo}}</img></a> 
                     <br><div id="cardDisplayName"> {{card.name}} </div>
+
+                    <a href="{{card.youngOne}}" title="{{card.name}}" data-gallery="gallery" rel='gallery'><img src="{{card.logo}}"></a>
+                    <br>
+                    <div id="cardDisplayName"> {{card.name}} {{card.youngOne}} 
+                    </div>
+
                     <a style="display:none" href={{card.youngTwo}} title={{card.name}} data-gallery="gallery" rel='gallery'>{{card.name}}</a>
                 </div><!-- /links -->
             </div> <!--/ng-repeat=" card in array -->
