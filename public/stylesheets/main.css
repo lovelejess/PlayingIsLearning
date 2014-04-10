@@ -110,6 +110,10 @@ ul, li {
 
 #pilVideo h3, h4 {
 	color: white;
+	font-family: "Raleway";
+	color: white;
+	font-weight: 400;
+	margin-bottom: 30px;
 }
 
 #pilVideo p {

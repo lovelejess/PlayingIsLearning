@@ -1,7 +1,7 @@
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/letsplay.css")'>
 <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/blueimp-gallery.min.css")'>
 
-<div id="readySetPLAY" ng-controller="letsplayCTRL">
+<div id="readySetPLAY" ng-app="letsPlay" ng-controller="selectCTRL">
     <div id="title">
         <h2> Ready, Set, PLAY! </h2>
     </div>
@@ -12,32 +12,15 @@
     <fieldset>
         <div id="selection">
             <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-2"></div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label for="deck"></label>
-                        <select id="deck" name="deck" class="form-control">
-                         <option class="blank" value=""> Select Deck </option>
-                            <option> ICM Museum Deck 1 </option>
-                            <option> ICM Museum Deck 2 </option>
-                        </select>  
-                    </div>
+                <div class="col-lg-5"></div>
+                <div class="col-lg-2">
+                    <select ng-model="selectedDeck" ng-options="d for d in decks">
+                    </select> 
+                    <select ng-model="selectedAge" ng-options="a for a in ages">
+                    </select> 
                 </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label for="age"></label>
-                        <select id="age" name="age" class="form-control">
-                         <option class="blank" value=""> Select Age Group </option>
-                            <option> 0-3 </option>
-                            <option> 3+</option>
-                        </select>  
-                    </div>
-                </div> 
-                <div class="col-md-1">
-                    <a class="btn btn-lg btn-default" ng-click="deckAgeSelected()">Play!</a>
-                </div>
-                <div class="col-md-3"></div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-3"></div> 
             </div> <!-- /row -->               
         </div> <!-- /selection -->
     </fieldset>
@@ -45,12 +28,11 @@
     <br>
 
     <div id="deckSelection">
-        <h4> You are playing with the  {{deck}}  deck for ages <b id="selectedAge"> {{age}}</b></h4>
+        <h4> You are playing with the <b id="selectedAge">{{selectedDeck}} </b>deck for ages <b id="selectedAge"> {{selectedAge}}</b></h4>
         <br>
     </div>
-    <div  id="deckSelection" ng:app="ShuffleModule">
-    <div ng-controller="ShuffleController">
-        <a class="btn btn-lg btn-default" ng-click="useDeck()"><b>Shuffle!</b></a>
+    <div  id="deckSelection" >
+            <a class="btn btn-lg btn-default" ng-click="useDeck()"><b>Shuffle!</b></a>
             <div ng-repeat=" card in array | shuffle | limitTo:1">
                 <br>
                  <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
@@ -88,90 +70,17 @@
                     </div> <!-- modal fade --> 
                 </div>  <!-- /blueimp-gallery-->
                 <div id='links'>
-                    <a href={{card.youngOne}} title={{card.name}} data-gallery="gallery" rel='gallery'><img src={{card.logo}} </a> 
-                    <br><div id="cardDisplayName"> {{card.name}} </div>
+                    <a href="{{card.youngOne}}" title="{{card.name}}" data-gallery="gallery" rel='gallery'><img src="{{card.logo}}"</a> 
+                    <br>
+                    <div id="cardDisplayName"> {{card.name}} {{card.youngOne}} 
+                    </div>
                     <a style="display:none" href={{card.youngTwo}} title={{card.name}} data-gallery="gallery" rel='gallery'>{{card.name}}</a>
                 </div><!-- /links -->
-            </div>
-        </div>
-    </div>
+            </div> <!--/ng-repeat=" card in array -->
+    </div><!-- id="deckSelection" -->
 </div> <!-- /readSetPLAY -->
 
 
-<script type="text/javascript">
-
-/* Fisher Yates Shuffle Algorithm 
-   http://bost.ocks.org/mike/shuffle/
-*/
-
-var shufflemodule = angular.module('ShuffleModule', []);
-
-shufflemodule.filter('shuffle', function() {
-    return function(k) {
-        for(var j, x, i = k.length; i; j = parseInt(Math.random() * i), x = k[--i], k[i] = k[j], k[j] = x);
-        
-        return k;
-    };
-});
-
-function ShuffleController($scope) {
-    var icmDeck = [
-        { name: 'Train Room',
-                logo: '@routes.Assets.at("images/icons/train.png")',
-                youngOne:'@routes.Assets.at("images/cards/Cards-29-03.png")',
-                youngTwo:'@routes.Assets.at("images/cards/Cards-30-03.png")',
-                oldOne:'@routes.Assets.at("images/cards/Cards-31-39.png")',
-                oldTwo:'@routes.Assets.at("images/cards/Cards-32-39.png")'}, 
-        { name: 'Bodies In Motion', 
-                logo:'@routes.Assets.at("images/icons/trail.png")',
-                youngOne:'@routes.Assets.at("images/cards/Cards-21-03.png")',
-                youngTwo:'@routes.Assets.at("images/cards/Cards-22-03.png")',
-                oldOne:'@routes.Assets.at("images/cards/Cards-23-39.png")',
-                oldTwo:'@routes.Assets.at("images/cards/Cards-24-39.png")'}, 
-        { name: 'Wind Tunnel', 
-                logo:'@routes.Assets.at("images/icons/windMill.png")',
-                youngOne:'@routes.Assets.at("images/cards/Cards-59-03.png")',
-                youngTwo:'@routes.Assets.at("images/cards/Cards-60-03.png")',
-                oldOne:'@routes.Assets.at("images/cards/Cards-57-39.png")',
-                oldTwo:'@routes.Assets.at("images/cards/Cards-58-39.png")'},
-        { name: 'Post Office',
-                logo:'@routes.Assets.at("images/icons/postOffice.png")',
-                youngOne:'@routes.Assets.at("images/cards/Cards-53-03.png")',
-                youngTwo:'@routes.Assets.at("images/cards/Cards-54-03.png")',
-                oldOne:'@routes.Assets.at("images/cards/Cards-55-39.png")',
-                oldTwo:'@routes.Assets.at("images/cards/Cards-56-39.png")'},
-        { name: 'ABC Forest',
-                logo:'@routes.Assets.at("images/icons/abcForest.png")',
-                youngOne:'@routes.Assets.at("images/cards/Cards-05-03.png")',
-                youngTwo:'@routes.Assets.at("images/cards/Cards-06-03.png")',
-                oldOne:'@routes.Assets.at("images/cards/Cards-07-39.png")',
-                oldTwo:'@routes.Assets.at("images/cards/Cards-08-39.png")'},
-        { name: 'Art Room',
-                logo:'@routes.Assets.at("images/icons/art.png")',
-                youngOne:'@routes.Assets.at("images/cards/Cards-13-03.png")',
-                youngTwo:'@routes.Assets.at("images/cards/Cards-14-03.png")',
-                oldOne:'@routes.Assets.at("images/cards/Cards-15-39.png")',
-                oldTwo:'@routes.Assets.at("images/cards/Cards-16-39.png")'},
-        { name: 'Bank',
-                logo:'@routes.Assets.at("images/icons/dollarCity.png")',
-                youngOne:'@routes.Assets.at("images/cards/Cards-33-03.png")',
-                youngTwo:'@routes.Assets.at("images/cards/Cards-34-03.png")',
-                oldOne:'@routes.Assets.at("images/cards/Cards-35-39.png")',
-                oldTwo:'@routes.Assets.at("images/cards/Cards-36-39.png")'},
-        { name: 'Theatre',
-                logo:'@routes.Assets.at("images/icons/theatre.png")',
-                youngOne:'@routes.Assets.at("images/cards/Cards-49-03.png")',
-                youngTwo:'@routes.Assets.at("images/cards/Cards-50-03.png")',
-                oldOne:'@routes.Assets.at("images/cards/Cards-51-39.png")',
-                oldTwo:'@routes.Assets.at("images/cards/Cards-52-39.png")'} 
-    ];
-    
-    $scope.array = icmDeck;
-    
-    $scope.useDeck = function() { $scope.array = icmDeck; };
-}
-
-</script>
 <script src='@routes.Assets.at("javascripts/letsplay.js")'></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
