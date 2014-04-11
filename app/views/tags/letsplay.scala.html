@@ -7,7 +7,7 @@
 
 <div id="readySetPLAY" ng:app="letsPlay" ng-controller="selectCTRL">
     <div id="title">
-        <h2> Ready, Set, PLAY! </h2>
+        <h2> PLAY! </h2>
     </div>
     <div id="instruct">
         <p> To start playing, select the age group and deck you would like to play with.</p>
@@ -16,17 +16,12 @@
     <fieldset>
         <div id="selection">
             <div class="row">
-                <div class="col-lg-5"></div>
-                <div class="col-lg-2">
-                    <select ng-model="selectedDeck" ng-options="d for d in decks">
-                        <option value="">Select Deck </option>
-                    </select>  
-                    <select ng-model="selectedAge" ng-options="a for a in ages">
-                        <option value="">Select Age </option>
-                    </select> 
-                </div>
-                <div class="col-lg-1"></div>
-                <div class="col-lg-3"></div> 
+                <select ng-model="selectedDeck" ng-options="d for d in decks">
+                    <option value="">Select Deck </option>
+                </select>  
+                <select ng-model="selectedAge" ng-options="a for a in ages">
+                    <option value="">Select Age </option>
+                </select> 
             </div> <!-- /row -->               
         </div> <!-- /selection -->
     </fieldset>
