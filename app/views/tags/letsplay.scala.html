@@ -19,8 +19,10 @@
                 <div class="col-lg-5"></div>
                 <div class="col-lg-2">
                     <select ng-model="selectedDeck" ng-options="d for d in decks">
-                    </select> 
+                        <option value="">Select Deck </option>
+                    </select>  
                     <select ng-model="selectedAge" ng-options="a for a in ages">
+                        <option value="">Select Age </option>
                     </select> 
                 </div>
                 <div class="col-lg-1"></div>
@@ -36,8 +38,8 @@
         <br>
     </div>
     <div  class="centered" >
-            <a class="btn btn-lg btn-default" ng-click="useDeck()"><b>Shuffle!</b></a>
-            <div ng-repeat=" card in array | shuffle | limitTo:1">
+            <a class="btn btn-lg btn-default" ng-click="card()"><b>Shuffle!</b></a>
+            <div ng-repeat=" card in deckArray | shuffle | limitTo:1">
                 <br>
                  <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
                 <div id="blueimp-gallery" class="blueimp-gallery">
@@ -86,20 +88,37 @@
 <script type="text/javascript">
 
 
-var selectModule = angular.module("letsPlay", []);
+var selectModule = angular.module('letsPlay', []);
+        
 
 selectModule.controller("selectCTRL", function($scope){
+    /*functions */
+        
+    $scope.selectedDeck = function() {
+        $scope.selectedDeck = $scope.decks[0]; 
+    };
+    $scope.selectedAge = function() {
+        $scope.selectedAge = $scope.ages[0];
+    };
+    $scope.deckArray = function(){
+        $scope.deckArray = $scope.icmDeck[0];
+    };
+    $scope.card = function() { 
+       $scope.deckArray = $scope.icmDeck;
+    };
+    
+
+    
+    /*scope variables */
     $scope.decks = [
         "ICM Museum Deck 1",
-        "ICM Museum Deck 2"];
-        $scope.selectedDeck = $scope.decks[0];
-        
-        $scope.ages = [
+        "ICM Museum Deck 2"
+        ];        
+    $scope.ages = [
         "0-3",
-        "3+"];
-        $scope.selectedAge = $scope.ages[0];
-
-        var icmDeck = [
+        "3+"
+        ];
+    $scope.icmDeck = [
         { name: 'Train Room',
                 logo: '@routes.Assets.at("images/icons/train.png")',
                 youngOne:'@routes.Assets.at("images/cards/Cards-29-03.png")',
@@ -149,9 +168,7 @@ selectModule.controller("selectCTRL", function($scope){
                 oldOne:'@routes.Assets.at("images/cards/Cards-51-39.png")',
                 oldTwo:'@routes.Assets.at("images/cards/Cards-52-39.png")'} 
     ];
-    $scope.array = icmDeck;
     
-    $scope.useDeck = function() { $scope.array = icmDeck; };
 });
 
 selectModule.filter('shuffle', function() {
@@ -161,4 +178,5 @@ selectModule.filter('shuffle', function() {
         return k;
     };
 });
+
 </script>
