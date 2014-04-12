@@ -1,7 +1,7 @@
 /* BUILDS */
 #builds {
-    padding-bottom: 120px;
     background-color: #4e4e4e;
+    padding-bottom: 120px;
 }
 #builds h3,h4{
 	font-family: "Raleway";
@@ -13,8 +13,4 @@
 
 .mt {
 	margin-top: 100px;
-}
-
-#footer{
-	margin-top: 10px;
 }

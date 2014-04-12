@@ -48,6 +48,10 @@ public class Account extends MasterController {
         return ok( builds.render());
     }
 
+    public static Result playGogInstruct(){
+        return ok( playGogInstruct.render());
+    }
+
     public static Result login() {
         if(!DataUtil.isDatabase()) {
             flash("error", "Our database is currently down. Please contact a system administrator.");

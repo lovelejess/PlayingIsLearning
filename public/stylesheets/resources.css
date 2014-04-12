@@ -2,20 +2,35 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300,700,900);
 
-
-
-/* Resources */
-#resources {
-    width: 100%;
-    padding-top: 100px;
-    padding-bottom: 204px;
-
+#resource {
+	width:100%;
 }
-#resources h3{
+/* Resources */
+#resourceLinks {
+    
+    padding-top: 100px;
+}
+#resourceLinks h3{
 	color: #4e4e4e;
 }
-#resources ul li a{
+#resourceLinks ul li a{
 	color:#50C1C1 ;
 	font-weight: bold;
 }
 
+#playYetQuote {
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+}
+
+#playYetQuote h2{
+	color: red;
+}
+#playYetQuote p{
+	font-family: "Raleway";
+    font-weight: 400;
+    font-size: 20px;
+
+}

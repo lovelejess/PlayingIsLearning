@@ -6,8 +6,8 @@
 @import url(http://fonts.googleapis.com/css?family=Finger+Paint);
 
 /* BODY */
-body{
-	height: 100%
+html,body{
+	height: 100%;
 }
 /* Titles */
 h1, h2, h3, h4, h5, h6 {
