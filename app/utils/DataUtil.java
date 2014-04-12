@@ -27,15 +27,15 @@ public class DataUtil {
             return prodDB;*/
 
             /*DEV*/
-//            MongoClient devMongoInstance = new MongoClient("ds035897.mongolab.com", 35897); //DEV
-//            DB devDB = prodMongoInstance.getDB("heroku_app23461665");
-//            devDB.authenticate("icm_dev", "V3rify99".toCharArray()); //todo this needs to go in an ignored config file
-//            return devDB;
+           MongoClient devMongoInstance = new MongoClient("ds035897.mongolab.com", 35897); //DEV
+           DB devDB = prodMongoInstance.getDB("heroku_app23461665");
+           devDB.authenticate("icm_dev", "V3rify99".toCharArray()); //todo this needs to go in an ignored config file
+           return devDB;
 
             /*LOCAL*/
-           MongoClient mongoClient = new MongoClient( );
-           DB localDB = mongoClient.getDB("icm");
-           return localDB;
+/*           MongoClient mongoClient = new MongoClient( );
+           DB localDB = mongoClient.wooetDB("icm");
+           return localDB;*/
 
 
         } catch (UnknownHostException e) {
