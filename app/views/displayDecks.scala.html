@@ -1,91 +1,39 @@
-<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/letsplay.css")'>
-<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/blueimp-gallery.min.css")'>
-<script src='@routes.Assets.at("javascripts/letsplay.js")'></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-<script src="js/bootstrap-image-gallery.min.js"></script>
+@()
+@import tags._
+@main() {
 
-<div id="readySetPLAY" ng:app="letsPlay" ng-controller="selectCTRL">
-    <div id="title">
-        <h2> PLAY! </h2>
-    </div>
-    <div id="instruct">
-        <p> To start playing, select the age group and deck you would like to play with.</p>
-    </div>
+<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/displayDecks.css")'>
+<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
+<link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap-image-gallery.min.css")'>
 
-    <fieldset>
-        <div id="selection">
-            <div class="row">
-                <select ng-model="selectedDeck" ng-options="d for d in decks">
-                    <option value="">Select Deck </option>
-                </select>  
-                <select ng-model="selectedAge" ng-options="a for a in ages">
-                    <option value="">Select Age </option>
-                </select> 
-            </div> <!-- /row -->               
-        </div> <!-- /selection -->
-    </fieldset>
+<div id="displayDecks" ng:app="displayDecks" ng-controller="displayDeckCTRL">
+	<h2 class="centered">Display A Deck</h2>
+	<br>
 
-    <br>
-
-    <div id="deckSelection">
-        <h4> You are playing with the <b id="selectedDeck">{{selectedDeck}} </b>deck for ages <b id="selectedAge"> {{selectedAge}}</b></h4>
+	<div id="selection">
+        <div class="row">
+            <select ng-model="selectedDeck" ng-options="d for d in decks">
+                <option value="">Select Deck </option>
+            </select>  
+            <select ng-model="selectedAge" ng-options="a for a in ages">
+                <option value="">Select Age </option>
+            </select> 
+        </div> <!-- /row -->               
+    </div> <!-- /selection -->
+    <div id="displaySelection">
+    	<br>
+        <h4> You are viewing the <b id="selectedDeck">{{selectedDeck}} </b>deck for ages <b id="selectedAge"> {{selectedAge}}</b></h4>
         <br>
     </div>
-    <div  class="centered" >
-            <a class="btn btn-lg btn-default" ng-click="card()"><b>Shuffle!</b></a>
-            <div ng-repeat=" card in deckArray | shuffle | limitTo:1">
-                <br>
-                 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-                <div id="blueimp-gallery" class="blueimp-gallery">
-                    <!-- The container for the modal slides -->
-                    <div class="slides"></div>
-                    <!-- Controls for the borderless lightbox -->
-                    <h3 class="title"></h3>
-                    <a class="prev">‹</a>
-                    <a class="next">›</a>
-                    <a class="close">×</a>
-                    <a class="play-pause"></a>
-                    <ol class="indicator"></ol>
-                    <!-- The modal dialog, which will be used to wrap the lightbox content -->
-                    <div class="modal fade">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title"></h4>
-                                </div>
-                                <div class="modal-body next"></div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default pull-left prev">
-                                        <i class="glyphicon glyphicon-chevron-left"></i>
-                                        Previous
-                                    </button>
-                                    <button type="button" class="btn btn-primary next">
-                                        Next
-                                        <i class="glyphicon glyphicon-chevron-right"></i>
-                                    </button>
-                                </div> <!--modal-header -->
-                            </div> <!--modal-content -->
-                        </div> <!--modal-dialog -->
-                    </div> <!-- modal fade --> 
-                </div>  <!-- /blueimp-gallery-->
-                <div id='links'>
-                    <a href="{{card.front}}" title={{card.name}} data-gallery="gallery" rel='gallery'><img id="frontCard" src="{{card.front}}"></a> 
-                    <br><div id="cardDisplayName"> {{card.name}} </div>
-                    <a style="display:none" href="{{card.back}}" title={{card.name}} data-gallery="gallery" rel='gallery'>{{card.name}}</a>
-                </div><!-- /links -->
-            </div> <!--/ng-repeat=" card in array -->
-    </div><!-- centered -->
-</div> <!-- /readSetPLAY -->
-
-
+    @decks()
+    
+</div><!-- /displayDecks -->
+}
 <script type="text/javascript">
 
-var selectModule = angular.module('letsPlay', []);
-        
+var displayModule = angular.module('displayDecks', []);
 
-selectModule.controller("selectCTRL", function($scope){
+displayModule.controller("displayDeckCTRL", function($scope){
     /*functions */
         
     $scope.selectedDeck = function() {
@@ -109,6 +57,7 @@ selectModule.controller("selectCTRL", function($scope){
                 }
             });
     };
+
 
     /*scope variables */
     $scope.decks = [
@@ -241,23 +190,7 @@ selectModule.controller("selectCTRL", function($scope){
                 back:'@routes.Assets.at("images/cards/Cards-20-39.png")'} 
     ];
     
+
+
 });
-
-selectModule.filter('shuffle', function() {
-    return function(k) {
-        for(var j, x, i = k.length; i; j = parseInt(Math.random() * i), x = k[--i], k[i] = k[j], k[j] = x);
-        
-        return k;
-    };
-});
-</script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-49936424-1', 'playingislearning.org');
-  ga('send', 'pageview');
-
 </script>

@@ -10,6 +10,7 @@ GET    /resources            controllers.Account.resources()
 GET	   /playGog				 controllers.Account.playGog()
 GET    /builds				 controllers.Account.builds()
 GET    /playGogInstruct		 controllers.Account.playGogInstruct()
+GET	   /displayDecks		 controllers.Account.displayDecks()
 
 #Login-Logout
 POST   /login                controllers.Account.login()

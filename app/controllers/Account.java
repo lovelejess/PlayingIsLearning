@@ -51,6 +51,9 @@ public class Account extends MasterController {
     public static Result playGogInstruct(){
         return ok( playGogInstruct.render());
     }
+    public static Result displayDecks(){
+        return ok( displayDecks.render());
+    }
 
     public static Result login() {
         if(!DataUtil.isDatabase()) {
