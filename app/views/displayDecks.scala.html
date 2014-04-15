@@ -10,6 +10,7 @@
 	<h2 class="centered">Display A Deck</h2>
 	<br>
 
+	<fieldset>
 	<div id="selection">
         <div class="row">
             <select ng-model="selectedDeck" ng-options="d for d in decks">
@@ -17,121 +18,54 @@
             </select>  
             <select ng-model="selectedAge" ng-options="a for a in ages">
                 <option value="">Select Age </option>
-            </select> 
+            </select>
+            <button type="button" ng-click="cardTable()">Display!</button> 
         </div> <!-- /row -->               
     </div> <!-- /selection -->
+	</fieldset>
+
     <div id="displaySelection">
     	<br>
         <h4> You are viewing the <b id="selectedDeck">{{selectedDeck}} </b>deck for ages <b id="selectedAge"> {{selectedAge}}</b></h4>
         <br>
     </div>
-    @decks()
+    <div class="deckOfCards">
+        <div class="container">
+            <div class="row">
+			    <table class="table table-bordered table-striped responsive-utilities">
+			    	
+			        <tbody>
+			         <tr ng-repeat="cards in deckOptions">
+			            <td ng-repeat="card in cards" id='links' class="is-visible"><img height='50' width='50' style="max-height: 50px;max-width: 50px;" src="{{card.logo}}"> 
+			                 <!-- After four iterations a new `<tr>` should be aded -->
+			                 
+			            <a href="{{card.front}}" title={{card.name}} data-gallery="gallery" rel='gallery'>
+                    	<br>{{card.name}}</a>
+                    	<a style="display:none" href="{{card.back}}" title={{card.name}} data-gallery="gallery" rel='gallery'></a>
+			            </td>
+			         </tr>
+			        </tbody>
+			    </table>
+			</div><!--/row -->
+		</div><!-- /container -->
+	</div><!-- deckOfCards -->
+    <br>
     
+
 </div><!-- /displayDecks -->
 }
 <script type="text/javascript">
 
 var displayModule = angular.module('displayDecks', []);
-
-displayModule.controller("displayDeckCTRL", function($scope){
-    /*functions */
-        
-    $scope.selectedDeck = function() {
-        $scope.selectedDeck = $scope.decks[0]; 
-    };
-    $scope.selectedAge = function() {
-        $scope.selectedAge = $scope.ages[0];
-    };
-    $scope.deckArray = function(){
-        $scope.deckArray = $scope.icmDeckOneYoung[0];
-    };
-    $scope.card = function() { 
-       $scope.deckArray = $scope.icmDeckOneYoung;
-       $scope.$watch(
-        "selectedAge",
-            function( value ) {
-                if ( value === "0-3") {
-                    $scope.deckArray = $scope.icmDeckOneYoung;
-                }else{
-                    $scope.deckArray = $scope.icmDeckOneOld;
-                }
-            });
-    };
-
-
-    /*scope variables */
-    $scope.decks = [
+var decks = [
         "ICM Museum Deck 1",
         ];        
-    $scope.ages = [
+var ages = [
         "0-3",
         "3+"
         ];
-    
-    $scope.icmDeckOneYoung = [
-        { name: 'Train Room',
-                logo: '@routes.Assets.at("images/icons/train.png")',
-                front:'@routes.Assets.at("images/cards/Cards-29-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-30-03.png")'},
-        { name: 'Bodies In Motion', 
-                logo:'@routes.Assets.at("images/icons/trail.png")',
-                front:'@routes.Assets.at("images/cards/Cards-21-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-22-03.png")'},
-        { name: 'Wind Tunnel', 
-                logo:'@routes.Assets.at("images/icons/windMill.png")',
-                front:'@routes.Assets.at("images/cards/Cards-59-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-60-03.png")'},
-        { name: 'Post Office',
-                logo:'@routes.Assets.at("images/icons/postOffice.png")',
-                front:'@routes.Assets.at("images/cards/Cards-53-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-54-03.png")'},
-        { name: 'ABC Forest',
-                logo:'@routes.Assets.at("images/icons/abcForest.png")',
-                front:'@routes.Assets.at("images/cards/Cards-05-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-06-03.png")'},
-        { name: 'Art Room',
-                logo:'@routes.Assets.at("images/icons/art.png")',
-                front:'@routes.Assets.at("images/cards/Cards-13-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-14-03.png")'},
-        { name: 'Bank',
-                logo:'@routes.Assets.at("images/icons/dollarCity.png")',
-                front:'@routes.Assets.at("images/cards/Cards-33-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-34-03.png")'},
-        { name: 'Theatre',
-                logo:'@routes.Assets.at("images/icons/theatre.png")',
-                front:'@routes.Assets.at("images/cards/Cards-49-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-50-03.png")'},
-        { name: 'Grocery Store',
-                logo:'@routes.Assets.at("images/icons/groceryStore.png")',
-                front:'@routes.Assets.at("images/cards/Cards-09-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-10-03.png")'}, 
-        { name: 'Hospital',
-                logo:'@routes.Assets.at("images/icons/hospital.png")',
-                front:'@routes.Assets.at("images/cards/Cards-37-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-10-03.png")'},
-        { name: 'Imagine Acres',
-                logo:'@routes.Assets.at("images/icons/imagineAcres.png")',
-                front:'@routes.Assets.at("images/cards/Cards-01-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-02-03.png")'}, 
-        { name: 'Take Flight',
-                logo:'@routes.Assets.at("images/icons/takeFlight.png")',
-                front:'@routes.Assets.at("images/cards/Cards-25-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-26-03.png")'},
-        { name: 'Lego Room',
-                logo:'@routes.Assets.at("images/icons/lego.png")',
-                front:'@routes.Assets.at("images/cards/Cards-41-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-42-03.png")'},
-        { name: 'Music Room',
-                logo:'@routes.Assets.at("images/icons/music.png")',
-                front:'@routes.Assets.at("images/cards/Cards-45-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-46-03.png")'},
-        { name: 'Pizzeria',
-                logo:'@routes.Assets.at("images/icons/pizza.png")',
-                front:'@routes.Assets.at("images/cards/Cards-17-03.png")',
-                back:'@routes.Assets.at("images/cards/Cards-18-03.png")'}             
-    ];
 
-    $scope.icmDeckOneOld =[
+var icmDeckOneYoung =[
         { name: 'Train Room',
                 logo: '@routes.Assets.at("images/icons/train.png")',
                 front:'@routes.Assets.at("images/cards/Cards-31-39.png")',
@@ -184,13 +118,115 @@ displayModule.controller("displayDeckCTRL", function($scope){
                 logo:'@routes.Assets.at("images/icons/music.png")',
                 front:'@routes.Assets.at("images/cards/Cards-47-39.png")',
                 back:'@routes.Assets.at("images/cards/Cards-48-39.png")'},
+        { name: 'Lego Room',
+                logo:'@routes.Assets.at("images/icons/lego.png")',
+                front:'@routes.Assets.at("images/cards/Cards-41-03.png")',
+                back:'@routes.Assets.at("images/cards/Cards-42-03.png")'},
+        { name: 'Pizzeria',
+                logo:'@routes.Assets.at("images/icons/pizza.png")',
+                front:'@routes.Assets.at("images/cards/Cards-19-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-20-39.png")'} 
+    ];
+displayModule.controller("displayDeckCTRL", function($scope){
+$scope.cardTable = function(){
+        var deckOptions = [];
+        for (var i = 0; i < icmDeckOneYoung.length; i++ ) {
+            if (i % 4 == 0) deckOptions.push([]);
+            deckOptions[deckOptions.length-1].push(icmDeckOneYoung[i]);
+        }
+      return $scope.deckOptions = deckOptions;
+    };
+    $scope.selectedDeck = function() {
+        $scope.selectedDeck = decks[0]; 
+    };
+    $scope.selectedAge = function() {
+        $scope.selectedAge = ages[0];
+    };
+    $scope.deckArray = function(){
+        $scope.deckArray = $scope.icmDeckOneYoung[0];
+    };
+    $scope.card = function() { 
+       $scope.deckArray = $scope.icmDeckOneYoung;
+       $scope.$watch(
+        "selectedAge",
+            function( value ) {
+                if ( value === "0-3") {
+                    $scope.deckArray = $scope.icmDeckOneYoung;
+                }else{
+                    $scope.deckArray = $scope.icmDeckOneOld;
+                }
+            });
+    };
+
+
+    /*scope variables */
+    $scope.decks = decks;
+    $scope.ages = ages;
+    
+    $scope.icmDeckOneYoung = icmDeckOneYoung;
+    $scope.icmDeckOneOld =[
+        { name: 'Train Room',
+                logo: '@routes.Assets.at("images/icons/train.png")',
+                front:'@routes.Assets.at("images/cards/Cards-31-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-32-39.png")'}, 
+        { name: 'Bodies In Motion', 
+                logo:'@routes.Assets.at("images/icons/trail.png")',
+                front:'@routes.Assets.at("images/cards/Cards-23-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-24-39.png")'}, 
+        { name: 'Wind Tunnel', 
+                logo:'@routes.Assets.at("images/icons/windMill.png")',
+                front:'@routes.Assets.at("images/cards/Cards-57-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-58-39.png")'},
+        { name: 'Post Office',
+                logo:'@routes.Assets.at("images/icons/postOffice.png")',
+                front:'@routes.Assets.at("images/cards/Cards-55-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-56-39.png")'},
+        { name: 'ABC Forest',
+                logo:'@routes.Assets.at("images/icons/abcForest.png")',
+                front:'@routes.Assets.at("images/cards/Cards-07-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-08-39.png")'},
+        { name: 'Art Room',
+                logo:'@routes.Assets.at("images/icons/art.png")',
+                front:'@routes.Assets.at("images/cards/Cards-15-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-16-39.png")'},
+        { name: 'Bank',
+                logo:'@routes.Assets.at("images/icons/dollarCity.png")',
+                front:'@routes.Assets.at("images/cards/Cards-35-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-36-39.png")'},
+        { name: 'Theatre',
+                logo:'@routes.Assets.at("images/icons/theatre.png")',
+                front:'@routes.Assets.at("images/cards/Cards-51-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-52-39.png")'},
+        { name: 'Grocery Store',
+                logo:'@routes.Assets.at("images/icons/groceryStore.png")',
+                front:'@routes.Assets.at("images/cards/Cards-11-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-12-39.png")'}, 
+        { name: 'Hospital',
+                logo:'@routes.Assets.at("images/icons/hospital.png")',
+                front:'@routes.Assets.at("images/cards/Cards-39-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-40-39.png")'},
+        { name: 'Imagine Acres',
+                logo:'@routes.Assets.at("images/icons/imagineAcres.png")',
+                front:'@routes.Assets.at("images/cards/Cards-03-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-04-39.png")'},
+        { name: 'Take Flight',
+                logo:'@routes.Assets.at("images/icons/takeFlight.png")',
+                front:'@routes.Assets.at("images/cards/Cards-27-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-28-39.png")'},
+        { name: 'Lego Room',
+                logo:'@routes.Assets.at("images/icons/lego.png")',
+                front:'@routes.Assets.at("images/cards/Cards-43-39.png")' ,
+                back:'@routes.Assets.at("images/cards/Cards-44-39.png")'},
+        { name: 'Music Room',
+                logo:'@routes.Assets.at("images/icons/music.png")',
+                front:'@routes.Assets.at("images/cards/Cards-47-39.png")',
+                back:'@routes.Assets.at("images/cards/Cards-48-39.png")'},
         { name: 'Pizzeria',
                 logo:'@routes.Assets.at("images/icons/pizza.png")',
                 front:'@routes.Assets.at("images/cards/Cards-19-39.png")',
                 back:'@routes.Assets.at("images/cards/Cards-20-39.png")'} 
     ];
     
-
 
 });
 </script>
