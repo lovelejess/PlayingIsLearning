@@ -1,6 +1,5 @@
 @()(content: Html)
 
-@import enums.PassportTypeEnum
 @import helper._
 @import helper.twitterBootstrap._
 @import tags._
@@ -59,21 +58,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @if(MasterController.isLoggedIn()){
-                    <li class="dropdown">
-                        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">User: 
-                            <b>@{MasterController.getLoggedInUser().username}</b> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#login">Logout </a></li>
-                            <li><a href="#">Settings </a></li>
-                        </ul> 
-                        </a></li>
-                    </li>
-                    
-                } else{
-                    <li><a href="#login" data-toggle="modal">Login</a></li>
-                }
-                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/index">Home</a></li>

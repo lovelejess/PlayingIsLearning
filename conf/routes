@@ -12,34 +12,6 @@ GET    /builds				 controllers.Account.builds()
 GET    /playGogInstruct		 controllers.Account.playGogInstruct()
 GET	   /displayDecks		 controllers.Account.displayDecks()
 
-#Login-Logout
-POST   /login                controllers.Account.login()
-GET    /logout               controllers.Account.logout()
-
-#Register
-POST   /register             controllers.Account.register()
-
-#Security questions
-POST   /security             controllers.Account.security()
-
-#Recover Password
-GET    /recoverPassword      controllers.RecoverPassword.index()
-POST   /isUser               controllers.RecoverPassword.isUser()
-POST   /secureQuestions      controllers.RecoverPassword.secureQuestions()
-
-#Survey page
-GET    /survey               controllers.SurveyController.index()
-POST   /stageOne             controllers.SurveyController.stageOne()
-POST   /stageTwo             controllers.SurveyController.stageTwo()
-POST   /stageThree           controllers.SurveyController.stageThree()
-POST   /stageFour            controllers.SurveyController.stageFour()
-POST   /stageFive            controllers.SurveyController.stageFive()
-
-#Admin
-GET    /admin                controllers.Admin.index()
-POST   /stageFive            controllers.Admin.index()
-
-
 # Import Secure routes
 #*     /                     module:secure
 
